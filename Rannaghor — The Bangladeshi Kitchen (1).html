@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rannaghor — The Bangladeshi Kitchen</title>
+<meta name="description" content="Over 120 dishes of Bangladesh with pictures, simple recipes, a cook mode, Bangla and English, and regional themes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --hero:#0D3B2C;--accent:#EBA81C;--disc:#C8202E;
+  --bg:color-mix(in srgb,var(--hero) 7%,#fff);--surface:color-mix(in srgb,var(--hero) 2%,#fff);
+  --text:#10231A;--muted:#475D52;--line:rgba(16,35,26,.2);
+  --chip:color-mix(in srgb,var(--hero) 12%,#fff);--chip-on:var(--hero);--chip-on-text:#fff;
+  --hot:#C8202E;--focus:#C8202E;
+  --c-rice:#7A6A1E;--c-fish:#1F6C8F;--c-meat:#B3202C;--c-veg:#2E7D3E;--c-dal:#9A6B00;--c-snack:#B9531A;--c-bread:#8B6137;--c-pitha:#7A4A33;--c-sweet:#B03E7A;--c-drink:#1D7A70;--c-fruit:#4F7A12;
+  --display:"Tiro Bangla","Noto Serif Bengali","Kalpurush",Georgia,serif;
+  --sans:"Hind Siliguri","Noto Sans Bengali","Kalpurush",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+[data-region="dhaka"]{--hero:#431A4C;--accent:#FFD23F;--disc:#E4256B}
+[data-region="chattogram"]{--hero:#0B3C5D;--accent:#F2C14E;--disc:#1D8FA8}
+[data-region="sylhet"]{--hero:#1B4D2E;--accent:#CFE8A5;--disc:#5E9E34}
+[data-region="khulna"]{--hero:#2E3B1D;--accent:#F5A623;--disc:#D98E04}
+[data-region="barishal"]{--hero:#123A4A;--accent:#9EE0E6;--disc:#3FA7D6}
+[data-region="rajshahi"]{--hero:#7A3E00;--accent:#FFD166;--disc:#E59A00}
+[data-region="rangpur"]{--hero:#5C1A24;--accent:#FFB3A7;--disc:#D7263D}
+[data-region="mymensingh"]{--hero:#1F2A5C;--accent:#E6E9FF;--disc:#5B6EE1}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:color-mix(in srgb,var(--hero) 45%,#000);--surface:color-mix(in srgb,var(--hero) 70%,#000);--text:#E8F0E9;--muted:#B0C2B7;--line:rgba(232,240,233,.26);--chip:color-mix(in srgb,var(--hero) 75%,#fff);--chip-on:var(--accent);--chip-on-text:#111;--hot:#F0505F;--focus:var(--accent);color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:color-mix(in srgb,var(--hero) 45%,#000);--surface:color-mix(in srgb,var(--hero) 70%,#000);--text:#E8F0E9;--muted:#B0C2B7;--line:rgba(232,240,233,.26);--chip:color-mix(in srgb,var(--hero) 75%,#fff);--chip-on:var(--accent);--chip-on-text:#111;--hot:#F0505F;--focus:var(--accent);color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 12px);scroll-behavior:smooth}
+html.lock{overflow:hidden}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.65}
+body,.hero,.band,footer,.chip,.tag,.search,.filters,.ib,dialog{transition:background-color .7s ease,color .7s ease,border-color .7s ease}
+h1,h2,h3,h4,p,ul,ol,dl,dd{margin:0}ul,ol{padding:0;list-style:none}a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.hero :focus-visible,.band :focus-visible{outline-color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:#fff;color:#000;padding:8px 14px;border-radius:8px;z-index:100}.skip:focus{top:12px}
+
+/* hero */
+.hero{background:var(--hero);color:#fff;overflow:hidden}
+.hero nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-top:20px;padding-bottom:6px}
+.brand{font-family:var(--display);font-size:1.5rem;text-decoration:none;color:#fff;line-height:1.3}
+.brand small{font-family:var(--sans);font-size:.95rem;color:rgba(255,255,255,.75);margin-left:8px}
+.links{display:flex;flex-wrap:wrap;gap:4px 20px}
+.links a{color:rgba(255,255,255,.8);text-decoration:none;font-weight:500}.links a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.ctl{display:flex;gap:8px;align-items:center}
+.ib{border:2px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-width:42px;height:42px;padding:0 12px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.ib:hover{background:rgba(255,255,255,.2)}
+.ib[aria-pressed="false"]{opacity:.6}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:24px;padding-top:30px;padding-bottom:64px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.9rem,8vw,6rem);line-height:1.25;animation:rise .9s .05s both}
+.proverb{margin-top:6px;font-size:1.25rem;font-weight:500;color:var(--accent);animation:rise .9s .25s both}
+.lede{margin-top:18px;max-width:48ch;color:rgba(255,255,255,.85);font-size:1.08rem;animation:rise .9s .4s both}
+.cta{display:inline-block;margin-top:26px;background:var(--accent);color:#14201A;font-weight:700;text-decoration:none;padding:13px 26px;border-radius:999px;transition:transform .3s,filter .3s;animation:rise .9s .55s both}
+.cta:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.themes{margin-top:26px;animation:rise .9s .7s both}
+.themes>span{display:block;font-weight:600;font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:8px}
+.theme-row{display:flex;flex-wrap:wrap;gap:8px}
+.tchip{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:4px 14px 4px 6px;cursor:pointer;font-size:.92rem;font-weight:500;transition:transform .25s,background .3s}
+.tchip:hover{transform:translateY(-2px);background:rgba(255,255,255,.2)}
+.tchip[aria-pressed="true"]{background:#fff;color:#14201A;border-color:#fff}
+.tchip i{width:20px;height:20px;border-radius:50%;display:inline-block;border:2px solid rgba(255,255,255,.7)}
+.sun{justify-self:center;width:min(100%,440px);transition:opacity .35s ease,transform .5s ease}
+.sun.swap{opacity:0;transform:scale(.92) rotate(-8deg)}
+.sun svg{display:block;width:100%;height:auto;animation:float 7s ease-in-out infinite;filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))}
+.sun .spin{transform-origin:200px 200px;animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr;padding-bottom:48px}.sun{order:-1;width:min(66vw,260px);justify-self:start}}
+
+section{padding:72px 0}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3rem);line-height:1.3}
+.sub{margin-top:8px;color:var(--muted);max-width:62ch}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* menu */
+.menu{padding-bottom:40px}
+.filters{background:var(--bg);padding:16px 0 12px;margin-top:20px;border-bottom:1px solid var(--line);z-index:5}
+@media (min-width:760px){.filters{position:sticky;top:env(safe-area-inset-top,0px)}}
+.search{width:100%;font:inherit;font-size:1.05rem;color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:12px 16px}
+.search::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.chip{flex:0 0 auto;font-weight:500;font-size:.95rem;border:0;cursor:pointer;background:var(--chip);color:var(--text);padding:7px 15px;border-radius:999px;white-space:nowrap;transition:transform .2s}
+.chip:hover{transform:translateY(-1px)}
+.chip small{opacity:.75;margin-left:4px;font-size:.85em}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-text)}
+.opts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:8px;font-size:.95rem}
+.opts label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.opts input[type=checkbox]{width:18px;height:18px;accent-color:var(--c-veg)}
+.opts select{font:inherit;color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:8px;padding:3px 8px}
+.pill{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 14px;cursor:pointer;font-weight:600}
+.pill:hover{border-color:var(--text)}
+.status{margin-left:auto;color:var(--muted)}
+.linkbtn{background:none;border:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0;margin-left:10px}
+.group{margin-top:52px;padding:0}
+.group h3{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;padding-bottom:8px;border-bottom:4px solid var(--c)}
+.group h3 .pri{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.35}
+.group h3 .sec{font-weight:600;font-size:1.05rem;color:var(--muted)}
+.group h3 .n{margin-left:auto;font-size:.95rem;color:var(--muted)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr));column-gap:48px}
+.dish{position:relative;display:grid;grid-template-columns:112px 1fr;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.pic{width:112px;height:112px;border-radius:24px;overflow:hidden;background:color-mix(in srgb,var(--c) 22%,var(--surface));transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.pic svg{display:block;width:100%;height:100%}
+.dish:hover .pic{transform:scale(1.06) rotate(-2deg);box-shadow:0 12px 24px -10px rgba(0,0,0,.5)}
+.dish h4{font-weight:400;padding-right:34px}
+.nm{background:none;border:0;padding:0;text-align:left;cursor:pointer;display:block}
+.nm::after{content:"";position:absolute;inset:0}
+.nm:focus-visible{outline:none}.dish:has(.nm:focus-visible){outline:3px solid var(--focus);outline-offset:2px;border-radius:12px}
+.pri{display:block}
+.dish .pri{font-family:var(--display);font-size:1.35rem;line-height:1.4}
+.dish .sec{display:block;font-weight:600;font-size:.96rem;color:var(--muted)}
+.dish p.d{margin-top:6px;max-width:58ch;font-size:.97rem}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:8px;font-size:.85rem;color:var(--muted)}
+.spice{display:inline-flex;gap:5px;align-items:center}
+.chili{display:inline-block;width:14px;height:5px;border-radius:5px;background:var(--line);transform:rotate(-30deg)}.chili.on{background:var(--hot)}
+.tag{background:var(--chip);color:var(--text);padding:1px 10px;border-radius:999px}
+.fav{position:absolute;top:14px;right:0;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:transparent;cursor:pointer;font-size:1.4rem;line-height:1;color:var(--muted);transition:transform .25s,color .25s}
+.fav:hover{transform:scale(1.2)}.fav[aria-pressed="true"]{color:var(--hot)}
+.fav.pop{animation:heart .5s ease}
+@keyframes heart{0%{transform:scale(1)}40%{transform:scale(1.6)}100%{transform:scale(1)}}
+.empty{margin-top:56px;padding:28px 0;max-width:52ch}.empty h3{font-family:var(--display);font-weight:400;font-size:1.8rem}.empty .linkbtn{margin:10px 0 0}
+
+/* bands */
+.band{background:var(--hero);color:#EAF1EC}.band h2{color:#fff}.band .sub{color:rgba(255,255,255,.78)}
+.tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:40px 36px;margin-top:44px}
+.tables h3{font-weight:400}.tables .pri{font-family:var(--display);font-size:1.9rem;color:var(--accent);line-height:1.4}.tables .sec{display:block;font-weight:600}
+.tables p{margin-top:8px;color:rgba(255,255,255,.78);font-size:.97rem}
+.tables ul{margin-top:14px;border-top:2px solid rgba(255,255,255,.3)}.tables li{padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.28)}
+
+.regions{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:44px 36px;margin-top:44px}
+.region{border-top:4px solid var(--text);padding-top:16px}.region:nth-child(3n+2){border-top-color:var(--hot)}.region:nth-child(3n){border-top-color:var(--accent)}
+.region .rs{width:104px;height:104px;margin-bottom:10px}.region .rs svg{width:100%;height:100%;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}.region:hover .rs svg{transform:rotate(8deg) scale(1.06)}
+.region h3{font-weight:400}.region .pri{font-family:var(--display);font-size:1.9rem;line-height:1.4}.region .sec{display:block;font-weight:700}
+.region p{margin-top:6px;color:var(--muted);font-size:.97rem}
+.region ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.region ul .chip{font-size:.9rem}.region ul .chip:hover{background:var(--chip-on);color:var(--chip-on-text)}
+.apply{margin-top:14px;border:2px solid var(--text);background:transparent;border-radius:999px;padding:5px 16px;cursor:pointer;font-weight:700;transition:background .3s,color .3s}
+.apply:hover,.apply[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+
+.seasons{padding-top:24px}.cal{margin-top:36px}
+.cal div{display:grid;grid-template-columns:minmax(150px,260px) 1fr;gap:6px 32px;padding:18px 0;border-top:1px dashed var(--line)}.cal div:last-child{border-bottom:1px dashed var(--line)}
+.cal dt{font-weight:700}.cal dt span{display:block;font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.45}.cal dt small{display:block;font-weight:500;color:var(--muted);font-size:.9rem}.cal dd{max-width:62ch}
+@media (max-width:620px){.cal div{grid-template-columns:1fr}}
+footer{background:color-mix(in srgb,var(--hero) 60%,#000);color:rgba(255,255,255,.8);padding:44px 0 56px;font-size:.95rem}
+footer .brand{font-size:1.3rem}footer p{margin-top:10px;max-width:64ch}
+
+/* dialogs */
+dialog{border:0;padding:0;border-radius:28px;background:var(--bg);color:var(--text);width:min(960px,94vw);max-height:92vh;overflow:auto;box-shadow:0 40px 80px -20px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(5,12,9,.62);backdrop-filter:blur(5px);animation:fade .3s ease}
+dialog[open]{animation:pop .42s cubic-bezier(.2,.9,.25,1.1)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.dx{position:sticky;top:12px;float:right;margin:12px 12px 0 0;z-index:5;width:42px;height:42px;border-radius:50%;border:0;background:var(--chip);cursor:pointer;font-size:1.3rem;line-height:1}
+.r-head{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:28px;padding:28px clamp(18px,4vw,36px) 8px;align-items:center}
+.r-art{aspect-ratio:1;border-radius:32px;overflow:hidden;background:color-mix(in srgb,var(--c) 24%,var(--surface));animation:float 6s ease-in-out infinite}.r-art svg{width:100%;height:100%;display:block}
+.r-cat{font-weight:600;color:var(--c);font-size:.95rem}
+.r-head h2{font-size:clamp(2rem,5vw,3rem)}.r-en{font-weight:600;color:var(--muted);font-size:1.1rem}
+.r-desc{margin-top:10px;max-width:54ch}
+.r-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.r-meta li{background:var(--chip);padding:3px 14px;border-radius:999px;font-size:.9rem;display:inline-flex;gap:8px;align-items:center}
+.r-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:2px solid var(--text);background:transparent;border-radius:999px;padding:8px 20px;cursor:pointer;font-weight:700;transition:transform .25s,background .3s,color .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri2{background:var(--hero);border-color:var(--hero);color:#fff}
+:root[data-theme="dark"] .btn.pri2,:root:not([data-theme="light"]) .btn.pri2{background:var(--accent);border-color:var(--accent);color:#111}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn.pri2{background:var(--hero);border-color:var(--hero);color:#fff}}
+.r-body{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:28px 40px;padding:18px clamp(18px,4vw,36px) 32px}
+.r-body h3{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.4;margin-bottom:8px}
+.ing li{padding:7px 0;border-bottom:1px dashed var(--line)}.ing label{display:flex;gap:10px;align-items:center;cursor:pointer}.ing input{width:18px;height:18px;accent-color:var(--c-veg)}
+.ing input:checked+span{text-decoration:line-through;opacity:.55}
+.steps{counter-reset:s}.steps li{counter-increment:s;position:relative;padding:10px 0 10px 50px;border-bottom:1px dashed var(--line)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:34px;height:34px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700}
+.note{grid-column:1/-1;font-size:.88rem;color:var(--muted)}
+@media (max-width:760px){.r-head,.r-body{grid-template-columns:1fr}.r-art{max-width:260px}}
+
+.cook{padding:28px clamp(18px,4vw,40px) 36px;min-height:60vh;display:flex;flex-direction:column;gap:18px;justify-content:center}
+.bar{height:10px;border-radius:99px;background:var(--chip);overflow:hidden}.bar i{display:block;height:100%;background:var(--c);width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.cook .sn{font-weight:700;color:var(--muted)}
+.cook .st{font-size:clamp(1.5rem,3.6vw,2.2rem);line-height:1.5;max-width:30ch;animation:slide .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes slide{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+.cook .cr{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.steam{display:flex;gap:14px;height:46px;align-items:flex-end}.steam span{width:9px;height:36px;border-radius:12px;background:linear-gradient(to top,var(--c),transparent);animation:steam 2.4s ease-in infinite;opacity:0}
+.steam span:nth-child(2){animation-delay:.6s}.steam span:nth-child(3){animation-delay:1.2s}
+@keyframes steam{0%{transform:translateY(14px) scaleY(.6);opacity:0}30%{opacity:.7}100%{transform:translateY(-22px) scaleY(1.2);opacity:0}}
+.done{text-align:center;padding:30px 0}.done .big{font-family:var(--display);font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.3;animation:heart .9s ease}
+.done .r-art{margin:18px auto;max-width:220px}
+.lst{padding:28px clamp(18px,4vw,36px) 32px}.lst h2{font-size:2.2rem}.lst h3{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:22px 0 6px}
+.lst li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}.lst li small{color:var(--muted)}
+.lst .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:#111;color:#fff;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;z-index:200;transition:opacity .35s,transform .35s;font-weight:600}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+
+</style>
+</head>
+<body>
+<script>document.documentElement.className="js";</script>
+<a class="skip" href="#menu" data-i18n="skip">Skip to menu</a>
+<header class="hero" id="top">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#top"><span lang="bn">রান্নাঘর</span><small data-i18n="brand_small">Rannaghor</small></a>
+    <ul class="links">
+      <li><a href="#menu" data-i18n="nav_menu">Menu</a></li>
+      <li><a href="#tables" data-i18n="nav_tables">Four tables</a></li>
+      <li><a href="#divisions" data-i18n="nav_divisions">Eight divisions</a></li>
+      <li><a href="#seasons" data-i18n="nav_seasons">Through the year</a></li>
+    </ul>
+    <div class="ctl">
+      <button class="ib" id="b-lang" type="button"></button>
+      <button class="ib" id="b-sound" type="button" aria-pressed="true">🔊</button>
+      <button class="ib" id="b-mode" type="button">◐</button>
+      <button class="ib" id="b-list" type="button"><span aria-hidden="true">♥</span><span id="list-n">0</span></button>
+    </div>
+  </nav>
+  <div class="wrap hero-grid">
+    <div>
+      <h1 lang="bn">মাছে ভাতে বাঙালি</h1>
+      <p class="proverb" id="proverb"></p>
+      <p class="lede" id="lede"></p>
+      <a class="cta" href="#menu" id="cta"></a>
+      <div class="themes" role="group" aria-labelledby="th-l"><span id="th-l"></span><div class="theme-row" id="theme-row"></div></div>
+    </div>
+    <div class="sun" id="sun"></div>
+  </div>
+</header>
+
+<main>
+<section id="menu" class="menu">
+  <div class="wrap">
+    <h2 id="menu-t"></h2>
+    <p class="sub" id="menu-s"></p>
+    <div class="filters" role="search">
+      <label class="sr" for="q" id="q-l"></label>
+      <input id="q" class="search" type="search" autocomplete="off">
+      <div class="chips" id="cats" role="group" aria-label="Category"></div>
+      <div class="opts">
+        <label><input type="checkbox" id="veg"><span id="l-veg"></span></label>
+        <label><input type="checkbox" id="easy"><span id="l-easy"></span></label>
+        <label><input type="checkbox" id="savedonly"><span id="l-saved"></span></label>
+        <label><span id="l-spice"></span>
+          <select id="spice"><option value="any"></option><option value="mild"></option><option value="medium"></option><option value="hot"></option></select></label>
+        <label><span id="l-time"></span>
+          <select id="time"><option value="any"></option><option value="quick"></option><option value="hour"></option></select></label>
+        <button type="button" class="pill" id="surprise"></button>
+        <p class="status" id="count" aria-live="polite"></p>
+      </div>
+    </div>
+    <div id="results"></div>
+  </div>
+</section>
+
+<section id="tables" class="band"><div class="wrap">
+  <h2 id="tab-t"></h2><p class="sub" id="tab-s"></p>
+  <div class="tables" id="tables-grid"></div>
+</div></section>
+
+<section id="divisions"><div class="wrap">
+  <h2 id="reg-t"></h2><p class="sub" id="reg-s"></p>
+  <div class="regions" id="regions-grid"></div>
+</div></section>
+
+<section id="seasons" class="seasons"><div class="wrap">
+  <h2 id="sea-t"></h2><p class="sub" id="sea-s"></p>
+  <dl class="cal" id="cal"></dl>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a class="brand" href="#top"><span lang="bn">রান্নাঘর</span></a>
+  <p id="foot"></p>
+</div></footer>
+
+<dialog id="recipe" aria-labelledby="r-title"></dialog>
+<dialog id="listdlg" aria-labelledby="l-title"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* Ingredient glossary: key -> [English, Bangla] */
+var G={
+rice:["Rice","চাল"],water:["Water","পানি"],salt:["Salt","লবণ"],chilli:["Green chilli","কাঁচা মরিচ"],onion:["Onion","পেঁয়াজ"],
+oil:["Cooking oil","রান্নার তেল"],mustardoil:["Mustard oil","সরিষার তেল"],ghee:["Ghee","ঘি"],ginger:["Ginger","আদা"],garlic:["Garlic","রসুন"],
+gingergarlic:["Ginger-garlic paste","আদা-রসুন বাটা"],turmeric:["Turmeric","হলুদ"],chilipowder:["Chilli powder","মরিচ গুঁড়া"],cumin:["Cumin","জিরা"],
+coriander:["Coriander powder","ধনে গুঁড়া"],corianderleaf:["Coriander leaves","ধনেপাতা"],tomato:["Tomato","টমেটো"],potato:["Potato","আলু"],
+yoghurt:["Yoghurt","টক দই"],lime:["Lime","লেবু"],sugar:["Sugar","চিনি"],jaggery:["Jaggery","গুড়"],datemolasses:["Date molasses","খেজুর গুড়"],
+milk:["Milk","দুধ"],cardamom:["Cardamom","এলাচ"],garam:["Whole spices","গোটা গরম মসলা"],panch:["Panch phoron","পাঁচফোড়ন"],nigella:["Nigella seeds","কালোজিরা"],
+dryChilli:["Dried chilli","শুকনো মরিচ"],tamarind:["Tamarind","তেঁতুল"],blacksalt:["Black salt","কালো লবণ"],mint:["Mint","পুদিনা"],
+flour:["Plain flour","ময়দা"],atta:["Wheat flour","আটা"],riceflour:["Rice flour","চালের গুঁড়া"],gramflour:["Gram flour","বেসন"],semolina:["Semolina","সুজি"],
+eggs:["Eggs","ডিম"],chickpeas:["Chickpeas","ছোলা"],masoor:["Red lentils","মসুর ডাল"],moong:["Moong dal","মুগ ডাল"],mashkalai:["Black gram","মাষকলাই ডাল"],
+chana:["Chana dal","ছোলার ডাল"],wheat:["Wheat grains","গম"],peanuts:["Peanuts","চিনাবাদাম"],chanachur:["Chanachur","চানাচুর"],puffedrice:["Puffed rice","মুড়ি"],
+flattened:["Flattened rice","চিড়া"],coconut:["Grated coconut","নারকেল কোরা"],coconutmilk:["Coconut milk","নারকেলের দুধ"],mustardseed:["Mustard seeds","সরিষা"],
+poppy:["Poppy seeds","পোস্তদানা"],bananaleaf:["Banana leaf","কলা পাতা"],hilsa:["Hilsa fish","ইলিশ মাছ"],rohu:["Rohu fish","রুই মাছ"],perch:["Climbing perch","কই মাছ"],
+pabda:["Pabda fish","পাবদা মাছ"],tengra:["Tengra fish","ট্যাংরা মাছ"],shing:["Stinging catfish","শিং মাছ"],chitol:["Chitol fish","চিতল মাছ"],prawn:["Prawns","চিংড়ি"],
+pomfret:["Pomfret","রূপচাঁদা মাছ"],driedfish:["Dried fish","শুঁটকি মাছ"],fermfish:["Fermented fish","শিদল"],beef:["Beef","গরুর মাংস"],mutton:["Goat or mutton","খাসির মাংস"],
+chicken:["Chicken","মুরগি"],duck:["Duck","হাঁস"],liver:["Liver","কলিজা"],trotters:["Trotters","পায়ার হাড়"],mince:["Minced beef","গরুর কিমা"],
+bottlegourd:["Bottle gourd","লাউ"],eggplant:["Eggplant","বেগুন"],taro:["Taro","কচু"],tarostem:["Taro stems","কচুর লতি"],pointedgourd:["Pointed gourd","পটল"],
+bittergourd:["Bitter gourd","উচ্ছে"],pumpkin:["Pumpkin","মিষ্টি কুমড়া"],malabar:["Malabar spinach","পুঁইশাক"],amaranth:["Red amaranth","লাল শাক"],
+bananaflower:["Banana flower","কলার মোচা"],mixedveg:["Mixed vegetables","মৌসুমি সবজি"],peas:["Green peas","মটরশুঁটি"],carrot:["Carrot","গাজর"],
+shatkora:["Shatkora","সাতকরা"],chuijhal:["Chui jhal","চুইঝাল"],bread:["Bread","পাউরুটি"],vermicelli:["Vermicelli","সেমাই"],nuts:["Nuts (pistachio, almond)","বাদাম-পেস্তা"],
+cashew:["Cashew nuts","কাজুবাদাম"],raisins:["Raisins","কিশমিশ"],kewra:["Kewra water","কেওড়া জল"],saffron:["Saffron","জাফরান"],milkpowder:["Milk powder","গুঁড়া দুধ"],
+breadcrumbs:["Breadcrumbs","রুটির গুঁড়া"],tea:["Tea leaves","চা পাতা"],sugarcane:["Sugarcane","আখ"],coconutwater:["Green coconut","কচি ডাব"],woodapple:["Wood apple","বেল"],
+datesap:["Date palm sap","খেজুরের রস"],jackfruit:["Jackfruit","কাঁঠাল"],mango:["Mango","আম"],lychee:["Lychee","লিচু"],honey:["Honey","মধু"],friedonion:["Fried onion","বেরেস্তা"],
+ice:["Ice","বরফ"],chinigura:["Chinigura rice","চিনিগুঁড়া চাল"],kataribhog:["Kataribhog rice","কাটারিভোগ চাল"]
+};
+/* Cooking methods. {m} is replaced by the dish's main ingredient. */
+var M={
+rice:{en:["Rinse the {m} in several changes of water until the water runs nearly clear.","Bring 2 cups of water per cup of rice to a boil with a pinch of salt.","Add the rice, stir once, cover, and cook on low heat for 12 to 15 minutes.","Switch off the heat and rest for 5 minutes with the lid on.","Fluff with a fork and serve hot."],
+bn:["{m} কয়েকবার পানিতে ধুয়ে নিন, যতক্ষণ না পানি প্রায় পরিষ্কার হয়।","প্রতি কাপ চালে দুই কাপ পানি ও এক চিমটি লবণ দিয়ে ফুটিয়ে নিন।","চাল দিয়ে একবার নেড়ে ঢাকনা দিন এবং ১২ থেকে ১৫ মিনিট কম আঁচে রান্না করুন।","চুলা বন্ধ করে ঢাকনা দেওয়া অবস্থায় ৫ মিনিট রেখে দিন।","কাঁটা চামচ দিয়ে হালকা নেড়ে গরম গরম পরিবেশন করুন।"]},
+panta:{en:["Cook rice as usual and let it cool completely.","Put the cold rice in a bowl and cover it with clean water. Add a pinch of salt.","Leave it covered overnight, or for at least 8 hours, at room temperature.","Serve with salt, sliced onion, green chilli and a drizzle of mustard oil.","Eat with fried hilsa, mashed potato or dried fish on the side."],
+bn:["ভাত সাধারণভাবে রান্না করে পুরোপুরি ঠান্ডা করুন।","ঠান্ডা ভাত বাটিতে নিয়ে পরিষ্কার পানিতে ডুবিয়ে এক চিমটি লবণ দিন।","ঢেকে রেখে সারা রাত বা অন্তত ৮ ঘণ্টা ঘরের তাপমাত্রায় রাখুন।","লবণ, কুচি পেঁয়াজ, কাঁচা মরিচ ও সামান্য সরিষার তেল দিয়ে পরিবেশন করুন।","পাশে ইলিশ ভাজা, আলু ভর্তা বা শুঁটকি ভর্তা নিয়ে খান।"]},
+polao:{en:["Wash the {m} and soak it in water for 30 minutes, then drain well.","Heat ghee in a pot and fry sliced onion until golden. Add the whole spices and let them crackle.","Add the drained rice and stir gently for 2 minutes so each grain is coated in ghee.","Pour in hot water (a little less than 1.5 times the rice), add salt, and bring to a boil.","Cover tightly, cook on the lowest heat for 15 minutes, then rest 10 minutes before fluffing."],
+bn:["{m} ধুয়ে ৩০ মিনিট ভিজিয়ে রাখুন, তারপর ভালো করে পানি ঝরিয়ে নিন।","হাঁড়িতে ঘি গরম করে কুচি পেঁয়াজ সোনালি করে ভাজুন। গোটা গরম মসলা দিয়ে ফোটাতে দিন।","পানি ঝরানো চাল দিয়ে দুই মিনিট আলতো করে নাড়ুন, যেন প্রতিটি দানা ঘি মেখে নেয়।","গরম পানি (চালের দেড়গুণের একটু কম) ও লবণ দিয়ে ফুটিয়ে নিন।","শক্ত করে ঢাকনা দিয়ে একদম কম আঁচে ১৫ মিনিট রান্না করুন, তারপর ১০ মিনিট রেখে নেড়ে নিন।"]},
+biryani:{en:["Marinate the {m} with yoghurt, ginger-garlic paste, chilli, spices, salt and fried onion for at least 2 hours.","Par-boil the rice with whole spices and salt until it is 70 percent cooked, then drain.","In a heavy pot, layer the marinated meat (and potato), then the rice, then a spoon of ghee and fried onion.","Seal the lid with dough or foil and cook on the lowest heat for 45 to 60 minutes.","Rest for 10 minutes, then open and gently mix from the bottom up before serving."],
+bn:["{m} দই, আদা-রসুন বাটা, মরিচ, মসলা, লবণ ও বেরেস্তা দিয়ে কমপক্ষে ২ ঘণ্টা মেখে রাখুন।","চাল গোটা মসলা ও লবণসহ ৭০ শতাংশ সেদ্ধ করে পানি ঝরিয়ে নিন।","ভারী হাঁড়িতে মাখানো মাংস (ও আলু), তার ওপর ভাত, তারপর ঘি ও বেরেস্তা দিয়ে স্তরে স্তরে সাজান।","ময়দার খামির বা ফয়েল দিয়ে ঢাকনা সিল করে সবচেয়ে কম আঁচে ৪৫ থেকে ৬০ মিনিট দমে রাখুন।","১০ মিনিট রেখে ঢাকনা খুলে নিচ থেকে ওপরে আলতো করে মিশিয়ে পরিবেশন করুন।"]},
+onepot:{en:["Heat oil (mustard oil for tehari) and fry sliced onion until golden brown.","Add ginger-garlic paste, chilli, turmeric, cumin and the {m}. Fry until the oil separates.","Add the soaked rice and fry for 2 minutes.","Pour in hot water, add salt, and bring to a boil. Cover and cook on low heat for 20 minutes.","Rest for 10 minutes, then fluff and serve with a lime wedge and green chilli."],
+bn:["তেল (তেহারিতে সরিষার তেল) গরম করে কুচি পেঁয়াজ বাদামি করে ভাজুন।","আদা-রসুন বাটা, মরিচ, হলুদ, জিরা ও {m} দিয়ে তেল ছেড়ে আসা পর্যন্ত কষান।","ভেজানো চাল দিয়ে দুই মিনিট ভাজুন।","গরম পানি ও লবণ দিয়ে ফুটতে দিন। ঢেকে কম আঁচে ২০ মিনিট রান্না করুন।","১০ মিনিট রেখে নেড়ে লেবুর টুকরা ও কাঁচা মরিচ দিয়ে পরিবেশন করুন।"]},
+khichuri:{en:["Dry-roast the lentils in a pan until they smell nutty, then wash them together with the {m}.","Heat ghee and fry sliced onion, then add ginger, turmeric and green chilli.","Add the rice and lentils and stir for a minute.","Add water (about 4 times the volume) and salt, and cook on medium heat, stirring now and then, until soft and porridge-like.","Finish with a spoon of ghee and serve with fried egg, fish or beef."],
+bn:["ডাল শুকনো কড়াইয়ে হালকা ভেজে নিন, তারপর {m} ও ডাল একসঙ্গে ধুয়ে নিন।","ঘি গরম করে কুচি পেঁয়াজ ভাজুন, তারপর আদা, হলুদ ও কাঁচা মরিচ দিন।","চাল ও ডাল দিয়ে এক মিনিট নাড়ুন।","চার গুণ পরিমাণ পানি ও লবণ দিয়ে মাঝারি আঁচে মাঝে মাঝে নেড়ে নরম ও ঘন হওয়া পর্যন্ত রান্না করুন।","ওপরে এক চামচ ঘি দিয়ে ডিম ভাজা, মাছ বা গরুর মাংসের সঙ্গে পরিবেশন করুন।"]},
+jhol:{en:["Cut the {m} into pieces, rub with turmeric and salt, and shallow-fry until lightly golden. Set aside.","In the same oil fry sliced onion, then add ginger-garlic paste, turmeric, cumin, chilli and a splash of water. Cook until the oil shows.","Add potato or seasonal vegetables and 2 cups of hot water. Simmer for 8 minutes.","Slide in the fried fish, add slit green chillies, and cook gently for 5 minutes without stirring hard.","Sprinkle coriander leaves and serve with hot rice."],
+bn:["{m} টুকরা করে হলুদ-লবণ মেখে হালকা সোনালি করে ভেজে তুলে রাখুন।","একই তেলে কুচি পেঁয়াজ ভাজুন, তারপর আদা-রসুন বাটা, হলুদ, জিরা, মরিচ ও একটু পানি দিয়ে তেল ভেসে ওঠা পর্যন্ত কষান।","আলু বা মৌসুমি সবজি ও দুই কাপ গরম পানি দিয়ে ৮ মিনিট ফুটতে দিন।","ভাজা মাছ ও চেরা কাঁচা মরিচ দিয়ে আলতো করে ৫ মিনিট রান্না করুন, জোরে নাড়বেন না।","ধনেপাতা ছিটিয়ে গরম ভাতের সঙ্গে পরিবেশন করুন।"]},
+mustardfish:{en:["Soak mustard seeds in warm water for 15 minutes, then grind with green chilli, salt and a little water into a smooth paste. Do not over-grind, or it turns bitter.","Mix the paste with mustard oil, turmeric and, if you like, a little yoghurt or coconut.","Coat the {m} pieces well and let them rest for 15 minutes.","Steam in a covered dish (or wrapped in banana leaf), or cook covered on the lowest heat, for 12 to 15 minutes.","Finish with a drizzle of raw mustard oil and a slit green chilli. Serve with hot rice."],
+bn:["সরিষা হালকা গরম পানিতে ১৫ মিনিট ভিজিয়ে কাঁচা মরিচ, লবণ ও সামান্য পানিসহ মসৃণ করে বাটুন। বেশি বাটলে তেতো হয়ে যায়।","বাটার সঙ্গে সরিষার তেল, হলুদ এবং চাইলে একটু দই বা নারকেল মেশান।","{m} টুকরাগুলোতে ভালো করে মাখিয়ে ১৫ মিনিট রেখে দিন।","ঢাকনা দেওয়া পাত্রে (বা কলা পাতায় মুড়ে) ভাপে, অথবা ঢেকে সবচেয়ে কম আঁচে ১২ থেকে ১৫ মিনিট রান্না করুন।","কাঁচা সরিষার তেল ও চেরা কাঁচা মরিচ দিয়ে গরম ভাতের সঙ্গে পরিবেশন করুন।"]},
+fry:{en:["Clean the {m} and pat it very dry.","Rub with turmeric, salt and a pinch of chilli powder. Rest for 10 minutes.","Heat oil (mustard oil adds the classic aroma) until it shimmers.","Fry in a single layer, 3 to 4 minutes per side, until golden and crisp.","Drain on paper and serve hot."],
+bn:["{m} পরিষ্কার করে ভালোভাবে পানি মুছে নিন।","হলুদ, লবণ ও এক চিমটি মরিচ গুঁড়া মাখিয়ে ১০ মিনিট রাখুন।","তেল (সরিষার তেলে ক্লাসিক ঘ্রাণ আসে) ঝকঝকে গরম করুন।","এক স্তরে সাজিয়ে প্রতি পাশ ৩ থেকে ৪ মিনিট ভাজুন, যতক্ষণ সোনালি ও মচমচে হয়।","কাগজে তেল ঝরিয়ে গরম গরম পরিবেশন করুন।"]},
+bhuna:{en:["Heat oil and fry plenty of sliced onion until deep golden brown.","Add ginger-garlic paste, turmeric, chilli powder, cumin and coriander. Fry for 2 minutes with a splash of water.","Add the {m} and salt. Stir-fry on high heat for 10 minutes until coated and browned.","Add a little hot water, cover, and cook on low heat until tender. Add water only when needed.","Uncover and cook down until the gravy is thick and the oil separates. Finish with garam masala."],
+bn:["তেল গরম করে প্রচুর কুচি পেঁয়াজ গাঢ় সোনালি করে ভাজুন।","আদা-রসুন বাটা, হলুদ, মরিচ গুঁড়া, জিরা ও ধনে গুঁড়া দিয়ে সামান্য পানিসহ ২ মিনিট কষান।","{m} ও লবণ দিয়ে উচ্চ আঁচে ১০ মিনিট নেড়ে মসলা মাখিয়ে বাদামি করুন।","অল্প গরম পানি দিয়ে ঢেকে কম আঁচে নরম হওয়া পর্যন্ত রান্না করুন। দরকার হলেই কেবল পানি দিন।","ঢাকনা খুলে ঘন ঝোল ও তেল ছেড়ে আসা পর্যন্ত কষান। শেষে গরম মসলা ছড়িয়ে দিন।"]},
+rezala:{en:["Heat ghee and fry sliced onion until pale gold. Add ginger-garlic paste and whole spices.","Add the {m} and fry for 5 minutes. Turn the heat low.","Whisk yoghurt until smooth and add it slowly with salt and green chilli, stirring so it does not split.","Add a paste of cashew nuts, cover, and cook on low heat until tender.","Finish with a few drops of kewra water and a spoon of ghee. Serve with polao."],
+bn:["ঘি গরম করে কুচি পেঁয়াজ হালকা সোনালি করে ভাজুন। আদা-রসুন বাটা ও গোটা মসলা দিন।","{m} দিয়ে ৫ মিনিট ভাজুন। আঁচ কমিয়ে দিন।","দই ফেটিয়ে মসৃণ করে ধীরে ধীরে লবণ ও কাঁচা মরিচসহ দিন, নাড়তে থাকুন যেন না ফেটে যায়।","কাজুবাদামের বাটা দিয়ে ঢেকে কম আঁচে নরম হওয়া পর্যন্ত রান্না করুন।","কয়েক ফোঁটা কেওড়া জল ও এক চামচ ঘি দিয়ে নামান। পোলাওয়ের সঙ্গে পরিবেশন করুন।"]},
+roast:{en:["Marinate the {m} with yoghurt, ginger-garlic paste, salt and a little sugar for 1 hour.","Fry onion paste in oil and ghee until fragrant. Add chilli, cumin and whole spices.","Add the marinated chicken and fry until it changes colour.","Add a little water and cook covered until the chicken is tender and the gravy thick.","Finish with a spoon of ghee and a few fried onions on top."],
+bn:["{m} দই, আদা-রসুন বাটা, লবণ ও সামান্য চিনি দিয়ে ১ ঘণ্টা মেখে রাখুন।","তেল ও ঘিতে পেঁয়াজ বাটা সুবাস না আসা পর্যন্ত ভাজুন। মরিচ, জিরা ও গোটা মসলা দিন।","মাখানো মুরগি দিয়ে রং বদলানো পর্যন্ত ভাজুন।","অল্প পানি দিয়ে ঢেকে নরম ও ঘন ঝোল না হওয়া পর্যন্ত রান্না করুন।","এক চামচ ঘি ও ওপরে কিছু বেরেস্তা দিয়ে পরিবেশন করুন।"]},
+stew:{en:["Brown the {m} in oil with sliced onion, then add ginger-garlic paste.","Add chilli, turmeric, cumin, coriander and whole spices. Fry for 3 minutes.","Add plenty of water, cover, and cook on the lowest heat for 3 to 6 hours, until the meat falls off the bone.","Stir in wheat flour mixed with water to thicken the broth slightly.","Top with ginger strips, green chilli and coriander. Serve very hot."],
+bn:["তেলে কুচি পেঁয়াজসহ {m} বাদামি করে ভাজুন, তারপর আদা-রসুন বাটা দিন।","মরিচ, হলুদ, জিরা, ধনে ও গোটা মসলা দিয়ে ৩ মিনিট কষান।","প্রচুর পানি দিয়ে ঢেকে সবচেয়ে কম আঁচে ৩ থেকে ৬ ঘণ্টা রান্না করুন, যতক্ষণ না মাংস হাড় থেকে খুলে আসে।","পানিতে গোলানো আটা ঝোলে দিয়ে সামান্য ঘন করুন।","আদা কুচি, কাঁচা মরিচ ও ধনেপাতা দিয়ে খুব গরম পরিবেশন করুন।"]},
+haleem:{en:["Soak the wheat and lentils overnight.","Cook the {m} with onion, ginger-garlic paste and spices until tender, then shred it.","Boil the soaked grains and lentils until very soft, then add the shredded meat.","Mash and beat with a wooden spoon on low heat for 30 minutes until smooth and stretchy.","Serve topped with fried onion, ginger strips, green chilli, coriander and lime."],
+bn:["গম ও ডাল সারা রাত ভিজিয়ে রাখুন।","{m} পেঁয়াজ, আদা-রসুন বাটা ও মসলাসহ নরম হওয়া পর্যন্ত রান্না করে ছিঁড়ে নিন।","ভেজানো গম ও ডাল খুব নরম হওয়া পর্যন্ত সেদ্ধ করে ছেঁড়া মাংস মিশিয়ে নিন।","কম আঁচে কাঠের চামচ দিয়ে ৩০ মিনিট ঘুঁটে মসৃণ ও টানটান করুন।","বেরেস্তা, আদা কুচি, কাঁচা মরিচ, ধনেপাতা ও লেবু দিয়ে পরিবেশন করুন।"]},
+curry:{en:["Wash the {m} and marinate with salt, turmeric and a spoon of yoghurt for 30 minutes.","Fry sliced onion in oil until golden. Add ginger-garlic paste, chilli, cumin and coriander.","Add the {m} (and potato, or a special ingredient such as shatkora or chui jhal). Stir-fry on high heat for 8 minutes.","Add hot water to cover, then simmer with the lid on until tender (about 1 hour for goat or beef, 25 minutes for chicken).","Adjust the salt, sprinkle coriander, and serve with rice or paratha."],
+bn:["{m} ধুয়ে লবণ, হলুদ ও এক চামচ দই মেখে ৩০ মিনিট রাখুন।","তেলে কুচি পেঁয়াজ সোনালি করে ভাজুন। আদা-রসুন বাটা, মরিচ, জিরা ও ধনে দিন।","{m} (এবং আলু, বা সাতকরা ও চুইঝালের মতো বিশেষ উপকরণ) দিয়ে উচ্চ আঁচে ৮ মিনিট নেড়ে ভাজুন।","ডুবে যাওয়ার মতো গরম পানি দিয়ে ঢেকে নরম হওয়া পর্যন্ত রান্না করুন (গরু বা খাসি প্রায় ১ ঘণ্টা, মুরগি ২৫ মিনিট)।","লবণ ঠিক করে ধনেপাতা ছিটিয়ে ভাত বা পরোটার সঙ্গে পরিবেশন করুন।"]},
+kebab:{en:["Mix the {m} with ginger-garlic paste, chilli, cumin, coriander, chopped coriander leaves, salt and a little gram flour.","Rest the mixture for 30 minutes.","Shape into skewers or flat patties with oiled hands.","Grill, or pan-fry in a little oil, turning until browned and cooked through.","Serve hot with onion rings, lime and chutney."],
+bn:["{m} আদা-রসুন বাটা, মরিচ, জিরা, ধনে, কুচানো ধনেপাতা, লবণ ও সামান্য বেসনের সঙ্গে মেশান।","মিশ্রণটি ৩০ মিনিট রেখে দিন।","তেল মাখা হাতে শিকে বা চ্যাপ্টা পাটির মতো আকার দিন।","গ্রিল করুন অথবা অল্প তেলে উল্টে-পাল্টে বাদামি ও সেদ্ধ হওয়া পর্যন্ত ভাজুন।","পেঁয়াজের রিং, লেবু ও চাটনির সঙ্গে গরম পরিবেশন করুন।"]},
+bhorta:{en:["Roast or boil the {m} until soft. Char it over a flame for a smoky taste.","Peel and mash it in a bowl.","Add chopped onion, green chilli, coriander leaves and salt.","Pour a spoonful of raw mustard oil over the top.","Mix with your hands and serve beside hot rice."],
+bn:["{m} আগুনে পুড়িয়ে বা সেদ্ধ করে নরম করে নিন। ধোঁয়াটে স্বাদের জন্য আগুনে ঝলসান।","খোসা ছাড়িয়ে বাটিতে চটকে নিন।","কুচি পেঁয়াজ, কাঁচা মরিচ, ধনেপাতা ও লবণ দিন।","ওপরে এক চামচ কাঁচা সরিষার তেল ঢালুন।","হাত দিয়ে মেখে গরম ভাতের পাশে পরিবেশন করুন।"]},
+shak:{en:["Wash the {m} well and chop roughly. Drain completely.","Heat oil and fry whole garlic and dried chilli until fragrant.","Add the greens and salt. Do not add water.","Stir-fry on medium heat for 4 to 5 minutes until just wilted.","Serve warm with rice and dal."],
+bn:["{m} ভালো করে ধুয়ে মোটা করে কেটে পানি ঝরিয়ে নিন।","তেল গরম করে গোটা রসুন ও শুকনো মরিচ ভাজুন।","শাক ও লবণ দিন। পানি দেবেন না।","মাঝারি আঁচে ৪ থেকে ৫ মিনিট নেড়ে শুধু নরম করুন।","ভাত ও ডালের সঙ্গে গরম পরিবেশন করুন।"]},
+sabzi:{en:["Cut the {m} and other vegetables into even pieces.","Heat oil and add panch phoron (or cumin) and a dried chilli. Let them crackle.","Add the vegetables (and prawns or dried fish if the dish uses them), turmeric and salt. Stir for 2 minutes.","Add a splash of water, cover, and cook on low heat until soft.","Uncover, cook off the extra water, and finish with a pinch of sugar and a little ghee."],
+bn:["{m} ও অন্যান্য সবজি সমান টুকরা করে কেটে নিন।","তেল গরম করে পাঁচফোড়ন (বা জিরা) ও একটি শুকনো মরিচ ফোড়ন দিন।","সবজি (এবং রেসিপিতে থাকলে চিংড়ি বা শুঁটকি), হলুদ ও লবণ দিয়ে দুই মিনিট নাড়ুন।","সামান্য পানি দিয়ে ঢেকে কম আঁচে নরম হওয়া পর্যন্ত রান্না করুন।","ঢাকনা খুলে বাড়তি পানি শুকিয়ে এক চিমটি চিনি ও সামান্য ঘি দিয়ে নামান।"]},
+dal:{en:["Rinse the {m} and boil it with turmeric, salt and 4 cups of water until soft.","Whisk or mash lightly to a smooth, pourable texture.","In a small pan, heat oil or ghee and fry sliced onion, garlic, cumin and a dried chilli. This is the bhaghar.","Pour the hot tempering into the dal. It will sizzle.","Simmer for 2 minutes, add coriander leaves, and serve with rice."],
+bn:["{m} ধুয়ে হলুদ, লবণ ও চার কাপ পানিসহ নরম হওয়া পর্যন্ত সেদ্ধ করুন।","ঘুঁটনি দিয়ে হালকা ঘুঁটে মসৃণ ও ঢালার উপযোগী করুন।","ছোট প্যানে তেল বা ঘি গরম করে কুচি পেঁয়াজ, রসুন, জিরা ও শুকনো মরিচ ভাজুন। একে বলে বাঘার।","গরম বাঘার ডালে ঢেলে দিন। ছ্যাঁক করে উঠবে।","২ মিনিট ফুটিয়ে ধনেপাতা দিয়ে ভাতের সঙ্গে পরিবেশন করুন।"]},
+fritter:{en:["Whisk gram flour (or lentil paste) with salt, chilli, a pinch of turmeric and water into a thick batter.","Prepare the {m}: slice, chop or mix it into the batter as needed.","Heat oil for deep frying until a drop of batter rises right away.","Fry in batches until golden and crisp.","Drain on paper and serve hot with chutney or tea."],
+bn:["বেসন (বা ডালের বাটা), লবণ, মরিচ, এক চিমটি হলুদ ও পানি মিশিয়ে ঘন গোলা তৈরি করুন।","{m} প্রস্তুত করুন: কেটে বা কুচি করে নিন, দরকারমতো গোলায় মেশান।","ডুবো তেল গরম করুন, এক ফোঁটা গোলা দিলে যেন সঙ্গে সঙ্গে ভেসে ওঠে।","কয়েক ভাগে সোনালি ও মচমচে করে ভাজুন।","কাগজে তেল ঝরিয়ে চাটনি বা চায়ের সঙ্গে গরম পরিবেশন করুন।"]},
+pastry:{en:["Make a stiff dough from flour, a little oil, salt and water. Rest for 30 minutes.","Cook the {m} filling with onion, chilli, cumin and salt until dry.","Roll the dough thin, cut and shape into cones, fill, and seal the edges with water.","Heat oil on medium and fry the pastries slowly until golden and crisp.","Drain and serve hot with tomato sauce or chutney."],
+bn:["ময়দা, সামান্য তেল, লবণ ও পানি দিয়ে শক্ত খামির বানিয়ে ৩০ মিনিট রাখুন।","{m} পুর পেঁয়াজ, মরিচ, জিরা ও লবণ দিয়ে শুকনো করে রান্না করুন।","খামির পাতলা বেলে কেটে কোণাকার করুন, পুর ভরে কিনারা পানি দিয়ে আটকান।","মাঝারি আঁচের তেলে ধীরে ধীরে সোনালি ও মচমচে করে ভাজুন।","তেল ঝরিয়ে টমেটো সস বা চাটনির সঙ্গে গরম পরিবেশন করুন।"]},
+chop:{en:["Boil the {m} and mash it with chopped onion, chilli, coriander and salt.","Shape into balls or ovals. For dimer chop, wrap the potato around a boiled egg.","Dip in beaten egg.","Roll in breadcrumbs.","Deep fry until golden and serve hot."],
+bn:["{m} সেদ্ধ করে কুচি পেঁয়াজ, মরিচ, ধনেপাতা ও লবণসহ চটকে নিন।","গোল বা ডিম্বাকৃতি করুন। ডিমের চপের জন্য সেদ্ধ ডিমের চারপাশে আলু জড়িয়ে নিন।","ফেটানো ডিমে ডুবিয়ে নিন।","রুটির গুঁড়ায় গড়িয়ে নিন।","ডুবো তেলে সোনালি করে ভেজে গরম পরিবেশন করুন।"]},
+nimki:{en:["Mix flour, a spoon of ghee, nigella seeds and salt with water into a firm dough. Rest for 20 minutes.","Roll out thin and cut into small diamonds.","Heat oil on medium and fry slowly until pale gold and crisp.","Cool completely and store in a tin."],
+bn:["ময়দা, এক চামচ ঘি, কালোজিরা ও লবণ পানিতে মেখে শক্ত খামির বানিয়ে ২০ মিনিট রাখুন।","পাতলা বেলে ছোট ডায়মন্ড আকারে কেটে নিন।","মাঝারি আঁচের তেলে ধীরে ধীরে হালকা সোনালি ও মচমচে করে ভাজুন।","পুরো ঠান্ডা করে কৌটায় ভরে রাখুন।"]},
+paratha:{en:["Knead wheat flour with water, salt and a spoon of oil into a soft dough. Rest for 30 minutes.","Roll each ball thin, brush with ghee, fold into layers, and roll again.","Cook on a hot griddle, brushing both sides with oil.","Cook until golden with brown spots, then crush gently to open the layers.","Serve hot with bhaji, dal or beef bhuna."],
+bn:["আটা, পানি, লবণ ও এক চামচ তেল মেখে নরম খামির বানিয়ে ৩০ মিনিট রাখুন।","প্রতিটি লেচি পাতলা বেলে ঘি মাখিয়ে ভাঁজ করে আবার বেলুন।","গরম তাওয়ায় দুই পাশে তেল দিয়ে সেঁকুন।","সোনালি ও বাদামি ছোপ এলে আলতো চেপে স্তর খুলে নিন।","ভাজি, ডাল বা গরুর ভুনার সঙ্গে গরম পরিবেশন করুন।"]},
+ruti:{en:["Knead wheat flour with water and a pinch of salt into a soft dough. Rest for 20 minutes.","Roll small balls into thin rounds.","Cook on a hot dry tawa until bubbles form, flip, and cook the other side.","Hold briefly over an open flame to puff, if you like. Serve hot."],
+bn:["আটা, পানি ও এক চিমটি লবণ মেখে নরম খামির বানিয়ে ২০ মিনিট রাখুন।","লেচি গোল ও পাতলা করে বেলুন।","গরম শুকনো তাওয়ায় বুদবুদ উঠলে উল্টে অন্য পাশ সেঁকুন।","চাইলে সামান্য আগুনে ধরে ফুলিয়ে নিন। গরম পরিবেশন করুন।"]},
+luchi:{en:["Knead plain flour with salt, a spoon of ghee and water into a firm, smooth dough.","Divide into small balls and roll each into a thin round.","Heat oil until very hot. Slide in one round and press gently with a spoon so it puffs.","Fry both sides lightly. They should stay pale. Then drain.","Serve at once with cholar dal or aloo."],
+bn:["ময়দা, লবণ, এক চামচ ঘি ও পানি মেখে শক্ত মসৃণ খামির বানান।","ছোট লেচি করে প্রতিটি পাতলা গোল করে বেলুন।","তেল খুব গরম করে একটি লুচি ছেড়ে চামচ দিয়ে চাপ দিন, ফুলে উঠবে।","দুই পাশ হালকা ভাজুন, রঙ ফ্যাকাশে থাকবে। তারপর তুলে নিন।","এখনই ছোলার ডাল বা আলুর সঙ্গে পরিবেশন করুন।"]},
+bakarkhani:{en:["Knead flour with ghee, salt and milk into a firm dough. Rest for 1 hour.","Roll very thin, brush with ghee and flour paste, roll into a spiral and flatten into thick discs.","Brush the top with milk and bake in a hot oven or covered pan until deep gold.","Cool until crisp. Dip in tea or eat with nihari."],
+bn:["ময়দা, ঘি, লবণ ও দুধ মেখে শক্ত খামির বানিয়ে ১ ঘণ্টা রাখুন।","খুব পাতলা বেলে ঘি-ময়দার পেস্ট মাখিয়ে প্যাঁচিয়ে মোটা চাকতি বানান।","ওপরে দুধ মাখিয়ে গরম ওভেনে বা ঢাকা প্যানে গাঢ় সোনালি করে সেঁকুন।","ঠান্ডা হয়ে মচমচে হলে চায়ে ডুবিয়ে বা নিহারির সঙ্গে খান।"]},
+dalpuri:{en:["Soak the lentils for 2 hours and boil until soft. Drain and mash with cumin, chilli and salt.","Make a soft flour dough and divide into balls.","Flatten each ball, fill with a spoon of the lentil mix, close, and roll thin.","Fry in hot oil until puffed and golden.","Serve hot with bhaji or tea."],
+bn:["ডাল ২ ঘণ্টা ভিজিয়ে সেদ্ধ করে পানি ঝরিয়ে জিরা, মরিচ ও লবণ দিয়ে চটকে নিন।","ময়দার নরম খামির বানিয়ে লেচি করুন।","লেচি চ্যাপ্টা করে এক চামচ ডালের পুর দিয়ে মুড়ে পাতলা বেলুন।","গরম তেলে ফুলিয়ে সোনালি করে ভাজুন।","ভাজি বা চায়ের সঙ্গে গরম পরিবেশন করুন।"]},
+assemble:{en:["Rinse the {m} quickly and drain.","Soak in cold water or milk for 5 minutes until soft.","Top with thick yoghurt and grated jaggery.","Add sliced banana or mango if you like."],
+bn:["{m} একবার ধুয়ে পানি ঝরান।","ঠান্ডা পানি বা দুধে ৫ মিনিট ভিজিয়ে নরম করুন।","ওপরে ঘন দই ও গুড় ছড়ান।","চাইলে কলা বা আম কেটে দিন।"]},
+chaat:{en:["Boil chickpeas and potato until soft. Mash lightly and toss with chilli, cumin, salt and chopped onion.","Make tamarind water: tamarind pulp, water, black salt, chilli, mint and a pinch of sugar.","For fuchka, prepare the crisp shells. For chotpoti, crush a few crisps.","Assemble just before eating: fill the shells or a bowl with the chickpea mix, then add tamarind sauce, onion, and egg slices or chutney.","Eat right away so everything stays crisp."],
+bn:["ছোলা ও আলু সেদ্ধ করে হালকা চটকে মরিচ, জিরা, লবণ ও কুচি পেঁয়াজ মেশান।","তেঁতুলের পাল্প, পানি, কালো লবণ, মরিচ, পুদিনা ও এক চিমটি চিনি দিয়ে টক পানি বানান।","ফুচকার জন্য মচমচে খোসা, চটপটির জন্য কয়েকটি ফুচকা ভেঙে রাখুন।","খাওয়ার ঠিক আগে সাজান: খোসা বা বাটিতে ছোলার মিশ্রণ, তারপর টক পানি, পেঁয়াজ, ডিমের টুকরা বা চাটনি।","সঙ্গে সঙ্গে খান, যেন সব মচমচে থাকে।"]},
+jhalmuri:{en:["Chop onion, green chilli, tomato and coriander leaves finely.","Put the puffed rice in a large bowl.","Add chanachur, peanuts, salt, chilli powder and the chopped vegetables.","Drizzle mustard oil and squeeze in lime.","Toss quickly and serve in a paper cone."],
+bn:["পেঁয়াজ, কাঁচা মরিচ, টমেটো ও ধনেপাতা কুচি করুন।","বড় বাটিতে মুড়ি নিন।","চানাচুর, চিনাবাদাম, লবণ, মরিচ গুঁড়া ও কুচানো সবজি দিন।","সরিষার তেল ছিটিয়ে লেবু চিপে দিন।","দ্রুত মাখিয়ে ঠোঙায় পরিবেশন করুন।"]},
+bhapa:{en:["Roast rice flour lightly in a dry pan until fragrant, then sift it.","Sprinkle a little warm water and rub until the flour clumps loosely, like damp sand.","Fill a small clay or steel mould with flour, put grated coconut and date molasses in the middle, then cover with more flour.","Place the mould over a steaming pot and steam for 5 to 7 minutes.","Turn out carefully and eat hot."],
+bn:["শুকনো কড়াইয়ে চালের গুঁড়া হালকা ভেজে সুবাস এলে চেলে নিন।","অল্প গরম পানি ছিটিয়ে হাতে ঘষে ভেজা বালির মতো দানা দানা করুন।","ছোট মাটির বা স্টিলের ছাঁচে গুঁড়া ভরে মাঝখানে নারকেল কোরা ও খেজুর গুড় দিন, ওপরে আরও গুঁড়া দিন।","ফুটন্ত পানির ওপর বসিয়ে ৫ থেকে ৭ মিনিট ভাপ দিন।","সাবধানে বের করে গরম গরম খান।"]},
+chitoi:{en:["Mix rice flour with water and a pinch of salt into a thin batter.","Heat a clay (or heavy) pan with a lid and grease it lightly.","Pour in a ladle of batter, cover, and cook for 2 minutes until it puffs and holes appear.","Stack and serve hot with date molasses or bhorta."],
+bn:["চালের গুঁড়া, পানি ও এক চিমটি লবণ মিশিয়ে পাতলা গোলা বানান।","ঢাকনাসহ মাটির (বা ভারী) খোলা গরম করে সামান্য তেল মাখান।","এক হাতা গোলা ঢেলে ঢেকে ২ মিনিট রাখুন, ফুলে ছিদ্র দেখা দিলে হয়ে গেছে।","স্তূপ করে খেজুর গুড় বা ভর্তার সঙ্গে গরম পরিবেশন করুন।"]},
+patishapta:{en:["Mix rice flour, plain flour and semolina with milk and water into a thin batter.","Cook grated coconut with jaggery until sticky, for the filling.","Pour a thin crepe on a greased pan and cook one side only.","Place filling on the crepe and roll it up while still warm.","Serve warm or cold."],
+bn:["চালের গুঁড়া, ময়দা ও সুজি দুধ-পানিতে গুলে পাতলা গোলা বানান।","পুরের জন্য নারকেল কোরা গুড়ে আঠালো হওয়া পর্যন্ত রান্না করুন।","তেল মাখানো প্যানে পাতলা করে গোলা ঢেলে শুধু এক পাশ সেঁকুন।","রুটির ওপর পুর দিয়ে গরম থাকতেই মুড়ে নিন।","গরম বা ঠান্ডা পরিবেশন করুন।"]},
+puli:{en:["Make a soft dough with rice flour and hot water. Cover it.","Mix grated coconut and jaggery for the filling.","Shape small balls of dough, flatten, add filling, and fold into a crescent.","Steam or fry the pulis. For dudh puli, simmer them in sweetened milk with cardamom for 10 minutes.","Serve warm."],
+bn:["চালের গুঁড়া গরম পানিতে মেখে নরম খামির করে ঢেকে রাখুন।","নারকেল কোরা ও গুড় মিশিয়ে পুর বানান।","খামির থেকে ছোট গোল নিয়ে চ্যাপ্টা করে পুর ভরে অর্ধচন্দ্রাকারে ভাঁজ করুন।","ভাপে সেদ্ধ বা ভেজে নিন। দুধ পুলির জন্য এলাচ-চিনির দুধে ১০ মিনিট ফুটিয়ে নিন।","গরম পরিবেশন করুন।"]},
+fryPitha:{en:["Mix rice flour with water, a little sugar or jaggery and a pinch of salt into a thick batter or dough.","Shape the pitha. For nakshi, press patterns with a carving tool. For tel pitha, drop spoonfuls of batter.","Heat oil and fry slowly until golden.","If you like, dip briefly in warm sugar or jaggery syrup.","Cool and serve."],
+bn:["চালের গুঁড়া পানি, সামান্য চিনি বা গুড় ও এক চিমটি লবণে মেখে ঘন গোলা বা খামির বানান।","পিঠার আকার দিন। নকশি পিঠায় ছাঁচ দিয়ে নকশা বসান, তেল পিঠায় চামচে গোলা ঢালুন।","তেল গরম করে ধীরে সোনালি করে ভাজুন।","চাইলে গরম চিনি বা গুড়ের রসে এক নিমেষ ডুবিয়ে নিন।","ঠান্ডা করে পরিবেশন করুন।"]},
+rasgulla:{en:["Boil 1 litre of full-cream milk. Add lemon juice slowly until it curdles.","Strain through muslin, rinse with cold water, and squeeze out the water.","Knead the curd cheese for 5 to 8 minutes until smooth and soft.","Shape into balls (ovals for chomchom) and simmer in light sugar syrup for 15 to 20 minutes.","Cool completely and chill before serving."],
+bn:["১ লিটার ফুল ক্রিম দুধ ফুটিয়ে ধীরে ধীরে লেবুর রস দিন, ছানা কেটে যাবে।","মসলিনের কাপড়ে ছেঁকে ঠান্ডা পানিতে ধুয়ে পানি নিংড়ে নিন।","ছানা ৫ থেকে ৮ মিনিট মসৃণ ও নরম হওয়া পর্যন্ত মথুন।","গোল (চমচমের জন্য লম্বাটে) আকার দিয়ে হালকা চিনির রসে ১৫ থেকে ২০ মিনিট ফুটান।","পুরোপুরি ঠান্ডা করে ফ্রিজে রেখে পরিবেশন করুন।"]},
+roshmalai:{en:["Curdle the milk with lemon juice, strain, and knead the curd cheese until smooth.","Shape flat discs and simmer in light sugar syrup for 15 minutes.","Separately, reduce milk until thick and flavour it with sugar, cardamom and saffron.","Gently press the syrup out of the discs and lower them into the thick milk.","Top with nuts and serve chilled."],
+bn:["দুধ ফুটিয়ে লেবুর রসে ছানা কাটিয়ে ছেঁকে মথে মসৃণ করুন।","চ্যাপ্টা চাকতি বানিয়ে হালকা চিনির রসে ১৫ মিনিট ফুটান।","আলাদা পাত্রে দুধ ঘন করে চিনি, এলাচ ও জাফরান মেশান।","চাকতিগুলো হালকা চেপে রস ঝরিয়ে ঘন দুধে ডোবান।","বাদাম ছড়িয়ে ঠান্ডা পরিবেশন করুন।"]},
+sandesh:{en:["Curdle milk, strain, rinse and drain the curd cheese.","Knead until smooth and mix in sugar and cardamom.","Cook on the lowest heat, stirring, until soft and starting to leave the pan.","Shape in moulds or by hand, press in a nut, and chill."],
+bn:["দুধ কাটিয়ে ছানা ছেঁকে ধুয়ে পানি ঝরান।","ছানা মথে মসৃণ করে চিনি ও এলাচ মেশান।","কড়াইয়ে খুব কম আঁচে নরম হয়ে কড়াই ছাড়তে শুরু করা পর্যন্ত নাড়ুন।","ছাঁচে বা হাতে আকার দিয়ে বাদাম বসিয়ে ঠান্ডা করুন।"]},
+jamun:{en:["Mix milk powder, a spoon of flour and a little ghee, then add milk to make a soft dough.","Shape smooth, crack-free balls.","Fry on low heat until golden brown. For kalojam, fry until deep brown, almost black.","Make a syrup of sugar, water and cardamom, and soak the fried balls in warm syrup for at least 1 hour.","Serve warm."],
+bn:["গুঁড়া দুধ, এক চামচ ময়দা ও সামান্য ঘি মিশিয়ে দুধ দিয়ে নরম খামির বানান।","ফাটলহীন মসৃণ গোল বানান।","কম আঁচে সোনালি বাদামি করে ভাজুন। কালোজামে গাঢ় বাদামি, প্রায় কালো করে ভাজুন।","চিনি, পানি ও এলাচ ফুটিয়ে রস করে গরম রসে অন্তত ১ ঘণ্টা ভিজিয়ে রাখুন।","গরম পরিবেশন করুন।"]},
+pudding:{en:["Boil the milk and reduce it by one quarter, stirring so it does not stick.","Add the {m} and cook gently until soft. For payesh use fragrant rice, for shemai roast the vermicelli in ghee first, for firni use a ground rice paste.","Add sugar or jaggery (jaggery only after taking it off the heat) and cardamom.","Cook until creamy. Pour into bowls or clay cups.","Cool, chill, and top with nuts and raisins."],
+bn:["দুধ ফুটিয়ে এক-চতুর্থাংশ কমিয়ে নিন, মাঝে মাঝে নাড়ুন যেন লেগে না যায়।","{m} দিয়ে নরম হওয়া পর্যন্ত আস্তে আস্তে রান্না করুন। পায়েসে সুগন্ধি চাল, সেমাই ঘিয়ে ভেজে নিন, ফিরনিতে চালবাটা দিন।","চিনি বা গুড় (গুড় নামানোর পর) ও এলাচ দিন।","ক্রিমের মতো হলে বাটি বা মাটির কাপে ঢালুন।","ঠান্ডা করে বাদাম-কিশমিশ ছড়িয়ে পরিবেশন করুন।"]},
+doi:{en:["Boil milk and reduce it by a third. Caramelise sugar in a pan until amber and stir it into the milk.","Cool until just warm. Whisk in a spoon of plain yoghurt as a starter.","Pour into clay pots and cover.","Leave in a warm place for 8 to 10 hours until set.","Chill before serving."],
+bn:["দুধ ফুটিয়ে এক-তৃতীয়াংশ কমান। প্যানে চিনি ক্যারামেল করে দুধে মেশান।","হালকা গরম থাকতে এক চামচ টক দই ফেটিয়ে দিন।","মাটির পাত্রে ঢেলে ঢেকে দিন।","উষ্ণ জায়গায় ৮ থেকে ১০ ঘণ্টা রাখলে জমে যাবে।","ঠান্ডা করে পরিবেশন করুন।"]},
+jilapi:{en:["Mix flour, rice flour, a little yoghurt and water into a thick batter. Ferment for 8 hours.","Make a sticky syrup of sugar, water and cardamom.","Pour the batter into a bottle or piping bag and fry spirals in hot oil until crisp.","Dip into warm syrup for 20 seconds.","Serve warm."],
+bn:["ময়দা, চালের গুঁড়া, সামান্য দই ও পানি মিশিয়ে ঘন গোলা করে ৮ ঘণ্টা গাঁজতে দিন।","চিনি, পানি ও এলাচ দিয়ে আঠালো রস বানান।","গোলা বোতল বা পাইপিং ব্যাগে ভরে গরম তেলে পেঁচিয়ে মচমচে করে ভাজুন।","গরম রসে ২০ সেকেন্ড ডুবিয়ে তুলুন।","গরম পরিবেশন করুন।"]},
+moa:{en:["Boil jaggery with a splash of water until it forms a thick syrup.","Add the {m} and coconut and mix quickly.","With oiled hands, shape into tight balls while still warm.","Rest until firm."],
+bn:["গুড় সামান্য পানিতে ফুটিয়ে ঘন রস বানান।","{m} ও নারকেল দিয়ে দ্রুত মিশিয়ে নিন।","তেল মাখা হাতে গরম থাকতে শক্ত করে বল বানান।","শক্ত না হওয়া পর্যন্ত রেখে দিন।"]},
+jorda:{en:["Wash and soak the rice for 30 minutes, then boil with saffron or yellow colour until 80 percent cooked. Drain.","Layer in a pot with sugar, ghee, raisins and whole spices.","Cover tightly and cook on the lowest heat for 20 minutes.","Rest for 10 minutes and mix gently."],
+bn:["চাল ধুয়ে ৩০ মিনিট ভিজিয়ে জাফরান বা হলুদ রঙসহ ৮০ শতাংশ সেদ্ধ করে পানি ঝরান।","হাঁড়িতে চিনি, ঘি, কিশমিশ ও গোটা মসলাসহ স্তরে স্তরে সাজান।","শক্ত করে ঢেকে সবচেয়ে কম আঁচে ২০ মিনিট রান্না করুন।","১০ মিনিট রেখে আলতো করে মিশিয়ে নিন।"]},
+shahi:{en:["Cut bread into triangles and fry in ghee until golden.","Boil milk with sugar and cardamom until reduced to a thick rabri.","Dip the fried bread briefly in sugar syrup and arrange on a plate.","Pour the rabri over and top with nuts."],
+bn:["পাউরুটি ত্রিকোণ করে কেটে ঘিয়ে সোনালি করে ভাজুন।","দুধ চিনি ও এলাচসহ ঘন রাবড়ি হওয়া পর্যন্ত ফুটান।","ভাজা রুটি চিনির রসে এক নিমেষ ডুবিয়ে প্লেটে সাজান।","ওপরে রাবড়ি ঢেলে বাদাম ছড়ান।"]},
+milkreduce:{en:["Heat the milk in a wide pan and cook, stirring, until reduced by half.","For halua, add grated carrot and cook until soft.","Add sugar and ghee and keep stirring until thick and no longer sticky.","Add cardamom and nuts. Serve warm, or set in a tray and cut into pieces."],
+bn:["চওড়া প্যানে দুধ নেড়ে নেড়ে অর্ধেক হওয়া পর্যন্ত ফুটান।","হালুয়া বানালে গাজর কোরা দিয়ে নরম হওয়া পর্যন্ত রান্না করুন।","চিনি ও ঘি দিয়ে ঘন ও আঠা ছেড়ে আসা পর্যন্ত নাড়তে থাকুন।","এলাচ ও বাদাম দিন। গরম পরিবেশন করুন, অথবা ট্রেতে জমিয়ে টুকরা করুন।"]},
+shorbot:{en:["Squeeze or scoop the {m} into a jug.","Add sugar and a pinch of salt and stir until dissolved.","Add cold water and ice.","Taste, adjust the sweetness, and serve chilled."],
+bn:["জগে {m} চিপে বা চামচে তুলে নিন।","চিনি ও এক চিমটি লবণ দিয়ে গুলুন।","ঠান্ডা পানি ও বরফ দিন।","চেখে মিষ্টি ঠিক করে ঠান্ডা পরিবেশন করুন।"]},
+yogurtdrink:{en:["Blend the yoghurt with cold water until smooth.","For borhani, add ground mint, coriander leaves, green chilli, black salt, roasted cumin and mustard.","For lassi, add sugar or a pinch of salt.","Chill and serve."],
+bn:["দই ঠান্ডা পানিতে ব্লেন্ড করে মসৃণ করুন।","বোরহানির জন্য বাটা পুদিনা, ধনেপাতা, কাঁচা মরিচ, কালো লবণ, ভাজা জিরা ও সরিষা দিন।","লাচ্ছির জন্য চিনি বা এক চিমটি লবণ দিন।","ঠান্ডা করে পরিবেশন করুন।"]},
+tea:{en:["Boil water with tea leaves for 2 minutes.","Add milk and sugar and boil again until it rises.","Strain into small cups and serve hot."],
+bn:["পানিতে চা পাতা দিয়ে ২ মিনিট ফুটান।","দুধ ও চিনি দিয়ে আবার উথলে ওঠা পর্যন্ত ফুটান।","ছেঁকে ছোট কাপে গরম পরিবেশন করুন।"]},
+layertea:{en:["Make several different brews: black tea, milk tea, spiced tea, lemon tea and others, each with a different density.","Pour sugar syrup into a clear glass first.","Pour each tea slowly over the back of a spoon so the layers stay separate.","Serve without stirring."],
+bn:["আলাদা ঘনত্বে কয়েকটি চা বানান: লাল চা, দুধ চা, মসলা চা, লেবু চা ইত্যাদি।","পরিষ্কার গ্লাসে প্রথমে চিনির সিরাপ ঢালুন।","চামচের পিছন দিয়ে প্রতিটি চা ধীরে ধীরে ঢালুন যেন স্তরগুলো আলাদা থাকে।","না নেড়ে পরিবেশন করুন।"]},
+fresh:{en:["Choose the freshest {m} you can find. It should smell sweet and feel heavy for its size.","Wash, peel or open it just before serving.","Serve at once, chilled if you like.","Enjoy it plain, or with a pinch of salt or a squeeze of lime."],
+bn:["সবচেয়ে তাজা {m} বেছে নিন। মিষ্টি ঘ্রাণ থাকবে ও আকারের তুলনায় ভারী হবে।","পরিবেশনের ঠিক আগে ধুয়ে খোসা ছাড়ান বা কেটে নিন।","সঙ্গে সঙ্গে পরিবেশন করুন, চাইলে ঠান্ডা করে।","এমনিই খান, বা এক চিমটি লবণ বা লেবু দিয়ে।"]},
+muitha:{en:["Scrape the flesh of the chitol fish and mince it with onion, chilli, garlic, coriander leaves and a spoon of gram flour.","Shape small balls and fry lightly until firm.","Make a thin jhol: fry onion, turmeric, cumin and chilli in oil, then add water.","Slide the balls into the simmering gravy and cook for 8 minutes without stirring.","Serve hot with rice."],
+bn:["চিতল মাছের মাংস চেঁছে কিমা করে পেঁয়াজ, রসুন, কাঁচা মরিচ, ধনেপাতা ও এক চামচ বেসনের সঙ্গে মাখুন।","ছোট বল বানিয়ে হালকা ভেজে শক্ত করে নিন।","তেলে পেঁয়াজ, হলুদ, জিরা ও মরিচ কষিয়ে পানি দিয়ে পাতলা ঝোল তৈরি করুন।","ফুটন্ত ঝোলে বলগুলো ছেড়ে ৮ মিনিট না নেড়ে রান্না করুন।","ভাতের সঙ্গে গরম পরিবেশন করুন।"]},
+malai:{en:["Clean the prawns, rub with turmeric and salt, and fry lightly.","Fry onion paste, ginger and whole spices in oil and ghee.","Add the prawns and a little water. Cook for 5 minutes.","Pour in coconut milk and simmer gently. Do not boil hard.","Add sugar and ghee, adjust the salt, and serve with rice or polao."],
+bn:["চিংড়ি পরিষ্কার করে হলুদ-লবণ মেখে হালকা ভেজে নিন।","তেল-ঘিতে পেঁয়াজ বাটা, আদা ও গোটা মসলা ভাজুন।","চিংড়ি ও সামান্য পানি দিয়ে ৫ মিনিট রান্না করুন।","নারকেলের দুধ ঢেলে আলতো আঁচে ফুটতে দিন, জোরে ফোটাবেন না।","চিনি ও ঘি দিয়ে লবণ ঠিক করে ভাত বা পোলাওয়ের সঙ্গে পরিবেশন করুন।"]},
+eggcurry:{en:["Boil the eggs for 8 minutes, cool, peel, and prick with a fork. Rub with turmeric and salt.","Fry the eggs in oil until lightly golden. Set aside.","In the same oil fry onion, tomato, ginger-garlic paste, turmeric, chilli and cumin.","Add potato and water and simmer for 10 minutes. Return the eggs and cook for 5 minutes more.","Serve with rice or paratha."],
+bn:["ডিম ৮ মিনিট সেদ্ধ করে ঠান্ডা করে খোসা ছাড়ান, কাঁটা চামচে ফুটো করে হলুদ-লবণ মাখান।","তেলে ডিম হালকা সোনালি করে ভেজে তুলে রাখুন।","একই তেলে পেঁয়াজ, টমেটো, আদা-রসুন বাটা, হলুদ, মরিচ ও জিরা কষান।","আলু ও পানি দিয়ে ১০ মিনিট ফুটিয়ে ডিম ফিরিয়ে দিয়ে আরও ৫ মিনিট রান্না করুন।","ভাত বা পরোটার সঙ্গে পরিবেশন করুন।"]},
+posto:{en:["Soak poppy seeds for 15 minutes, then grind them with green chilli and salt into a paste.","Fry diced potato in mustard oil until pale gold.","Add the poppy paste and a little water. Cover and cook for 8 minutes.","Uncover and cook until the paste clings to the potato. Finish with raw mustard oil."],
+bn:["পোস্তদানা ১৫ মিনিট ভিজিয়ে কাঁচা মরিচ ও লবণসহ বেটে বাটা বানান।","সরিষার তেলে কাটা আলু হালকা সোনালি করে ভাজুন।","পোস্তবাটা ও সামান্য পানি দিয়ে ঢেকে ৮ মিনিট রান্না করুন।","ঢাকনা খুলে বাটা আলুতে লেগে যাওয়া পর্যন্ত শুকান, ওপরে কাঁচা সরিষার তেল দিন।"]}
+};
+/* name -> [Bangla description, ingredients (first = main), method, active minutes, picture spec] */
+var X={
+"Panta Bhat":["রাতভর পানিতে ভেজানো ভাত। লবণ, পেঁয়াজ, কাঁচা মরিচ ও প্রায়ই ইলিশ ভাজার সঙ্গে ঠান্ডা খাওয়া হয়।","rice,water,salt,onion,chilli,mustardoil","panta",10,"rice:chili:#F4F0E4:#3E8E41"],
+"Steamed Rice":["প্রতিটি খাবারের কেন্দ্রে থাকে। স্তূপ করে পরিবেশন করা হয়, আর বাকি সবকিছু এর সঙ্গে মিশিয়ে খাওয়া হয়।","rice,water,salt","rice",25,"rice:plain:#FBF8EE:#fff"],
+"Kacchi Biryani":["কাঁচা মাংস দই-মসলায় মেখে আলু ও ভাতের সঙ্গে স্তরে সাজিয়ে একসঙ্গে ধীর আঁচে দমে রান্না।","mutton,rice,potato,yoghurt,gingergarlic,friedonion,ghee,garam,chilipowder,salt","biryani",150,"rice:meat:#EBCB7A:#7A3B1D"],
+"Chicken Biryani":["মসলাদার মুরগি ও আলুর সঙ্গে সুগন্ধি ভাত স্তরে স্তরে সাজিয়ে ওপরে বেরেস্তা।","chicken,rice,potato,yoghurt,gingergarlic,friedonion,ghee,garam,salt","biryani",90,"rice:meat:#EFD27F:#A3522A"],
+"Tehari":["সরিষার তেল ও মসলায় গরুর ছোট টুকরার সঙ্গে রান্না করা ভাত। ঢাকার সকাল-দুপুরের প্রিয় খাবার।","beef,rice,mustardoil,onion,gingergarlic,chilipowder,cumin,chilli,salt","onepot",90,"rice:meat:#D9A441:#6B2D14"],
+"Morog Polao":["ঘি-সুবাসিত ভাত, মুরগি, পেঁয়াজ ও গোটা মসলায় রান্না।","chicken,rice,ghee,onion,garam,gingergarlic,salt,chilli","onepot",70,"rice:meat:#F2E3A8:#B3622E"],
+"Polao":["ঘি, গোটা মসলা ও কিশমিশে নরম সুগন্ধি ভাত। বিয়েতে রোস্ট ও রেজালার সঙ্গে পরিবেশন করা হয়।","rice,ghee,onion,garam,raisins,salt,water","polao",40,"rice:raisin:#F7EBB5:#8A4B1C"],
+"Chinigura Polao":["চিনিগুঁড়া চালের পোলাও, ছোট দানার সুগন্ধি চাল যা রান্নার সময় মিষ্টি ঘ্রাণ ছড়ায়।","chinigura,ghee,onion,garam,salt,water","polao",40,"rice:plain:#F8EFC2:#fff"],
+"Kataribhog Rice":["দিনাজপুরের সুগন্ধি ছোট দানার চাল, পোলাও ও পায়েসের জন্য তুলে রাখা হয়।","kataribhog,water,salt","rice",25,"rice:plain:#FFFBE8:#fff"],
+"Khichuri":["হলুদ ও ঘিতে চাল-ডাল একসঙ্গে রান্না। বৃষ্টির দিনের খাবার, ইলিশ ভাজা, ডিম বা গরুর মাংসের সঙ্গে।","rice,moong,ghee,onion,turmeric,ginger,chilli,salt,water","khichuri",40,"rice:egg:#E7C24A:#fff"],
+"Bhuna Khichuri":["পানি দেওয়ার আগে চাল-ডাল মসলায় ভেজে নেওয়া হয়, তাই রঙ গাঢ় ও ঘন হয়।","masoor,rice,onion,gingergarlic,turmeric,chilipowder,ghee,garam,salt","onepot",50,"rice:plain:#B07B2E:#fff"],
+"Akhni Polao":["এক হাঁড়িতে চাল ও মাংস গোটা মসলায় রান্না। বিরিয়ানির চেয়ে হালকা।","mutton,rice,onion,gingergarlic,garam,ghee,yoghurt,salt","onepot",90,"rice:meat:#E9D08A:#7A3B1D"],
+
+"Ilish Bhapa":["সরিষা বাটা, কাঁচা মরিচ ও সরিষার তেলে ভাপে রান্না ইলিশ। ইলিশ আমাদের জাতীয় মাছ।","hilsa,mustardseed,mustardoil,chilli,turmeric,salt","mustardfish",30,"leaf:steak:#C7CBD1:#C7A12A"],
+"Shorshe Ilish":["ঝাঁঝালো সরিষা ঝোলে কাঁচা মরিচসহ ইলিশ।","hilsa,mustardseed,mustardoil,chilli,turmeric,salt","mustardfish",30,"bowl:fish:#C7A12A:#B9BEC6"],
+"Ilish Bhaja":["হলুদ-লবণ মাখানো ইলিশের টুকরা মচমচে করে ভাজা। পান্তা ভাতের চিরসঙ্গী।","hilsa,turmeric,salt,chilipowder,mustardoil","fry",20,"leaf:steak:#D9A23A:#8A5A1C"],
+"Ilish Paturi":["সরিষা-নারকেল মাখানো ইলিশ কলা পাতায় মুড়ে ভাপে রান্না।","hilsa,mustardseed,coconut,bananaleaf,chilli,mustardoil,salt","mustardfish",40,"leaf:wrap:#2F7D3A:#C7A12A"],
+"Rui Macher Jhol":["আলু দিয়ে হলুদ-জিরার পাতলা ঝোলে রুই মাছ। প্রতিদিনের মাছের ঝোল।","rohu,potato,onion,turmeric,cumin,chilli,oil,corianderleaf,salt","jhol",35,"bowl:fish:#E2B01E:#E8E2D4"],
+"Koi Macher Jhol":["পেঁয়াজ-মরিচের ঝোলে কই মাছ। পানির বাইরেও অনেকক্ষণ বেঁচে থাকে বলে তাজা মাছের জন্য প্রিয়।","perch,onion,gingergarlic,turmeric,chilipowder,chilli,oil,salt","jhol",35,"bowl:fish:#D2691E:#D8CDB8"],
+"Pabda Macher Jhol":["কাঁচা মরিচ দিয়ে হালকা ঝোলে নরম পাবদা মাছ।","pabda,onion,turmeric,cumin,chilli,oil,salt","jhol",30,"bowl:fish:#E6C04A:#E3DCCB"],
+"Tengra Macher Jhol":["ঝাল পাতলা ঝোলে ছোট ট্যাংরা মাছ, প্রায়ই টমেটো দিয়ে।","tengra,tomato,onion,turmeric,chilipowder,chilli,oil,salt","jhol",30,"bowl:fish:#D55A1E:#C9B79E"],
+"Shing Macher Jhol":["হালকা ঝোলে শিং মাছ। অসুস্থ হলে প্রায়ই এটি রান্না হয়।","shing,potato,onion,gingergarlic,turmeric,chilli,oil,salt","jhol",35,"bowl:fish:#E0A81E:#5E5E5E"],
+"Chitol Macher Muitha":["চিতল মাছের কিমা মসলায় মেখে বল বানিয়ে ঝোলে ফোটানো। পুরান ঢাকার ঐতিহ্য।","chitol,onion,garlic,chilli,gramflour,corianderleaf,turmeric,cumin,oil,salt","muitha",60,"bowl:ball:#D9922B:#E9D7A6"],
+"Chingri Malaikari":["নারকেলের দুধ, আদা ও গোটা মসলায় বড় গলদা চিংড়ি।","prawn,coconutmilk,onion,ginger,garam,ghee,sugar,turmeric,salt","malai",40,"bowl:prawn:#F1DCB0:#E58A4B"],
+"Chingri Bhuna":["পেঁয়াজ-মসলায় ধীরে ভাজা চিংড়ি, মসলা লেগে থাকা পর্যন্ত।","prawn,onion,gingergarlic,turmeric,chilipowder,oil,salt","bhuna",35,"bowl:prawn:#B5471A:#F08A4B"],
+"Lau Chingri":["ছোট চিংড়ি দিয়ে লাউ রান্না। হালকা ও সামান্য মিষ্টি।","bottlegourd,prawn,onion,turmeric,chilli,oil,salt","sabzi",30,"bowl:veg:#E8E1A0:#F08A4B"],
+"Rupchanda Fry":["বঙ্গোপসাগরের আস্ত রূপচাঁদা মাছ মচমচে করে ভাজা।","pomfret,turmeric,chilipowder,salt,oil","fry",20,"leaf:fish:#C9CED6:#8B8F96"],
+"Shutki Bhuna":["পেঁয়াজ-মরিচে রান্না করা রোদে শুকানো মাছ। তীব্র গন্ধ, তবুও সবার প্রিয়।","driedfish,onion,gingergarlic,chilipowder,chilli,oil,salt","bhuna",35,"bowl:chunk:#8A3B16:#B5844A"],
+"Shutki Bhorta":["শুঁটকি পুড়িয়ে রসুন, মরিচ ও সরিষার তেলে চটকানো। ভাত বা চিতই পিঠার সঙ্গে খাওয়া হয়।","driedfish,garlic,dryChilli,mustardoil,onion,salt","bhorta",20,"mound:fish:#8A5A2E:#D9534F"],
+"Shidol Bhorta":["গাঁজানো শুঁটকির বাটা, ঝাঁঝালো ও লবণাক্ত, মরিচ দিয়ে চটকানো।","fermfish,chilli,onion,mustardoil,salt","bhorta",20,"mound:fish:#6B4A2A:#D9534F"],
+
+"Beef Bhuna":["পেঁয়াজ, রসুন ও আদায় ধীরে ভাজা গরুর মাংস, যতক্ষণ না তেল ছাড়ে ও ঝোল গাঢ় হয়।","beef,onion,gingergarlic,chilipowder,turmeric,cumin,coriander,oil,salt","bhuna",120,"bowl:chunk:#5B2A14:#8B4A2B"],
+"Kala Bhuna":["সরিষার তেলে ঘণ্টার পর ঘণ্টা ভাজা গরুর মাংস, প্রায় কালো হওয়া পর্যন্ত।","beef,mustardoil,onion,gingergarlic,garam,chilipowder,salt","bhuna",180,"bowl:chunk:#2B1409:#4A2A18"],
+"Mezbani Gosht":["চট্টগ্রামের মেজবানে বড় হাঁড়িতে কাঠের আগুনে রান্না গরুর মাংসের তরকারি।","beef,onion,gingergarlic,chilipowder,coriander,cumin,garam,oil,salt","bhuna",180,"bowl:chunk:#9E2A10:#6B2D14"],
+"Shatkora Beef":["সিলেটি লেবুজাতীয় ফল সাতকরা দিয়ে রান্না গরুর মাংস, ঝাঁঝালো ঘ্রাণ।","beef,shatkora,onion,gingergarlic,chilipowder,turmeric,oil,salt","curry",100,"bowl:chunk:#A5541D:#6B2D14"],
+"Rezala":["দই ও ঘিতে মৃদু ক্রিমি খাসি বা গরুর ঝোল। বিয়ের পুরোনো পদ।","mutton,yoghurt,ghee,onion,gingergarlic,cashew,garam,chilli,kewra,salt","rezala",80,"bowl:chunk:#F3E6C8:#C9A56B"],
+"Khashir Mangsho":["আলুসহ খাসির মাংসের ঝোল। সপ্তাহান্ত ও উৎসবের রান্না।","mutton,potato,onion,gingergarlic,turmeric,chilipowder,cumin,coriander,oil,salt","curry",90,"bowl:chunk:#B8541A:#7A3B1D"],
+"Kosha Mangsho":["মাংস মসলায় কষিয়ে ঝোল শুকিয়ে গাঢ় করা।","mutton,onion,gingergarlic,turmeric,chilipowder,cumin,garam,oil,salt","bhuna",100,"bowl:chunk:#4A2314:#7A3B1D"],
+"Chicken Roast":["পেঁয়াজ, দই ও ঘিতে সামান্য মিষ্টি ঝোলে মুরগির রান। পোলাওয়ের সঙ্গে।","chicken,yoghurt,onion,ghee,sugar,gingergarlic,chilipowder,cumin,garam,salt","roast",60,"bowl:chunk:#C2761F:#8C4A12"],
+"Deshi Murgir Jhol":["পাতলা ঝাল ঝোলে দেশি মুরগি। মাংস শক্ত ও স্বাদ জোরালো।","chicken,onion,gingergarlic,turmeric,chilipowder,cumin,potato,oil,salt","curry",60,"bowl:chunk:#D2691E:#B3762E"],
+"Haleem":["গম, ডাল ও গরুর মাংসের ধীর আঁচে রান্না ঘন খিচুড়ি; ওপরে আদা, লেবু, বেরেস্তা ও ধনেপাতা।","beef,wheat,chana,masoor,onion,gingergarlic,garam,chilipowder,friedonion,lime,ginger","haleem",240,"bowl:plain:#A66B2E:#6B8E23"],
+"Nihari":["গরুর হাড়সহ মাংস সারা রাত রান্না করে ভোরে বাকরখানির সঙ্গে খাওয়া।","beef,onion,gingergarlic,chilipowder,coriander,cumin,garam,atta,ginger,salt","stew",300,"bowl:chunk:#8B3A12:#5B2A14"],
+"Paya":["পায়ার হাড় ঘণ্টার পর ঘণ্টা রান্না করে ঘন, মোলায়েম ঝোল।","trotters,onion,gingergarlic,chilipowder,coriander,cumin,garam,ginger,salt","stew",300,"bowl:chunk:#C4731F:#EAD9B2"],
+"Chui Jhal Mangsho":["খুলনার ঝাঁঝালো লতাজাতীয় মসলা চুইঝাল দিয়ে গরু বা খাসির মাংস।","beef,chuijhal,onion,gingergarlic,turmeric,chilipowder,oil,salt","curry",100,"bowl:chunk:#A33C14:#7A3B1D"],
+"Hasher Mangsho":["পেঁয়াজ-মসলায় ঝলসানো হাঁসের মাংস। উত্তর-পূর্বের হাওর অঞ্চলে জনপ্রিয়।","duck,onion,gingergarlic,chilipowder,turmeric,garam,oil,salt","curry",90,"bowl:chunk:#8A3B12:#B5651D"],
+"Seekh Kebab":["মসলা মাখানো কিমা শিকে গ্রিল করা।","mince,onion,gingergarlic,chilli,cumin,coriander,corianderleaf,gramflour,salt","kebab",40,"fritters:stick:#A5502A:#6B2D14"],
+"Shami Kebab":["কিমা ও ডালের পাটি, কড়াইতে ভাজা। ইফতারের প্লেটে নিয়মিত।","mince,chana,onion,gingergarlic,chilli,garam,corianderleaf,eggs,salt","kebab",60,"fritters:round:#8A4A22:#5B2A14"],
+"Kolija Bhuna":["পেঁয়াজ-মরিচে ঝাল করে ভাজা কলিজা। পরোটার সঙ্গে খাওয়া হয়।","liver,onion,gingergarlic,chilipowder,chilli,turmeric,oil,salt","bhuna",30,"bowl:chunk:#5A1F18:#7A2E22"],
+"Dimer Jhol":["আলুসহ পাতলা ঝোলে সেদ্ধ ডিম। সহজ, সস্তা ঘরোয়া খাবার।","eggs,potato,onion,tomato,turmeric,chilipowder,cumin,oil,salt","eggcurry",30,"bowl:egg:#E0891E:#fff"],
+
+"Begun Bhorta":["আগুনে পোড়ানো বেগুন সরিষার তেল, পেঁয়াজ ও কাঁচা মরিচে চটকানো।","eggplant,onion,chilli,mustardoil,corianderleaf,salt","bhorta",20,"mound:plain:#9A8B4F:#3E8E41"],
+"Aloo Bhorta":["সেদ্ধ আলু সরিষার তেল, পেঁয়াজ, মরিচ ও ধনেপাতায় চটকানো।","potato,onion,chilli,mustardoil,corianderleaf,salt","bhorta",20,"mound:plain:#E9D9A0:#3E8E41"],
+"Tomato Bhorta":["পোড়া টমেটো মরিচ, রসুন ও সরিষার তেলে চটকানো।","tomato,chilli,garlic,mustardoil,onion,salt","bhorta",15,"mound:plain:#D9442B:#3E8E41"],
+"Kochu Bhorta":["সেদ্ধ কচু সরিষার তেল, পেঁয়াজ ও মরিচে চটকানো।","taro,onion,chilli,mustardoil,salt","bhorta",25,"mound:plain:#C8BFA0:#3E8E41"],
+"Shukto":["মিশ্র সবজির মৃদু তেতো ঝোল, ঐতিহ্যগতভাবে খাওয়ার শুরুতে।","bittergourd,potato,pointedgourd,eggplant,milk,mustardseed,ginger,panch,salt","sabzi",40,"bowl:veg:#F1E6B8:#7AA84F"],
+"Labra":["মৌসুমি সবজি একসঙ্গে সামান্য মসলায় রান্না।","mixedveg,panch,turmeric,chilli,oil,salt","sabzi",35,"bowl:veg:#D9A23A:#7AA84F"],
+"Chorchori":["পাঁচফোড়নে শুকনো করে রান্না মিশ্র সবজি। মাছের মাথা দিয়েও হয়।","mixedveg,panch,turmeric,dryChilli,oil,salt,sugar","sabzi",40,"bowl:veg:#C98A2B:#6AA84F"],
+"Pui Shak":["রসুন-মরিচে সহজে রান্না পুঁইশাক, কখনো শুঁটকি দিয়ে।","malabar,garlic,dryChilli,oil,salt","shak",15,"bowl:veg:#3D6B2E:#2F5A22"],
+"Lal Shak Bhaji":["রসুন ও কাঁচা মরিচে ভাজা লাল শাক।","amaranth,garlic,chilli,oil,salt","shak",15,"bowl:veg:#9E2A3A:#3D6B2E"],
+"Kochur Loti":["শুঁটকি বা চিংড়ি দিয়ে রান্না কচুর লতি। মাটির স্বাদ, সামান্য টক।","tarostem,driedfish,onion,turmeric,chilipowder,oil,salt","sabzi",45,"bowl:veg:#8A9A4F:#7A5A2E"],
+"Mocha Ghonto":["নারকেল, আলু ও গোটা মসলায় কলার মোচা।","bananaflower,coconut,potato,garam,ginger,turmeric,oil,salt","sabzi",50,"bowl:veg:#B8863F:#E9D9A0"],
+"Begun Bhaja":["হলুদ-লবণ মাখানো বেগুনের চাকা ভাজা।","eggplant,turmeric,salt,oil","fry",15,"fritters:slice:#5E3A6B:#3F2548"],
+"Potol Bhaji":["কিনারা মচমচে হওয়া পর্যন্ত ভাজা পটল।","pointedgourd,turmeric,salt,oil","fry",20,"fritters:slice:#8DA84F:#5E7A2E"],
+"Uchche Bhaji":["মচমচে করে ভাজা উচ্ছে। খাওয়ার শুরুতে অল্প করে।","bittergourd,turmeric,salt,oil","fry",20,"fritters:slice:#4F7A2E:#2F5A22"],
+"Kumro Bhaji":["পাঁচফোড়ন ও সামান্য চিনিতে নরম করে রান্না মিষ্টি কুমড়া।","pumpkin,panch,turmeric,sugar,oil,salt","sabzi",25,"bowl:veg:#E89A2B:#C77A1A"],
+"Aloo Posto":["পোস্তবাটায় আলু। মৃদু ও বাদামি স্বাদ।","potato,poppy,chilli,mustardoil,salt","posto",30,"bowl:veg:#EFE6C8:#E3D3A0"],
+
+"Moong Dal":["ভাজা মুগ ডাল হলুদে নরম করে সেদ্ধ, ঘি দিয়ে শেষ।","moong,turmeric,salt,ghee,chilli,water","dal",30,"bowl:plain:#EBC53A:#6AA84F"],
+"Masoor Dal":["পাতলা করে ফুটানো মসুর ডাল, পেঁয়াজ-রসুনের বাঘারে। প্রতিদিনের ডাল।","masoor,turmeric,salt,onion,garlic,dryChilli,oil,water","dal",25,"bowl:plain:#E0922B:#6AA84F"],
+"Mashkalai Dal":["আদা ও গোটা মসলায় ঘন করে রান্না মাষকলাই ডাল।","mashkalai,turmeric,salt,ginger,garam,oil,water","dal",40,"bowl:plain:#7A6A4A:#C8B88A"],
+"Cholar Dal":["নারকেল কুচি ও গোটা মসলায় ছোলার ডাল। লুচির সঙ্গে খাওয়া হয়।","chana,coconut,garam,turmeric,sugar,ghee,salt,water","dal",45,"bowl:plain:#E8B030:#F6F0DC"],
+
+"Fuchka":["মচমচে ফাঁপা খোসায় মসলাদার ছোলা-আলু, তেঁতুলের পানিতে ডোবানো।","chickpeas,potato,tamarind,onion,chilli,cumin,blacksalt,mint","chaat",40,"puchka:round:#D9A441:#7A5A2E"],
+"Chotpoti":["টক-ঝাল সসে ছোলা-আলু, সেদ্ধ ডিম ও ভাঙা মুচমুচে ফুচকার সঙ্গে।","chickpeas,potato,eggs,tamarind,onion,chilli,cumin,blacksalt","chaat",40,"bowl:beans:#C98A2B:#E8C27A"],
+"Jhalmuri":["মুড়ি, মরিচ, পেঁয়াজ, সরিষার তেল, চিনাবাদাম, চানাচুর ও লেবুতে মাখা।","puffedrice,chanachur,peanuts,onion,chilli,mustardoil,lime,salt","jhalmuri",10,"muri:plain:#F6EAC8:#C98A2B"],
+"Singara":["আলু ও মটর-মসলায় ভরা ত্রিকোণ ভাজা পাই। চায়ের সঙ্গী।","potato,flour,peas,cumin,chilli,oil,salt","pastry",60,"tri:plain:#D9A23A:#F0C86A"],
+"Samosa":["কিমা-মসলায় ভরা ছোট ত্রিকোণ ভাজা।","mince,flour,onion,chilli,cumin,oil,salt","pastry",60,"tri:plain:#C98A2B:#E8B960"],
+"Piyaju":["ডালের গোলা, পেঁয়াজ ও কাঁচা মরিচের বড়া। ইফতারের টেবিলে থাকেই।","onion,masoor,chilli,gramflour,corianderleaf,salt,oil","fritter",30,"fritters:round:#C98A2B:#8B5A1C"],
+"Beguni":["বেসনের গোলায় ডোবানো বেগুনের চাকা ডুবো তেলে ভাজা।","eggplant,gramflour,chilli,turmeric,salt,oil","fritter",25,"fritters:slice:#C98A2B:#5E3A6B"],
+"Alur Chop":["মসলা মেশানো আলুর পুর, কোটিং করে ভাজা।","potato,onion,chilli,corianderleaf,breadcrumbs,eggs,oil,salt","chop",40,"fritters:round:#C98A2B:#8B5A1C"],
+"Dimer Chop":["মসলাদার আলুতে মোড়ানো সেদ্ধ ডিম, কোটিং করে ভাজা।","potato,eggs,onion,chilli,breadcrumbs,oil,salt","chop",45,"fritters:round:#B8761F:#F6E7B8"],
+"Chola Bhuna":["পেঁয়াজ, মরিচ ও মসলায় ভাজা ছোলা। ইফতারে মুড়ির সঙ্গে খাওয়া হয়।","chickpeas,onion,chilli,gingergarlic,cumin,turmeric,oil,salt","bhuna",40,"bowl:beans:#C98A2B:#E0B85A"],
+"Nimki":["কালোজিরা দেওয়া মচমচে নোনতা ভাজা ডায়মন্ড।","flour,nigella,ghee,salt,oil","nimki",40,"fritters:diamond:#E0B85A:#B8861F"],
+
+"Paratha":["তেলে সেঁকা স্তরে স্তরে নরম রুটি। ভাজি বা গরুর ভুনার সঙ্গে।","atta,oil,ghee,salt,water","paratha",40,"flat:layers:#E3B968:#C98A2B"],
+"Luchi":["ফোলা, ডুবো তেলে ভাজা সাদা ময়দার রুটি; ছোলার ডাল বা আলুর সঙ্গে।","flour,ghee,salt,water,oil","luchi",40,"flat:puff:#F6E7B8:#E3C27A"],
+"Ruti":["তাওয়ায় সেঁকা পাতলা আটার রুটি, ঘরোয়া প্রধান খাবার।","atta,water,salt","ruti",25,"flat:ruti:#E8CF9A:#B8861F"],
+"Bakarkhani":["শক্ত, স্তরে স্তরে বিস্কুটের মতো রুটি; চায়ে ডুবিয়ে বা নিহারির সঙ্গে।","flour,ghee,milk,salt,water","bakarkhani",90,"flat:bakar:#D9A441:#B8761F"],
+"Dal Puri":["ডালের পুর ভরা ভাজা রুটি।","flour,chana,cumin,chilli,salt,oil","dalpuri",60,"flat:puff:#E0A64A:#B8761F"],
+"Chira-Doi-Gur":["দই ও গুড়ে চিড়া। চুলা ছাড়াই ঠান্ডা সকালের নাশতা।","flattened,yoghurt,jaggery,milk","assemble",10,"bowl:plain:#F6F2E6:#C98A2B"],
+
+"Bhapa Pitha":["খেজুর গুড় ও নারকেল ভরা চালের গুঁড়ার ভাপে সেদ্ধ পিঠা, শীতের সকালে রাস্তার ধারে বিক্রি হয়।","riceflour,coconut,datemolasses,salt,water","bhapa",30,"pitha:bhapa:#F6F0DE:#8A5A2E"],
+"Chitoi Pitha":["মাটির খোলায় ভাজা নরম ছিদ্রযুক্ত চালের পিঠা; খেজুর গুড় বা শুঁটকি ভর্তার সঙ্গে।","riceflour,water,salt,datemolasses","chitoi",25,"pitha:chitoi:#F2EAD4:#C9B27A"],
+"Patishapta":["নারকেল-গুড় বা ক্ষীরের পুর ভরা পাতলা চালের রুটি।","riceflour,flour,semolina,milk,coconut,jaggery","patishapta",40,"pitha:roll:#EAD9A8:#8A5A2E"],
+"Puli Pitha":["নারকেল-গুড়ের পুর ভরা চালের গুঁড়ার পুলি।","riceflour,coconut,jaggery,water","puli",50,"pitha:half:#F4EEDC:#C9B27A"],
+"Dudh Puli":["মিষ্টি দুধে ফোটানো পুলি পিঠা।","riceflour,coconut,jaggery,milk,cardamom,sugar","puli",60,"pitha:half:#F6F0DE:#E8E2C8"],
+"Pakan Pitha":["চিনির রসে ডোবানো ভাজা চালের গুঁড়ার পিঠা। উৎসবের মিষ্টি।","riceflour,sugar,water,oil,salt","fryPitha",60,"pitha:fried:#C98A2B:#8A5A1C"],
+"Nakshi Pitha":["ফুল-পাতার নকশা আঁকা চালের গুঁড়ার পিঠা, ভেজে রসে ডোবানো।","riceflour,sugar,water,oil","fryPitha",90,"pitha:nakshi:#D9A441:#8A5A1C"],
+"Tel Pitha":["চালের গুঁড়া ও গুড়ের গোলা তেলে সোনালি করে ভাজা।","riceflour,jaggery,water,oil,salt","fryPitha",30,"pitha:fried:#B8761F:#6B3E12"],
+
+"Roshmalai":["ঘন এলাচ-সুবাসিত দুধে ডোবানো ছানার নরম চাকতি।","milk,lime,sugar,cardamom,nuts,saffron","roshmalai",90,"syrup:disc:#FBF3DC:#F2E2A6"],
+"Rasgulla":["চিনির রসে ফোটানো ছানার হালকা বল।","milk,lime,sugar,water,cardamom","rasgulla",60,"syrup:ball:#FFFFFF:#F6E9B8"],
+"Sandesh":["তাজা ছানা ও চিনির নরম মিষ্টি, ছাঁচে ঢালা।","milk,lime,sugar,cardamom,nuts","sandesh",45,"sq:plain:#F4E6C2:#7AA84F"],
+"Chomchom":["লম্বাটে রসে ডোবানো দুধের মিষ্টি। টাঙ্গাইলের পোড়াবাড়ির চমচম বিখ্যাত।","milk,lime,sugar,water,cardamom","rasgulla",90,"syrup:oval:#C98A4A:#F0D9A0"],
+"Mishti Doi":["মাটির পাত্রে জমানো ক্যারামেলযুক্ত মিষ্টি দই। বগুড়ার দই সবচেয়ে পরিচিত।","milk,sugar,yoghurt","doi",45,"pot:doi:#C98A4A:#8B4A22"],
+"Payesh":["দুধে ধীরে রান্না করা চাল, চিনি বা গুড়, এলাচ ও তেজপাতায়।","rice,milk,sugar,cardamom,raisins,nuts","pudding",60,"pot:payesh:#F3E6C2:#8B4A22"],
+"Firni":["মাটির বাটিতে জমানো চালবাটা দুধের পুডিং, ওপরে বাদাম।","riceflour,milk,sugar,cardamom,nuts,kewra","pudding",40,"pot:firni:#FBF6E8:#8B4A22"],
+"Jilapi":["গাঁজানো গোলার পেঁচানো ভাজা, চিনির রসে ডোবানো।","flour,riceflour,yoghurt,sugar,cardamom,oil","jilapi",50,"spiral:plain:#E8791B"],
+"Gulab Jamun":["ভাজা দুধের গোল, এলাচের রসে ডোবানো।","milkpowder,flour,milk,ghee,sugar,cardamom","jamun",60,"syrup:dark:#8A3B16:#E0A64A"],
+"Kalojam":["গাঢ় করে ভাজা দুধের বল, রসে ডোবানো; গুলাব জামুনের চেয়ে ঘন।","milkpowder,flour,milk,ghee,sugar,cardamom","jamun",60,"syrup:dark:#2B1409:#C98A2B"],
+"Shemai":["ঘিয়ে ভাজা সেমাই দুধ-চিনিতে রান্না। ঈদের সকালের খাবার।","vermicelli,milk,sugar,ghee,cardamom,raisins,nuts","pudding",25,"strands:plain:#E0B860"],
+"Jorda":["জাফরানি রঙের মিষ্টি ভাত, কিশমিশ ও ঘিসহ। বিয়ের খাবার শেষ হয় এটি দিয়ে।","rice,sugar,ghee,raisins,garam,saffron,nuts","jorda",60,"rice:raisin:#F2C440:#8A4B1C"],
+"Shahi Tukra":["ভাজা পাউরুটি মিষ্টি ঘন দুধে ডোবানো, ওপরে বাদাম।","bread,milk,sugar,ghee,cardamom,nuts","shahi",50,"sq:tri:#E8C27A:#7AA84F"],
+"Gajorer Halua":["দুধ, চিনি ও ঘিতে ঘন করে রান্না গাজর কোরা।","carrot,milk,sugar,ghee,cardamom,nuts,raisins","milkreduce",60,"bowl:cream:#D9541E:#F6E7B8"],
+"Moa":["গুড় বা খেজুর গুড়ে বাঁধা মুড়ির বল।","puffedrice,jaggery,coconut,water","moa",30,"fritters:ball:#C98A4A:#8A5A2E"],
+"Monda":["মুক্তাগাছার ঘন মিষ্টি দুধের ফাজ।","milk,sugar,cardamom,ghee","milkreduce",90,"sq:plain:#C9954A:#E8D4A0"],
+"Kachagolla":["ছানা ও চিনির ছোট নরম মিষ্টি। নাটোরের বিশেষত্ব।","milk,lime,sugar,cardamom","rasgulla",60,"fritters:ball:#F6EBC8:#E8D49A"],
+
+"Borhani":["পুদিনা, ধনেপাতা, কাঁচা মরিচ ও কালো লবণে ঝাঁঝালো দইয়ের পানীয়, বিরিয়ানির সঙ্গে হজমে সাহায্য করে।","yoghurt,mint,corianderleaf,chilli,blacksalt,cumin,mustardseed,water","yogurtdrink",10,"glass:yog:#F4F0E0:#6AA84F"],
+"Lassi":["ঠান্ডা মিষ্টি বা নোনতা দইয়ের পানীয়।","yoghurt,sugar,water,salt,ice","yogurtdrink",5,"glass:yog:#FBF6E8:#F6E7B8"],
+"Doodh Cha":["দুধ ও চিনিতে ফুটানো কড়া চা, চায়ের দোকানে ছোট কাপে।","tea,milk,sugar,water","tea",10,"glass:cup:#C98A4A:#fff"],
+"Seven-Colour Tea":["সাত স্তরের চা, প্রতিটি আলাদা রঙ ও স্বাদের এবং মেশে না। শ্রীমঙ্গলে উদ্ভাবিত।","tea,milk,sugar,lime,cardamom,water","layertea",30,"glass:layers:#C0392B:#F39C12"],
+"Lebur Shorbot":["লেবু, চিনি ও লবণ ঠান্ডা পানিতে। গরম ও ইফতারের পানীয়।","lime,sugar,salt,water,ice","shorbot",5,"glass:plain:#F1F0A8:#6AA84F"],
+"Daber Pani":["কচি ডাবের পানি, ডাব থেকেই খাওয়া।","coconutwater","fresh",3,"glass:coconut:#7AA84F:#F6F0DC"],
+"Bel Shorbot":["চিনি ও পানিতে বেলের পাল্প। গরমে ঠান্ডা করার পানীয়।","woodapple,sugar,water,ice","shorbot",10,"glass:plain:#D9A23A:#8A5A1C"],
+"Akher Rosh":["রাস্তার পাশে তাজা চেপে নেওয়া আখের রস, প্রায়ই লেবু-আদা দিয়ে।","sugarcane,lime,ginger,ice","fresh",5,"glass:cane:#B8D87A:#5E7A2E"],
+"Khejur Rosh":["শীতে খেজুর গাছ থেকে সংগ্রহ করা রস, সকালে তাজা পান করা হয়। ফুটিয়ে গুড়ও বানানো হয়।","datesap","fresh",5,"glass:pot:#E8C27A:#8A4B22"],
+
+"Kathal (Jackfruit)":["জাতীয় ফল। পাকা হলে মিষ্টি ও আঠালো, কাঁচা হলে তরকারি হয়।","jackfruit","fresh",15,"fruit:jack:#7A9A2E:#F0C030"],
+"Aam (Mango)":["রাজশাহীর হিমসাগর, ল্যাংড়া ও ফজলি এবং রংপুরের হাড়িভাঙা।","mango","fresh",5,"fruit:mango:#F0A020:#6AA84F"],
+"Lichu (Lychee)":["রসালো ও ফুলের মতো সুগন্ধ, গ্রীষ্মের শুরুতে তোলা হয়। দিনাজপুরের লিচু বিখ্যাত।","lychee","fresh",5,"fruit:lychee:#D9344A:#F6EBD8"],
+"Sundarbans Honey":["সুন্দরবনের বন থেকে মৌয়ালদের সংগ্রহ করা বন্য মধু।","honey","fresh",3,"fruit:honey:#E0A020:#8A4B22"]
+};
+var T={
+en:{
+skip:"Skip to menu",nav_menu:"Menu",nav_tables:"Four tables",nav_divisions:"Eight divisions",nav_seasons:"Through the year",brand_small:"Rannaghor",
+ctl_lang:"Switch language",ctl_sound:"Sound effects",ctl_mode:"Dark or light mode",ctl_list:"Saved dishes and shopping list",
+hero_proverb:"Bengalis are made of fish and rice.",
+hero_lede:"A guide to {n} dishes of Bangladesh, each with a picture, a simple recipe and its Bangla name. Cook along, save your favourites, and change the look to a region you love.",
+hero_cta:"Browse the menu",hero_theme:"Regional theme",theme_classic:"Classic",
+menu_title:"The menu",menu_sub:"Tap any dish for its recipe. Filter by category, ingredient, spice or time.",
+search_label:"Search dishes",search_ph:"Try hilsa, pitha, biryani, বিরিয়ানি",cat_all:"All",f_veg:"No meat or fish",f_easy:"Easy only",f_saved:"Saved only",
+f_spice:"Spice",sp_any:"Any level",sp_mild:"Mild or none",sp_medium:"Medium",sp_hot:"Hot",f_time:"Time",tm_any:"Any",tm_quick:"Under 30 min",tm_hour:"Under 1 hour",surprise:"Surprise me",
+count_all:"Showing all {n} dishes",count_some:"Showing {n} of {t} dishes",clear:"Clear filters",empty_t:"No dishes match",
+empty_b:"Nothing matches your search and filters. Try a shorter word, or remove a filter.",group_1:"{n} dish",group_n:"{n} dishes",
+tag_veg:"No meat or fish",min:"min",lvl1:"Easy",lvl2:"Medium",lvl3:"Slow cook",spice_lbl:"Spice level {n} of 3",
+open_recipe:"Open recipe for {name}",fav_add:"Save {name}",fav_del:"Remove {name} from saved",
+ingredients:"Ingredients",how_to_cook:"How to cook",active_time:"Active time",level:"Level",start_cook:"Start cooking",save:"Save",saved:"Saved",share:"Copy link",copied:"Link copied",
+illus_note:"Pictures are illustrations drawn for this guide, not photographs. Quantities depend on how many people you feed, so taste and adjust as you go.",
+step_of:"Step {i} of {n}",back:"Back",next:"Next step",finish:"Finish",exit:"Exit cooking mode",enjoy:"Enjoy your meal!",enjoy_sub:"You cooked {name}.",read:"Read aloud",close:"Close",
+list_title:"Saved dishes and shopping list",list_empty:"You have not saved any dishes yet. Tap the heart on a dish to save it, and its ingredients will appear here.",
+list_saved:"Saved dishes",list_shop:"Shopping list",list_in:"in {n}",copy_list:"Copy list",list_copied:"List copied",list_clear:"Remove all saved",
+tables_title:"Four tables",tables_sub:"What ends up on the plate depends on the occasion. These are four familiar ones.",
+regions_title:"Eight divisions",regions_sub:"Bangladesh has eight administrative divisions, and each cooks differently. Apply a regional theme, or pick a dish to find it in the menu.",
+apply_theme:"Apply this theme",theme_on:"Theme on",toast_theme:"{name} theme",toast_classic:"Classic theme",
+seasons_title:"Through the year",seasons_sub:"Bangladeshi eating follows the calendar, the rivers and the festivals.",
+foot_note:"This is a starting point, not a complete record. Names, spices and methods change from one district, and one kitchen, to the next. Recipes are simplified for home cooks.",
+toast_saved:"Saved {name}",toast_removed:"Removed {name}",sound_on:"Sound on",sound_off:"Sound off",lang_name:"বাংলা"
+},
+bn:{
+skip:"মেনুতে যান",nav_menu:"মেনু",nav_tables:"চার ভোজ",nav_divisions:"আট বিভাগ",nav_seasons:"সারা বছর",brand_small:"",
+ctl_lang:"ভাষা বদলান",ctl_sound:"শব্দ",ctl_mode:"গাঢ় বা হালকা মোড",ctl_list:"সংরক্ষিত খাবার ও কেনাকাটার তালিকা",
+hero_proverb:"মাছ আর ভাত নিয়েই বাঙালি।",
+hero_lede:"বাংলাদেশের {n}টি খাবারের গাইড, প্রতিটির ছবি, সহজ রেসিপি ও বাংলা নামসহ। সঙ্গে রান্না করুন, পছন্দের খাবার সংরক্ষণ করুন, আর ভালোবাসার অঞ্চলের থিম বেছে নিন।",
+hero_cta:"মেনু দেখুন",hero_theme:"আঞ্চলিক থিম",theme_classic:"ক্লাসিক",
+menu_title:"মেনু",menu_sub:"যেকোনো খাবারে ট্যাপ করে রেসিপি দেখুন। ধরন, উপকরণ, ঝাল বা সময় দিয়ে বাছাই করুন।",
+search_label:"খাবার খুঁজুন",search_ph:"ইলিশ, পিঠা, বিরিয়ানি লিখে দেখুন",cat_all:"সব",f_veg:"মাছ-মাংস ছাড়া",f_easy:"সহজ রান্না",f_saved:"পছন্দের তালিকা",
+f_spice:"ঝাল",sp_any:"যেকোনো",sp_mild:"কম বা নেই",sp_medium:"মাঝারি",sp_hot:"বেশি ঝাল",f_time:"সময়",tm_any:"যেকোনো",tm_quick:"৩০ মিনিটের কম",tm_hour:"১ ঘণ্টার কম",surprise:"যেকোনো একটা দেখান",
+count_all:"সব {n}টি খাবার দেখানো হচ্ছে",count_some:"{t}টির মধ্যে {n}টি দেখানো হচ্ছে",clear:"ফিল্টার মুছুন",empty_t:"কোনো খাবার মেলেনি",
+empty_b:"আপনার খোঁজ ও ফিল্টারের সঙ্গে কিছু মেলেনি। ছোট শব্দ লিখুন, অথবা একটি ফিল্টার সরান।",group_1:"{n}টি খাবার",group_n:"{n}টি খাবার",
+tag_veg:"মাছ-মাংস ছাড়া",min:"মিনিট",lvl1:"সহজ",lvl2:"মাঝারি",lvl3:"সময়সাপেক্ষ",spice_lbl:"ঝাল {n}/৩",
+open_recipe:"{name}-এর রেসিপি দেখুন",fav_add:"{name} সংরক্ষণ করুন",fav_del:"{name} সংরক্ষণ থেকে সরান",
+ingredients:"উপকরণ",how_to_cook:"কীভাবে রান্না করবেন",active_time:"রান্নার সময়",level:"মান",start_cook:"রান্না শুরু করুন",save:"সংরক্ষণ",saved:"সংরক্ষিত",share:"লিঙ্ক কপি",copied:"লিঙ্ক কপি হয়েছে",
+illus_note:"ছবিগুলো এই গাইডের জন্য আঁকা চিত্র, ফটো নয়। পরিমাণ নির্ভর করে কতজনের জন্য রান্না করছেন তার ওপর, তাই চেখে দেখে ঠিক করে নিন।",
+step_of:"ধাপ {i}/{n}",back:"পিছনে",next:"পরের ধাপ",finish:"শেষ",exit:"রান্না মোড থেকে বের হন",enjoy:"ভালো করে খান!",enjoy_sub:"আপনি রান্না করেছেন {name}।",read:"পড়ে শোনান",close:"বন্ধ করুন",
+list_title:"সংরক্ষিত খাবার ও কেনাকাটার তালিকা",list_empty:"এখনো কোনো খাবার সংরক্ষণ করেননি। খাবারের হার্টে ট্যাপ করলে এখানে উপকরণসহ দেখা যাবে।",
+list_saved:"সংরক্ষিত খাবার",list_shop:"কেনাকাটার তালিকা",list_in:"{n}টিতে",copy_list:"তালিকা কপি করুন",list_copied:"তালিকা কপি হয়েছে",list_clear:"সব সংরক্ষণ মুছুন",
+tables_title:"চার ভোজ",tables_sub:"উপলক্ষ অনুযায়ী পাতে খাবার বদলায়। এখানে চারটি পরিচিত ভোজ।",
+regions_title:"আট বিভাগ",regions_sub:"বাংলাদেশে আটটি প্রশাসনিক বিভাগ, আর প্রতিটির রান্না আলাদা। আঞ্চলিক থিম বেছে নিন, অথবা কোনো খাবারে ট্যাপ করে মেনুতে খুঁজুন।",
+apply_theme:"এই থিম বেছে নিন",theme_on:"থিম চালু আছে",toast_theme:"{name} থিম",toast_classic:"ক্লাসিক থিম",
+seasons_title:"সারা বছর",seasons_sub:"বাংলাদেশের খাবার ঋতু, নদী আর উৎসব মেনে চলে।",
+foot_note:"এটি একটি শুরু, পূর্ণাঙ্গ তালিকা নয়। জেলা বদলালে, এমনকি রান্নাঘর বদলালেও নাম, মসলা ও পদ্ধতি বদলে যায়। ঘরোয়া রাঁধুনিদের জন্য রেসিপি সহজ করা হয়েছে।",
+toast_saved:"{name} সংরক্ষিত হয়েছে",toast_removed:"{name} সরানো হয়েছে",sound_on:"শব্দ চালু",sound_off:"শব্দ বন্ধ",lang_name:"English"
+}};
+
+var CATS=[
+{id:"rice",bn:"ভাত ও পোলাও",en:"Rice & biryani"},{id:"fish",bn:"মাছ",en:"Fish & seafood"},{id:"meat",bn:"মাংস",en:"Meat, poultry & eggs"},
+{id:"veg",bn:"সবজি ও ভর্তা",en:"Vegetables & bhorta"},{id:"dal",bn:"ডাল",en:"Dal"},{id:"snack",bn:"নাশতা ও স্ট্রিট ফুড",en:"Street food & snacks"},
+{id:"bread",bn:"রুটি ও সকালের নাশতা",en:"Breads & breakfast"},{id:"pitha",bn:"পিঠা",en:"Pitha"},{id:"sweet",bn:"মিষ্টি",en:"Sweets & desserts"},
+{id:"drink",bn:"পানীয়",en:"Drinks"},{id:"fruit",bn:"ফল ও মধু",en:"Fruits & honey"}];
+
+/* place and season notes */
+var NB={"Pohela Boishakh":"পহেলা বৈশাখ","Old Dhaka":"পুরান ঢাকা","Dhaka":"ঢাকা","Feasts":"ভোজ","Dinajpur":"দিনাজপুর","Monsoon":"বর্ষা","Eastern Bangladesh":"পূর্ব বাংলাদেশ",
+"Barishal":"বরিশাল","Khulna":"খুলনা","Chattogram":"চট্টগ্রাম","Sylhet":"সিলেট","Weddings":"বিয়ে","Ramadan":"রমজান","Sylhet region":"সিলেট অঞ্চল","Street food":"পথের খাবার",
+"Winter":"শীত","Eid":"ঈদ","Cumilla":"কুমিল্লা","Tangail":"টাঙ্গাইল","Bogura":"বগুড়া","Mymensingh":"ময়মনসিংহ","Natore":"নাটোর","Sreemangal, Sylhet":"শ্রীমঙ্গল, সিলেট",
+"Winter, Jessore":"শীত, যশোর","Summer":"গ্রীষ্ম"};
+
+var REGIONS=[
+{id:"dhaka",en:"Dhaka",bn:"ঢাকা",
+ tag:{en:"Old Dhaka's slow, rich, fragrant cooking, with Mughal-era roots. Theme: rickshaw-art pinks and purples.",bn:"পুরান ঢাকার ধীর আঁচের সমৃদ্ধ, সুগন্ধি রান্না, মোগল আমলের শিকড়সহ। থিম: রিকশা-আর্টের গোলাপি ও বেগুনি।"},
+ chips:[{q:"kacchi",en:"Kacchi biryani",bn:"কাচ্চি বিরিয়ানি"},{q:"nihari",en:"Nihari",bn:"নিহারি"},{q:"bakarkhani",en:"Bakarkhani",bn:"বাকরখানি"},{q:"chotpoti",en:"Chotpoti",bn:"চটপটি"},{q:"borhani",en:"Borhani",bn:"বোরহানি"},{q:"chomchom",en:"Tangail chomchom",bn:"টাঙ্গাইলের চমচম"}]},
+{id:"chattogram",en:"Chattogram",bn:"চট্টগ্রাম",
+ tag:{en:"Hills and sea: dried fish, black beef, and the mezban feast. Theme: ocean blues and harbour ships.",bn:"পাহাড় আর সাগর: শুঁটকি, কালা ভুনা ও মেজবান। থিম: সমুদ্রের নীল ও বন্দরের জাহাজ।"},
+ chips:[{q:"mezbani",en:"Mezbani gosht",bn:"মেজবানি গোশত"},{q:"kala bhuna",en:"Kala bhuna",bn:"কালা ভুনা"},{q:"shutki",en:"Shutki",bn:"শুঁটকি"},{q:"roshmalai",en:"Cumilla roshmalai",bn:"কুমিল্লার রসমালাই"}]},
+{id:"sylhet",en:"Sylhet",bn:"সিলেট",
+ tag:{en:"Tea gardens, wetlands and sharp citrus. Theme: misty tea-garden greens.",bn:"চা বাগান, হাওর ও ঝাঁঝালো লেবু। থিম: কুয়াশামাখা চা বাগানের সবুজ।"},
+ chips:[{q:"shatkora",en:"Shatkora beef",bn:"সাতকরা গরু"},{q:"seven-colour",en:"Seven-colour tea",bn:"সাত রঙের চা"},{q:"shidol",en:"Shidol bhorta",bn:"শিদল ভর্তা"},{q:"hasher",en:"Hasher mangsho",bn:"হাঁসের মাংস"}]},
+{id:"khulna",en:"Khulna",bn:"খুলনা",
+ tag:{en:"Mangrove and prawn country, with date palm sap from Jessore. Theme: Sundarbans honey and forest green.",bn:"ম্যানগ্রোভ আর চিংড়ির দেশ, সঙ্গে যশোরের খেজুরের রস। থিম: সুন্দরবনের মধু ও বনের সবুজ।"},
+ chips:[{q:"chui",en:"Chui jhal mangsho",bn:"চুইঝাল মাংস"},{q:"malaikari",en:"Chingri malaikari",bn:"চিংড়ি মালাইকারি"},{q:"khejur",en:"Khejur rosh",bn:"খেজুরের রস"},{q:"honey",en:"Sundarbans honey",bn:"সুন্দরবনের মধু"}]},
+{id:"barishal",en:"Barishal",bn:"বরিশাল",
+ tag:{en:"River delta cooking, built around hilsa. Theme: silver river and sailing boats.",bn:"নদীমাতৃক রান্না, ইলিশকে ঘিরে। থিম: রুপালি নদী ও পালতোলা নৌকা।"},
+ chips:[{q:"shorshe ilish",en:"Shorshe ilish",bn:"সরষে ইলিশ"},{q:"ilish",en:"All ilish dishes",bn:"সব ইলিশের পদ"},{q:"panta",en:"Panta bhat",bn:"পান্তা ভাত"}]},
+{id:"rajshahi",en:"Rajshahi",bn:"রাজশাহী",
+ tag:{en:"Mango orchards, and the milk sweets and yoghurt of the north-west. Theme: mango-gold and silk.",bn:"আমের বাগান, আর উত্তর-পশ্চিমের দুধের মিষ্টি ও দই। থিম: আমের সোনালি ও রেশম।"},
+ chips:[{q:"mango",en:"Mango",bn:"আম"},{q:"mishti doi",en:"Bogura mishti doi",bn:"বগুড়ার মিষ্টি দই"},{q:"kachagolla",en:"Natore kachagolla",bn:"নাটোরের কাচাগোল্লা"}]},
+{id:"rangpur",en:"Rangpur",bn:"রংপুর",
+ tag:{en:"Northern plains, aromatic rice and orchard fruit. Theme: lychee red and ripe paddy.",bn:"উত্তরের সমতল, সুগন্ধি চাল আর বাগানের ফল। থিম: লিচুর লাল ও পাকা ধান।"},
+ chips:[{q:"kataribhog",en:"Kataribhog rice",bn:"কাটারিভোগ চাল"},{q:"lychee",en:"Dinajpur lychee",bn:"দিনাজপুরের লিচু"},{q:"haribhanga",en:"Haribhanga mango",bn:"হাড়িভাঙা আম"}]},
+{id:"mymensingh",en:"Mymensingh",bn:"ময়মনসিংহ",
+ tag:{en:"Milk sweets, and a long tradition of rice-cake making. Theme: haor monsoon indigo.",bn:"দুধের মিষ্টি, আর পিঠা বানানোর দীর্ঘ ঐতিহ্য। থিম: হাওরের বর্ষার নীল।"},
+ chips:[{q:"monda",en:"Muktagachha monda",bn:"মুক্তাগাছার মণ্ডা"},{q:"pitha",en:"All pitha",bn:"সব পিঠা"},{q:"chira",en:"Chira-doi-gur",bn:"চিড়া-দই-গুড়"}]}
+];
+
+var TABLES=[
+{bn:"দুপুরের ভাত",en:"Everyday lunch",
+ d:{en:"Rice in the middle, with something from each group around it.",bn:"মাঝখানে ভাত, চারপাশে প্রতিটি দল থেকে কিছু না কিছু।"},
+ it:[["Steamed rice","সাদা ভাত"],["Masoor dal","মসুর ডাল"],["Lal shak bhaji","লাল শাক ভাজি"],["Aloo bhorta","আলু ভর্তা"],["Rui macher jhol","রুই মাছের ঝোল"],["Green chilli and a wedge of lime","কাঁচা মরিচ ও লেবুর টুকরা"]]},
+{bn:"ইফতার",en:"Iftar in Ramadan",
+ d:{en:"Fried things, chickpeas, something sour and something sweet, after the day's fast.",bn:"দিনের রোজার পর ভাজাপোড়া, ছোলা, টক আর মিষ্টি।"},
+ it:[["Dates and water","খেজুর ও পানি"],["Piyaju and beguni","পেঁয়াজু ও বেগুনি"],["Chola bhuna with muri","ছোলা ভুনা ও মুড়ি"],["Haleem","হালিম"],["Jilapi","জিলাপি"],["Lebur shorbot","লেবুর শরবত"]]},
+{bn:"বিয়ে বাড়ি",en:"Wedding feast",
+ d:{en:"A set menu of rich dishes, served in generous portions and in a fixed order.",bn:"সমৃদ্ধ খাবারের নির্দিষ্ট মেনু, প্রচুর পরিমাণে ও নির্দিষ্ট ক্রমে পরিবেশন।"},
+ it:[["Polao","পোলাও"],["Chicken roast","মুরগির রোস্ট"],["Beef rezala","গরুর রেজালা"],["Cucumber and onion salad","শসা-পেঁয়াজের সালাদ"],["Borhani","বোরহানি"],["Jorda","জর্দা"]]},
+{bn:"শীতের সকাল",en:"Winter morning",
+ d:{en:"Pitha season. Rice-flour cakes made at home and at roadside stalls.",bn:"পিঠার মৌসুম। ঘরে এবং রাস্তার ধারের দোকানে চালের গুঁড়ার পিঠা।"},
+ it:[["Khejur rosh","খেজুরের রস"],["Bhapa pitha","ভাপা পিঠা"],["Chitoi pitha with date molasses","খেজুর গুড় দিয়ে চিতই পিঠা"],["Patishapta","পাটিসাপটা"],["Moa","মোয়া"]]}
+];
+
+var CAL=[
+{s:{en:"Pohela Boishakh",bn:"পহেলা বৈশাখ"},w:{en:"14 April",bn:"১৪ এপ্রিল"},d:{en:"Bengali New Year breakfast: panta bhat with fried hilsa, green chilli, onion and a plate of bhorta.",bn:"বাংলা নববর্ষের নাশতা: ইলিশ ভাজা, কাঁচা মরিচ, পেঁয়াজ ও ভর্তাসহ পান্তা ভাত।"}},
+{s:{en:"Summer",bn:"গ্রীষ্ম"},w:{en:"May to July",bn:"মে থেকে জুলাই"},d:{en:"Mango, lychee and jackfruit. Cold lebur shorbot, bel shorbot and green coconut water to get through the heat.",bn:"আম, লিচু ও কাঁঠাল। গরম কাটাতে ঠান্ডা লেবুর শরবত, বেলের শরবত ও ডাবের পানি।"}},
+{s:{en:"Monsoon",bn:"বর্ষা"},w:{en:"July to October",bn:"জুলাই থেকে অক্টোবর"},d:{en:"Hilsa season, cooked in mustard, steamed, or fried. Rainy days call for khichuri with fried fish, beef or egg.",bn:"ইলিশের মৌসুম, সরষে, ভাপে বা ভাজা। বৃষ্টির দিনে ভাজা মাছ, গরুর মাংস বা ডিমসহ খিচুড়ি।"}},
+{s:{en:"Ramadan",bn:"রমজান"},w:{en:"Dates move each year",bn:"প্রতি বছর তারিখ বদলায়"},d:{en:"Iftar tables of haleem, piyaju, beguni, chola bhuna, jilapi and borhani.",bn:"হালিম, পেঁয়াজু, বেগুনি, ছোলা ভুনা, জিলাপি ও বোরহানির ইফতার।"}},
+{s:{en:"Eid",bn:"ঈদ"},w:{en:"Fitr and Adha",bn:"ফিতর ও আযহা"},d:{en:"Shemai and jorda on the morning of Eid-ul-Fitr. Beef and goat dishes such as bhuna, rezala and kala bhuna at Eid-ul-Adha.",bn:"ঈদুল ফিতরের সকালে সেমাই ও জর্দা। ঈদুল আযহায় ভুনা, রেজালা ও কালা ভুনার মতো গরু-খাসির পদ।"}},
+{s:{en:"Winter",bn:"শীত"},w:{en:"December to February",bn:"ডিসেম্বর থেকে ফেব্রুয়ারি"},d:{en:"Pitha of every kind, date palm sap in the morning, carrot halua, and moa made with fresh molasses.",bn:"সব রকম পিঠা, সকালে খেজুরের রস, গাজরের হালুয়া ও নতুন গুড়ের মোয়া।"}}
+];
+
+var RAW=[
+    ["Panta Bhat","পান্তা ভাত","rice","Rice soaked overnight in water and eaten cold with salt, onion, green chilli and, often, fried hilsa.",1,1,"Pohela Boishakh"],
+    ["Steamed Rice","সাদা ভাত","rice","The centre of every meal. Served in a mound, with everything else eaten around it and mixed into it.",0,1,""],
+    ["Kacchi Biryani","কাচ্চি বিরিয়ানি","rice","Raw marinated mutton layered with rice and potato, sealed and cooked together on slow heat.",2,0,"Old Dhaka"],
+    ["Chicken Biryani","চিকেন বিরিয়ানি","rice","Fragrant rice layered with spiced chicken and potato, topped with fried onion.",2,0,""],
+    ["Tehari","তেহারি","rice","Rice cooked in mustard oil and spices with small pieces of beef. A Dhaka lunch and breakfast.",2,0,"Dhaka"],
+    ["Morog Polao","মোরগ পোলাও","rice","Ghee-scented rice cooked with chicken, onion and whole spices.",1,0,""],
+    ["Polao","পোলাও","rice","Mild, ghee-rich rice with whole spices and raisins. Served with roast and rezala at weddings.",0,1,"Feasts"],
+    ["Chinigura Polao","চিনিগুঁড়া পোলাও","rice","Polao made with chinigura, a tiny aromatic rice that smells sweet as it cooks.",0,1,""],
+    ["Kataribhog Rice","কাটারিভোগ চাল","rice","Fine, aromatic short-grain rice from Dinajpur, kept for polao and payesh.",0,1,"Dinajpur"],
+    ["Khichuri","খিচুড়ি","rice","Rice and lentils cooked together with turmeric and ghee. The rainy-day meal, eaten with fried hilsa, egg or beef.",1,1,"Monsoon"],
+    ["Bhuna Khichuri","ভুনা খিচুড়ি","rice","Rice and lentils fried with onion, ginger and spices before the water goes in, so it comes out dark and thick.",2,1,""],
+    ["Akhni Polao","আখনি পোলাও","rice","Rice and meat cooked together in one pot with whole spices. Lighter than biryani.",2,0,"Eastern Bangladesh"],
+
+    ["Ilish Bhapa","ইলিশ ভাপা","fish","Hilsa steamed in a paste of mustard, green chilli and mustard oil. Hilsa is the national fish.",2,0,"Monsoon"],
+    ["Shorshe Ilish","সর্ষে ইলিশ","fish","Hilsa in a sharp mustard-seed gravy with green chilli.",2,0,"Barishal"],
+    ["Ilish Bhaja","ইলিশ ভাজা","fish","Hilsa steaks rubbed with turmeric and salt and fried until crisp. The partner of panta bhat.",1,0,""],
+    ["Ilish Paturi","ইলিশ পাতুরি","fish","Hilsa marinated in mustard and coconut, wrapped in banana leaf and steamed.",2,0,""],
+    ["Rui Macher Jhol","রুই মাছের ঝোল","fish","Rohu in a thin turmeric and cumin curry with potato. The everyday fish curry.",1,0,""],
+    ["Koi Macher Jhol","কই মাছের ঝোল","fish","Climbing perch in an onion and chilli gravy. Prized because the fish stays alive for hours out of water.",2,0,""],
+    ["Pabda Macher Jhol","পাবদা মাছের ঝোল","fish","Soft, tender pabda catfish in a light gravy with green chilli.",1,0,""],
+    ["Tengra Macher Jhol","ট্যাংরা মাছের ঝোল","fish","Small tengra catfish in a thin, hot gravy, often with tomato.",2,0,""],
+    ["Shing Macher Jhol","শিং মাছের ঝোল","fish","Stinging catfish in a light curry. Often cooked for people recovering from illness.",1,0,""],
+    ["Chitol Macher Muitha","চিতল মাছের মুইঠ্যা","fish","Featherback fish minced, spiced and shaped into balls, then simmered in curry.",2,0,"Old Dhaka"],
+    ["Chingri Malaikari","চিংড়ি মালাইকারি","fish","Giant river prawns in coconut milk with ginger and whole spices.",2,0,"Khulna"],
+    ["Chingri Bhuna","চিংড়ি ভুনা","fish","Prawns fried slowly with onion and spices until the masala clings to them.",2,0,""],
+    ["Lau Chingri","লাউ চিংড়ি","fish","Bottle gourd cooked with small prawns. Light and a little sweet.",1,0,""],
+    ["Rupchanda Fry","রূপচাঁদা ভাজা","fish","Whole pomfret from the Bay of Bengal, fried crisp.",1,0,""],
+    ["Shutki Bhuna","শুটকি ভুনা","fish","Sun-dried fish cooked with onion and chilli. Strong smelling and much loved.",3,0,"Chattogram"],
+    ["Shutki Bhorta","শুটকি ভর্তা","fish","Dried fish roasted and mashed with garlic, chilli and mustard oil. Eaten with rice or chitoi pitha.",3,0,""],
+    ["Shidol Bhorta","শিদল ভর্তা","fish","A paste of fermented dried fish, sharp and salty, mashed with chilli.",3,0,"Sylhet"],
+
+    ["Beef Bhuna","গরুর ভুনা","meat","Beef fried slowly with onion, garlic and ginger until the oil separates and the gravy is dark and thick.",3,0,""],
+    ["Kala Bhuna","কালা ভুনা","meat","Beef cooked for hours in mustard oil with roasted spices until almost black.",3,0,"Chattogram"],
+    ["Mezbani Gosht","মেজবানি গোশত","meat","Beef curry made for Chattogram's mezban feasts, cooked in large pots over wood fire.",3,0,"Chattogram"],
+    ["Shatkora Beef","সাতকরা গরুর মাংস","meat","Beef cooked with shatkora, a Sylheti citrus with a sour, sharp aroma.",3,0,"Sylhet"],
+    ["Rezala","রেজালা","meat","Mild, creamy curry of mutton or beef in yoghurt and ghee. A wedding classic.",1,0,"Feasts"],
+    ["Khashir Mangsho","খাসির মাংস","meat","Goat curry with potato. Weekend and celebration cooking.",2,0,""],
+    ["Kosha Mangsho","কষা মাংস","meat","Meat fried and stirred in its masala until the gravy clings and darkens.",3,0,""],
+    ["Chicken Roast","মুরগির রোস্ট","meat","A chicken leg in a rich, lightly sweet gravy of onion, yoghurt and ghee. Served with polao.",1,0,"Weddings"],
+    ["Deshi Murgir Jhol","দেশি মুরগির ঝোল","meat","Village chicken in a thin spicy curry. The meat is firmer and tastes stronger than farm chicken.",2,0,""],
+    ["Haleem","হালিম","meat","Slow-cooked porridge of wheat, lentils and beef, topped with ginger, lime, fried onion and coriander.",2,0,"Ramadan"],
+    ["Nihari","নিহারি","meat","Beef shank stewed overnight and eaten at dawn with bakarkhani.",2,0,"Old Dhaka"],
+    ["Paya","পায়া","meat","Trotters simmered into a thick, rich broth.",2,0,""],
+    ["Chui Jhal Mangsho","চুইঝাল মাংস","meat","Beef or mutton cooked with chui jhal, a peppery vine root from Khulna.",3,0,"Khulna"],
+    ["Hasher Mangsho","হাঁসের মাংস","meat","Duck braised with onion and spices. Popular in the haor wetlands of the north-east.",2,0,"Sylhet region"],
+    ["Seekh Kebab","শিক কাবাব","meat","Spiced minced meat grilled on skewers.",2,0,""],
+    ["Shami Kebab","শামি কাবাব","meat","Patties of minced meat and lentils, pan-fried. A regular on the iftar plate.",1,0,"Ramadan"],
+    ["Kolija Bhuna","কলিজা ভুনা","meat","Liver fried hot with onion and chilli. Eaten with paratha.",3,0,""],
+    ["Dimer Jhol","ডিমের ঝোল","meat","Boiled eggs and potato in a thin curry. A cheap, quick home meal.",1,1,""],
+
+    ["Begun Bhorta","বেগুন ভর্তা","veg","Eggplant roasted over flame and mashed with mustard oil, onion and green chilli.",2,1,""],
+    ["Aloo Bhorta","আলু ভর্তা","veg","Boiled potato mashed with mustard oil, onion, chilli and coriander.",2,1,""],
+    ["Tomato Bhorta","টমেটো ভর্তা","veg","Roasted tomato mashed with chilli, garlic and mustard oil.",2,1,""],
+    ["Kochu Bhorta","কচু ভর্তা","veg","Taro boiled and mashed with mustard oil, onion and chilli.",2,1,""],
+    ["Shukto","শুক্তো","veg","A mild, slightly bitter stew of mixed vegetables, traditionally eaten first.",1,1,""],
+    ["Labra","লাবড়া","veg","Mixed seasonal vegetables simmered together with soft spicing.",1,1,""],
+    ["Chorchori","চচ্চড়ি","veg","Mixed vegetables cooked dry with panch phoron. Also made with fish heads.",1,1,""],
+    ["Pui Shak","পুঁইশাক","veg","Malabar spinach cooked simply with garlic and chilli, sometimes with dried fish.",1,1,""],
+    ["Lal Shak Bhaji","লাল শাক ভাজি","veg","Red amaranth stir-fried with garlic and green chilli.",1,1,""],
+    ["Kochur Loti","কচুর লতি","veg","Taro stems cooked with dried fish or prawn. Earthy and slightly tangy.",2,0,""],
+    ["Mocha Ghonto","মোচার ঘণ্ট","veg","Banana flower cooked with coconut, potato and whole spices.",1,1,""],
+    ["Begun Bhaja","বেগুন ভাজা","veg","Eggplant slices fried with turmeric and salt.",0,1,""],
+    ["Potol Bhaji","পটল ভাজি","veg","Pointed gourd fried until the edges crisp.",1,1,""],
+    ["Uchche Bhaji","উচ্ছে ভাজি","veg","Bitter gourd fried until crisp. Eaten in small amounts to start a meal.",1,1,""],
+    ["Kumro Bhaji","কুমড়া ভাজি","veg","Pumpkin cooked soft with panch phoron and a little sugar.",1,1,""],
+    ["Aloo Posto","আলু পোস্ত","veg","Potato in a paste of ground poppy seed. Mild and nutty.",1,1,""],
+
+    ["Moong Dal","মুগ ডাল","dal","Roasted yellow moong cooked soft with turmeric and finished with ghee.",0,1,""],
+    ["Masoor Dal","মসুর ডাল","dal","Red lentils simmered thin and tempered with fried onion and garlic. The everyday dal.",1,1,""],
+    ["Mashkalai Dal","মাষকলাই ডাল","dal","Black gram cooked thick, with ginger and whole spices.",1,1,""],
+    ["Cholar Dal","ছোলার ডাল","dal","Chana dal with coconut pieces and whole spices. Eaten with luchi.",1,1,""],
+
+    ["Fuchka","ফুচকা","snack","Crisp hollow shells filled with spiced chickpeas and potato, dipped in tamarind water.",2,1,"Street food"],
+    ["Chotpoti","চটপটি","snack","Chickpea and potato in a hot, sour sauce with boiled egg and crushed crisp.",2,1,"Dhaka"],
+    ["Jhalmuri","ঝালমুড়ি","snack","Puffed rice tossed with chilli, onion, mustard oil, peanuts, chanachur and lime.",3,1,"Street food"],
+    ["Singara","সিঙ্গারা","snack","Triangular fried pastry stuffed with spiced potato and peas. A tea snack.",1,1,""],
+    ["Samosa","সমুচা","snack","Small triangles of fried pastry filled with spiced minced beef or chicken.",2,0,"Ramadan"],
+    ["Piyaju","পেঁয়াজু","snack","Fritters of lentil batter, onion and green chilli. No iftar table is without them.",1,1,"Ramadan"],
+    ["Beguni","বেগুনি","snack","Eggplant slices in gram-flour batter, deep fried.",1,1,"Ramadan"],
+    ["Alur Chop","আলুর চপ","snack","Spiced mashed potato shaped, coated and fried.",1,1,""],
+    ["Dimer Chop","ডিমের চপ","snack","A boiled egg wrapped in spiced potato, crumbed and fried.",1,1,""],
+    ["Chola Bhuna","ছোলা ভুনা","snack","Chickpeas fried with onion, chilli and spices. Eaten with muri at iftar.",2,1,"Ramadan"],
+    ["Nimki","নিমকি","snack","Crisp, salty fried pastry diamonds with nigella seeds.",0,1,""],
+
+    ["Paratha","পরোটা","bread","Layered, flaky flatbread cooked on a griddle with oil. Eaten with bhaji or beef bhuna.",0,1,""],
+    ["Luchi","লুচি","bread","Puffed, deep-fried white-flour bread, eaten with cholar dal or aloo.",0,1,""],
+    ["Ruti","রুটি","bread","Thin wheat flatbread cooked on a tawa. The home staple.",0,1,""],
+    ["Bakarkhani","বাকরখানি","bread","Hard, layered, biscuit-like bread. Dipped in tea or eaten with nihari.",0,1,"Old Dhaka"],
+    ["Dal Puri","ডাল পুরি","bread","Fried bread stuffed with ground lentils.",1,1,""],
+    ["Chira-Doi-Gur","চিড়া-দই-গুড়","bread","Flattened rice with yoghurt and jaggery. A cooling breakfast that needs no stove.",0,1,""],
+
+    ["Bhapa Pitha","ভাপা পিঠা","pitha","Steamed rice-flour cakes with date molasses and coconut inside. Sold from roadside stalls on winter mornings.",0,1,"Winter"],
+    ["Chitoi Pitha","চিতই পিঠা","pitha","Soft, spongy rice-flour pancakes cooked in a clay pan. Eaten with date molasses or shutki bhorta.",0,1,"Winter"],
+    ["Patishapta","পাটিসাপটা","pitha","A thin rice-flour crepe rolled around coconut and jaggery, or thickened milk.",0,1,"Winter"],
+    ["Puli Pitha","পুলি পিঠা","pitha","Rice-flour dumplings with a coconut and jaggery filling.",0,1,"Winter"],
+    ["Dudh Puli","দুধ পুলি","pitha","Puli pitha simmered in sweetened milk.",0,1,"Winter"],
+    ["Pakan Pitha","পাকন পিঠা","pitha","Fried rice-flour dough dipped in sugar syrup. A sweet for festivals.",0,1,""],
+    ["Nakshi Pitha","নকশি পিঠা","pitha","Fried rice-flour pitha pressed with patterns of flowers and leaves, then dipped in syrup.",0,1,""],
+    ["Tel Pitha","তেল পিঠা","pitha","Rice-flour and jaggery batter fried in oil until golden.",0,1,""],
+
+    ["Roshmalai","রসমালাই","sweet","Soft discs of fresh curd cheese soaked in thickened, cardamom-scented milk.",0,1,"Cumilla"],
+    ["Rasgulla","রসগোল্লা","sweet","Light balls of curdled milk simmered in sugar syrup.",0,1,""],
+    ["Sandesh","সন্দেশ","sweet","Soft sweet of fresh curd cheese and sugar, moulded and flavoured.",0,1,""],
+    ["Chomchom","চমচম","sweet","Oblong, syrup-soaked milk sweet. Tangail's Porabari chomchom is the famous one.",0,1,"Tangail"],
+    ["Mishti Doi","মিষ্টি দই","sweet","Caramelised sweet yoghurt set in clay pots. Bogura's is the best known.",0,1,"Bogura"],
+    ["Payesh","পায়েস","sweet","Rice cooked slowly in milk with sugar or jaggery, cardamom and bay leaf.",0,1,""],
+    ["Firni","ফিরনি","sweet","Ground-rice milk pudding set in clay bowls and topped with nuts.",0,1,"Eid"],
+    ["Jilapi","জিলাপি","sweet","Spirals of fermented batter fried and soaked in syrup.",0,1,"Ramadan"],
+    ["Gulab Jamun","গোলাপ জামুন","sweet","Fried milk-solid dumplings soaked in cardamom syrup.",0,1,""],
+    ["Kalojam","কালোজাম","sweet","Dark, deeply fried milk dumplings in syrup, richer than gulab jamun.",0,1,""],
+    ["Shemai","সেমাই","sweet","Vermicelli roasted in ghee and cooked in milk and sugar. The Eid morning dish.",0,1,"Eid"],
+    ["Jorda","জর্দা","sweet","Sweet, saffron-yellow rice with raisins and ghee. Ends the wedding meal.",0,1,"Weddings"],
+    ["Shahi Tukra","শাহী টুকরা","sweet","Fried bread soaked in sweet thickened milk and topped with nuts.",0,1,"Dhaka"],
+    ["Gajorer Halua","গাজরের হালুয়া","sweet","Grated carrot cooked down with milk, sugar and ghee.",0,1,"Winter"],
+    ["Moa","মোয়া","sweet","Puffed rice bound with jaggery or date molasses into balls.",0,1,"Winter"],
+    ["Monda","মণ্ডা","sweet","Dense, sweet milk fudge from Muktagachha.",0,1,"Mymensingh"],
+    ["Kachagolla","কাচাগোল্লা","sweet","Soft, small sweets of curd cheese and sugar. Natore's speciality.",0,1,"Natore"],
+
+    ["Borhani","বোরহানি","drink","Salted yoghurt drink with mint, coriander, green chilli and black salt. Served with biryani to help digest it.",1,1,"Dhaka"],
+    ["Lassi","লাচ্ছি","drink","Cold yoghurt drink, sweet or salted.",0,1,""],
+    ["Doodh Cha","দুধ চা","drink","Strong tea boiled with milk and sugar, served in small cups at tea stalls.",0,1,""],
+    ["Seven-Colour Tea","সাত রঙের চা","drink","Seven layers of tea, each a different colour and taste, that do not mix. Invented in Sreemangal.",0,1,"Sreemangal, Sylhet"],
+    ["Lebur Shorbot","লেবুর শরবত","drink","Lime, sugar and salt in cold water. A summer and iftar drink.",0,1,"Summer"],
+    ["Daber Pani","ডাবের পানি","drink","Green coconut water, drunk straight from the nut.",0,1,""],
+    ["Bel Shorbot","বেলের শরবত","drink","Wood apple pulp with sugar and water. A cooling summer drink.",0,1,"Summer"],
+    ["Akher Rosh","আখের রস","drink","Sugarcane pressed fresh at the roadside, often with lime and ginger.",0,1,""],
+    ["Khejur Rosh","খেজুরের রস","drink","Sap collected from date palms in winter and drunk fresh in the morning. Also boiled into molasses.",0,1,"Winter, Jessore"],
+
+    ["Kathal (Jackfruit)","কাঁঠাল","fruit","The national fruit. Ripe, it is sweet and sticky. Green, it is cooked into curry.",0,1,"Summer"],
+    ["Aam (Mango)","আম","fruit","Himsagar, Langra and Fazli from Rajshahi, and Haribhanga from Rangpur.",0,1,"Summer"],
+    ["Lichu (Lychee)","লিচু","fruit","Juicy and floral, picked in early summer. Dinajpur is known for it.",0,1,"Summer"],
+    ["Sundarbans Honey","সুন্দরবনের মধু","fruit","Wild honey gathered from the mangrove forest by honey collectors known as mouals.",0,1,"Khulna"]
+  ];
+
+var Art=(function(){
+function rng(seed){var s=0,i;for(i=0;i<seed.length;i++){s=(s*31+seed.charCodeAt(i))>>>0;}return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+function n(v){return Math.round(v*10)/10;}
+function C(x,y,r,f,o){return '<circle cx="'+n(x)+'" cy="'+n(y)+'" r="'+n(r)+'" fill="'+f+'"'+(o||'')+'/>';}
+function E(x,y,rx,ry,f,rot,o){return '<ellipse cx="'+n(x)+'" cy="'+n(y)+'" rx="'+n(rx)+'" ry="'+n(ry)+'" fill="'+f+'"'+(rot?' transform="rotate('+n(rot)+' '+n(x)+' '+n(y)+')"':'')+(o||'')+'/>';}
+function P(d,f,o){return '<path d="'+d+'" fill="'+f+'"'+(o||'')+'/>';}
+function S(d,c,w,o){return '<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round"'+(o||'')+'/>';}
+function RC(x,y,w,h,r,f,o){return '<rect x="'+n(x)+'" y="'+n(y)+'" width="'+n(w)+'" height="'+n(h)+'" rx="'+r+'" fill="'+f+'"'+(o||'')+'/>';}
+function plate(){return C(100,106,90,'rgba(0,0,0,.14)')+C(100,100,90,'#FCFBF7')+C(100,100,74,'#F0ECE2');}
+function hl(x,y,rx,ry,rot){return E(x,y,rx,ry,'rgba(255,255,255,.28)',rot);}
+function fish(x,y,a,b,rot,sc){return '<g transform="translate('+x+' '+y+') rotate('+(rot||0)+') scale('+(sc||1)+')">'+P('M-46 0 Q-20 -26 22 -14 L52 -30 L46 0 L52 30 L22 14 Q-20 26 -46 0Z',a)+E(-8,0,26,3,'rgba(0,0,0,.12)',0)+C(-34,-5,3.2,'#222')+S('M-6 -16 Q10 0 -6 16',b,3)+'</g>';}
+
+var K={};
+
+K.rice=function(R,st,a,b){
+  var s=plate()+C(100,104,52,'rgba(0,0,0,.12)')+C(100,99,52,a),i,k,d,x,y;
+  for(i=0;i<80;i++){k=R()*6.283;d=Math.sqrt(R())*47;s+=E(100+Math.cos(k)*d,99+Math.sin(k)*d,3.4,1.3,'#fff',R()*180,' opacity=".6"');}
+  if(st==='meat'){for(i=0;i<5;i++){k=i*1.256+.4;x=100+Math.cos(k)*26;y=99+Math.sin(k)*26;s+=E(x,y,12,8,b,R()*180)+hl(x-2,y-2,5,2.5,R()*180);}}
+  else if(st==='egg'){s+=E(100,99,26,22,'#fff')+C(100,99,10,'#F6B400')+C(97,96,3,'rgba(255,255,255,.55)');}
+  else if(st==='raisin'){for(i=0;i<14;i++){k=R()*6.283;d=Math.sqrt(R())*40;s+=C(100+Math.cos(k)*d,99+Math.sin(k)*d,3,b);}}
+  else if(st==='chili'){s+=E(152,66,22,3.6,'#3E8E41',-35)+E(46,140,14,3,'#3E8E41',30)+C(150,130,10,'none',' stroke="#C9788A" stroke-width="3"');}
+  return s;
+};
+
+K.bowl=function(R,st,a,b){
+  var s=plate()+C(100,104,68,'rgba(0,0,0,.14)')+C(100,100,68,'#FFFFFF')+C(100,100,68,'none',' stroke="#C9D6E8" stroke-width="3"')+C(100,100,60,'#F4F1EA')+C(100,100,52,a)+C(100,100,52,'none',' stroke="rgba(255,255,255,.18)" stroke-width="6"'),i,k,x,y;
+  if(st==='chunk'){for(i=0;i<7;i++){k=i/7*6.283+R();x=100+Math.cos(k)*(14+R()*20);y=100+Math.sin(k)*(14+R()*20);s+=E(x,y,10+R()*3,7+R()*2,b,R()*180)+hl(x-2,y-2,4,2.5,R()*180);}}
+  else if(st==='fish'){for(i=0;i<3;i++){k=i*2.09+.5;x=100+Math.cos(k)*24;y=100+Math.sin(k)*24;s+=E(x,y,15,8,b,k*57)+E(x,y,11,.8,'rgba(0,0,0,.3)',k*57);}}
+  else if(st==='prawn'){for(i=0;i<5;i++){k=i*1.256;x=100+Math.cos(k)*25;y=100+Math.sin(k)*25;s+=S('M'+n(x-10)+' '+n(y+5)+' Q'+n(x)+' '+n(y-14)+' '+n(x+10)+' '+n(y+5),b,8)+C(x+10,y+5,3,'#7A2E12');}}
+  else if(st==='egg'){for(i=0;i<3;i++){k=i*2.09+.4;x=100+Math.cos(k)*22;y=100+Math.sin(k)*22;s+=E(x,y,12,9,'#fff',k*57)+C(x,y,4.5,'#F6B400');}}
+  else if(st==='ball'){for(i=0;i<6;i++){k=i*1.047;x=100+Math.cos(k)*25;y=100+Math.sin(k)*25;s+=C(x,y,9.5,b)+C(x-3,y-3,3.5,'rgba(255,255,255,.3)');}}
+  else if(st==='veg'){for(i=0;i<10;i++){k=R()*6.283;var d=8+R()*34;x=100+Math.cos(k)*d;y=100+Math.sin(k)*d;s+=RC(x-5,y-5,10,10,3,i%3?b:'#6AA84F',' transform="rotate('+n(R()*90)+' '+n(x)+' '+n(y)+')"');}}
+  else if(st==='beans'){for(i=0;i<46;i++){k=R()*6.283;var d2=Math.sqrt(R())*44;s+=C(100+Math.cos(k)*d2,100+Math.sin(k)*d2,3.8,b)+C(100+Math.cos(k)*d2-1,100+Math.sin(k)*d2-1,1.3,'rgba(255,255,255,.4)');}s+=C(84,88,5,'#D9534F')+C(116,112,4,'#6AA84F');}
+  else if(st==='plain'){s+=S('M100 100 m-8 0 a8 8 0 1 1 16 0 a16 16 0 1 1 -32 0 a24 24 0 1 1 48 0','rgba(255,255,255,.35)',3);for(i=0;i<8;i++){s+=C(100+R()*70-35,100+R()*70-35,2.6,b);}}
+  else if(st==='cream'){for(i=0;i<16;i++){k=R()*6.283;var d3=Math.sqrt(R())*42;s+=C(100+Math.cos(k)*d3,100+Math.sin(k)*d3,2.6,b);}}
+  return s;
+};
+
+K.leaf=function(R,st,a,b){
+  var s=E(100,104,94,70,'rgba(0,0,0,.12)',-6)+E(100,100,94,70,'#34853F',-6)+S('M8 118 Q100 82 192 80','#5DB065',3)+S('M40 130 Q70 100 110 96 M110 96 Q150 90 175 70','#2A6E34',2),i,x,y;
+  if(st==='steak'){for(i=0;i<3;i++){x=58+i*42;y=100+(i%2?12:-8);s+=E(x,y,19,31,a,i*12-10)+E(x,y,19,31,'none',i*12-10,' stroke="'+b+'" stroke-width="3.5"')+E(x,y,2.4,22,'rgba(0,0,0,.3)',i*12-10);}}
+  else if(st==='fish'){s+=fish(100,102,a,b,-12,1.35);}
+  else if(st==='wrap'){s+=RC(52,64,96,72,18,'#1F6B2D')+RC(58,70,84,60,14,'#2F8A3C')+S('M100 64 V136 M52 100 H148','#C9A24A',4)+C(100,100,6,'#C9A24A');}
+  return s;
+};
+
+K.mound=function(R,st,a,b){
+  var s=plate()+E(100,108,50,36,'rgba(0,0,0,.12)')+E(100,100,50,38,a)+E(86,92,30,20,'rgba(255,255,255,.18)'),i;
+  for(i=0;i<26;i++){s+=C(70+R()*60,78+R()*44,2+R()*2,'rgba(0,0,0,.18)');}
+  s+=E(60,62,24,3.6,'#3E8E41',-30)+E(140,138,22,3.4,'#3E8E41',-25)+C(150,66,13,'none',' stroke="#C8708A" stroke-width="3.5"')+C(150,66,7,'none',' stroke="#E6A0B4" stroke-width="2.5"');
+  if(st==='fish'){for(i=0;i<5;i++){s+=E(88+i*6,100+R()*10,3,10,'rgba(255,255,255,.15)',R()*60-30);}}
+  return s;
+};
+
+K.fritters=function(R,st,a,b){
+  var s=plate()+RC(44,44,112,112,8,'#F7F2E4',' transform="rotate(8 100 100)"'),i,x,y,k;
+  if(st==='stick'){for(i=0;i<4;i++){y=56+i*26;s+=RC(40,y+3,124,17,8,'rgba(0,0,0,.14)')+RC(38,y,124,17,8,a)+S('M50 '+(y+4)+' L150 '+(y+4),'rgba(255,255,255,.25)',3);for(k=0;k<8;k++){s+=C(48+k*14,y+9,1.6,b);}}return s;}
+  var pos=[[78,78],[124,76],[100,112],[66,122],[134,122],[100,76]];
+  for(i=0;i<6;i++){x=pos[i][0]+R()*6-3;y=pos[i][1]+R()*6-3;
+    if(st==='round'){s+=C(x,y+3,17,'rgba(0,0,0,.15)')+C(x,y,17,a)+C(x-4,y-4,8,'rgba(255,255,255,.2)');for(k=0;k<6;k++){s+=C(x-10+R()*20,y-10+R()*20,1.8,b);}}
+    else if(st==='slice'){s+=E(x,y+3,19,15,'rgba(0,0,0,.15)')+E(x,y,19,15,a,R()*60-30)+E(x,y,13,9,b,R()*60-30,' opacity=".6"');}
+    else if(st==='diamond'){s+=P('M'+n(x)+' '+n(y-17)+' L'+n(x+19)+' '+n(y)+' L'+n(x)+' '+n(y+17)+' L'+n(x-19)+' '+n(y)+'Z',a,' stroke="'+b+'" stroke-width="2.5" stroke-linejoin="round"');for(k=0;k<5;k++){s+=C(x-8+R()*16,y-5+R()*10,1.4,'#2B2B2B');}}
+    else{s+=C(x,y+3,15,'rgba(0,0,0,.15)')+C(x,y,15,a)+C(x-4,y-4,6,'rgba(255,255,255,.3)');}
+  }
+  return s;
+};
+
+K.tri=function(R,st,a,b){
+  var s=plate(),i,pos=[[70,76,-10],[132,74,12],[76,132,8],[132,130,-14]];
+  for(i=0;i<4;i++){s+='<g transform="translate('+pos[i][0]+' '+pos[i][1]+') rotate('+pos[i][2]+')"><path d="M-30 22 L0 -30 L30 22 Z" fill="rgba(0,0,0,.14)" transform="translate(2 4)"/><path d="M-30 22 L0 -30 L30 22 Z" fill="'+a+'" stroke="'+b+'" stroke-width="4" stroke-linejoin="round"/>'+S('M-14 8 L0 -14 L14 8','rgba(255,255,255,.3)',3)+'</g>';}
+  return s;
+};
+
+K.puchka=function(R,st,a,b){
+  var s=plate()+C(100,102,30,'rgba(0,0,0,.14)')+C(100,100,30,'#fff')+C(100,100,25,b),i,k,x,y;
+  for(i=0;i<8;i++){k=i*.785;x=100+Math.cos(k)*58;y=100+Math.sin(k)*58;s+=C(x,y+2,14,'rgba(0,0,0,.14)')+C(x,y,14,a)+C(x-4,y-4,6,'rgba(255,255,255,.3)')+C(x+2,y-1,3.5,'rgba(0,0,0,.28)');}
+  return s+C(94,96,4,'#E8C27A')+C(106,104,4,'#E8C27A')+C(100,92,3,'#6AA84F');
+};
+
+K.muri=function(R,st,a,b){
+  var s=plate()+P('M54 152 L100 56 L146 152 Z','#E9DCC0',' stroke="#C9B58A" stroke-width="3" stroke-linejoin="round"'),i;
+  for(i=0;i<50;i++){var y=40+R()*70,half=Math.max(4,(y-40)/110*50);s+=E(100+(R()*2-1)*half,y,5,3,a,R()*180);}
+  for(i=0;i<20;i++){s+=E(66+R()*68,118+R()*30,4.4,3,a,R()*180);}
+  return s+C(78,124,4,b)+C(112,134,4,b)+C(92,108,3.5,'#D9534F')+C(124,118,3.5,'#6AA84F')+C(88,50,3.5,'#D9534F');
+};
+
+K.flat=function(R,st,a,b){
+  var s=plate(),i,k,x,y;
+  if(st==='layers'){for(i=0;i<2;i++){x=92+i*16;y=92+i*16;s+=C(x+2,y+4,52,'rgba(0,0,0,.14)')+C(x,y,52,a)+C(x,y,52,'none',' stroke="'+b+'" stroke-width="3"');for(k=0;k<4;k++){s+=S('M'+(x-36)+' '+(y-14+k*10)+' Q'+x+' '+(y-24+k*10)+' '+(x+36)+' '+(y-14+k*10),b,2,' opacity=".6"');}}}
+  else if(st==='puff'){var pp=[[68,78],[132,78],[100,128]];for(i=0;i<3;i++){x=pp[i][0];y=pp[i][1];s+=C(x+2,y+4,34,'rgba(0,0,0,.14)')+C(x,y,34,a)+hl(x-8,y-10,18,9,-20)+C(x+8,y+8,3,b)+C(x-12,y+10,2.6,b)+C(x+10,y-12,2.6,b);}}
+  else if(st==='ruti'){s+=C(104,104,60,'rgba(0,0,0,.14)')+C(100,100,60,a);for(i=0;i<16;i++){s+=C(100+(R()*2-1)*46,100+(R()*2-1)*46,3+R()*3,b,' opacity=".6"');}}
+  else{s+=C(104,104,60,'rgba(0,0,0,.14)')+C(100,100,60,a);for(i=1;i<4;i++){s+=C(100,100,i*14,'none',' stroke="'+b+'" stroke-width="3" opacity=".6"');}}
+  return s;
+};
+
+K.pitha=function(R,st,a,b){
+  var s=plate(),i,k,x,y;
+  if(st==='bhapa'){var pp=[[66,66],[134,66],[66,134],[134,134]];for(i=0;i<4;i++){x=pp[i][0];y=pp[i][1];s+=C(x+2,y+4,28,'rgba(0,0,0,.14)')+C(x,y,28,a)+C(x,y,28,'none',' stroke="#E6DCC0" stroke-width="3"')+C(x,y,9,b)+C(x-2,y-2,3,'rgba(255,255,255,.3)');}}
+  else if(st==='chitoi'){for(i=0;i<3;i++){x=84+i*16;y=86+i*16;s+=C(x+2,y+4,46,'rgba(0,0,0,.14)')+C(x,y,46,a)+C(x,y,46,'none',' stroke="'+b+'" stroke-width="3"');}for(i=0;i<22;i++){s+=C(106+(R()*2-1)*34,102+(R()*2-1)*34,1.8,'rgba(0,0,0,.18)');}}
+  else if(st==='roll'){for(i=0;i<3;i++){y=56+i*34;s+=RC(46,y+3,112,26,13,'rgba(0,0,0,.14)')+RC(44,y,112,26,13,a)+C(148,y+13,9,b)+S('M56 '+(y+8)+' L136 '+(y+8),'rgba(255,255,255,.35)',3);}}
+  else if(st==='half'){var pp2=[[66,70,-10],[134,70,10],[66,132,6],[134,132,-8]];for(i=0;i<4;i++){s+='<g transform="translate('+pp2[i][0]+' '+pp2[i][1]+') rotate('+pp2[i][2]+')"><path d="M-30 12 A30 30 0 0 1 30 12 Z" fill="rgba(0,0,0,.14)" transform="translate(2 4)"/><path d="M-30 12 A30 30 0 0 1 30 12 Z" fill="'+a+'" stroke="'+b+'" stroke-width="3" stroke-linejoin="round"/>'+S('M-22 8 L-18 2 M-10 8 L-6 0 M4 8 L8 0 M16 8 L20 2',b,2.5)+'</g>';}}
+  else if(st==='nakshi'){s+=C(104,104,56,'rgba(0,0,0,.14)')+C(100,100,56,a);for(i=0;i<8;i++){s+=E(100,66,8,16,'none',i*45,' stroke="'+b+'" stroke-width="2.5" transform-origin="100 100" transform="rotate('+(i*45)+' 100 100)"');}s+=C(100,100,12,'none',' stroke="'+b+'" stroke-width="2.5"')+C(100,100,4,b)+C(100,100,56,'none',' stroke="'+b+'" stroke-width="3" stroke-dasharray="4 6"');}
+  else{var pp3=[[68,70],[132,72],[70,134],[132,132]];for(i=0;i<4;i++){x=pp3[i][0];y=pp3[i][1];s+=C(x+2,y+4,28,'rgba(0,0,0,.14)')+C(x,y,28,a)+C(x-6,y-6,12,'rgba(255,255,255,.22)')+C(x,y,28,'none',' stroke="'+b+'" stroke-width="3"');}}
+  return s;
+};
+
+K.syrup=function(R,st,a,b){
+  var s=plate()+C(100,104,68,'rgba(0,0,0,.14)')+C(100,100,68,'#FFFFFF')+C(100,100,68,'none',' stroke="#E6D8B5" stroke-width="3"')+C(100,100,58,b),i,k,x,y;
+  if(st==='ball'){for(i=0;i<6;i++){k=i*1.047;x=100+Math.cos(k)*26;y=100+Math.sin(k)*26;s+=C(x+1,y+3,14,'rgba(0,0,0,.12)')+C(x,y,14,a)+C(x-4,y-4,5,'rgba(255,255,255,.7)');}s+=C(100,100,12,a)+C(97,97,4,'rgba(255,255,255,.7)');}
+  else if(st==='disc'){for(i=0;i<3;i++){k=i*2.09+.3;x=100+Math.cos(k)*26;y=100+Math.sin(k)*26;s+=E(x,y,22,15,a,k*57)+E(x,y,17,10,'rgba(255,255,255,.5)',k*57);}for(i=0;i<10;i++){s+=C(100+(R()*2-1)*44,100+(R()*2-1)*44,2,'#6AA84F');}}
+  else if(st==='oval'){for(i=0;i<5;i++){k=i*1.256;x=100+Math.cos(k)*28;y=100+Math.sin(k)*28;s+=E(x,y,16,9,a,k*57+30)+E(x-2,y-2,9,3,'rgba(255,255,255,.35)',k*57+30);}}
+  else{for(i=0;i<6;i++){k=i*1.047+.2;x=100+Math.cos(k)*27;y=100+Math.sin(k)*27;s+=C(x+1,y+3,13,'rgba(0,0,0,.2)')+C(x,y,13,a)+C(x-4,y-4,4.5,'rgba(255,255,255,.35)');}s+=C(100,100,11,a)+C(97,97,4,'rgba(255,255,255,.3)');}
+  return s;
+};
+
+K.sq=function(R,st,a,b){
+  var s=plate(),i,x,y,pos=[[100,62],[142,100],[100,138],[58,100],[100,100]];
+  for(i=0;i<5;i++){x=pos[i][0];y=pos[i][1];
+    if(st==='tri'){s+='<g transform="translate('+x+' '+y+') rotate('+(i*24)+')"><path d="M-20 14 L0 -22 L20 14Z" fill="rgba(0,0,0,.14)" transform="translate(2 3)"/><path d="M-20 14 L0 -22 L20 14Z" fill="'+a+'" stroke="#C98A2B" stroke-width="3" stroke-linejoin="round"/></g>';}
+    else{s+='<g transform="translate('+x+' '+y+') rotate('+(i%2?45:0)+')"><rect x="-17" y="-15" width="36" height="34" rx="9" fill="rgba(0,0,0,.14)"/><rect x="-19" y="-18" width="36" height="34" rx="9" fill="'+a+'"/><rect x="-14" y="-13" width="26" height="8" rx="4" fill="rgba(255,255,255,.35)"/></g>'+C(x,y,3,b)+C(x-6,y+5,2,b);}}
+  return s;
+};
+
+K.pot=function(R,st,a,b){
+  var s=C(100,106,72,'rgba(0,0,0,.16)')+C(100,100,70,'#B5683A')+C(100,100,70,'none',' stroke="#8B4A22" stroke-width="4"')+C(100,100,56,'#7A3E1C')+C(100,100,52,a),i,k,d;
+  if(st==='doi'){s+=S('M64 100 Q82 80 100 100 T136 100','#8B4A22',4,' opacity=".4"')+C(88,92,3,'rgba(255,255,255,.4)');}
+  else if(st==='payesh'){for(i=0;i<12;i++){k=R()*6.283;d=Math.sqrt(R())*40;s+=C(100+Math.cos(k)*d,100+Math.sin(k)*d,3.4,'#7A3E1C');}for(i=0;i<10;i++){k=R()*6.283;d=Math.sqrt(R())*40;s+=E(100+Math.cos(k)*d,100+Math.sin(k)*d,4,1.6,'#6AA84F',R()*180);}}
+  else{for(i=0;i<14;i++){k=R()*6.283;d=Math.sqrt(R())*38;s+=E(100+Math.cos(k)*d,100+Math.sin(k)*d,4.4,2,i%2?'#6AA84F':'#E8C27A',R()*180);}}
+  return s;
+};
+
+K.spiral=function(R,st,a){
+  var s=plate(),i,j,pos=[[68,70],[134,72],[100,134]];
+  for(i=0;i<3;i++){var d='M',cx=pos[i][0],cy=pos[i][1];for(j=0;j<=60;j++){var t=j/60,ang=t*6.283*2.4+i,r=3+t*26;d+=(j?' L':'')+n(cx+Math.cos(ang)*r)+' '+n(cy+Math.sin(ang)*r);}s+=S(d,'rgba(0,0,0,.14)',9,' transform="translate(2 3)"')+S(d,a,8)+S(d,'rgba(255,255,255,.3)',2.5);}
+  return s;
+};
+
+K.strands=function(R,st,a){
+  var s=plate()+C(100,104,66,'rgba(0,0,0,.14)')+C(100,100,66,'#fff')+C(100,100,56,'#F6EBC8'),i;
+  for(i=0;i<34;i++){var x1=60+R()*80,y1=60+R()*80;s+=S('M'+n(x1)+' '+n(y1)+' q'+n(R()*40-20)+' '+n(R()*40-20)+' '+n(R()*50-25)+' '+n(R()*50-25),a,3);}
+  for(i=0;i<9;i++){s+=C(70+R()*60,70+R()*60,3,'#7A3E1C');}
+  return s;
+};
+
+K.glass=function(R,st,a,b){
+  var s=E(100,168,52,9,'rgba(0,0,0,.16)'),i;
+  function L(y){return 66+(y-62)*(9/96);} function Rr(y){return 134-(y-62)*(9/96);}
+  var body='M62 40 L138 40 L126 160 Q100 168 74 160 Z';
+  if(st==='cup'){return plate()+C(100,106,64,'rgba(0,0,0,.14)')+C(100,100,64,'#FFFFFF')+C(100,100,64,'none',' stroke="#C9D6E8" stroke-width="3"')+RC(150,92,24,14,7,'#fff',' stroke="#C9D6E8" stroke-width="3"')+C(100,100,46,'#F4F1EA')+C(100,100,40,a)+C(90,92,12,'rgba(255,255,255,.18)');}
+  if(st==='coconut'){return s+C(100,112,52,'#5E8A3A')+C(100,108,52,b==='x'?a:a)+E(100,66,28,10,'#F6F0DC')+E(100,66,22,7,'#E6F1D8')+RC(110,10,7,60,3,'#D9344A',' transform="rotate(12 113 40)"')+hl(80,96,14,24,20);}
+  if(st==='pot'){return s+E(100,120,50,44,'#B5683A')+E(100,120,50,44,'none',0,' stroke="#8B4A22" stroke-width="4"')+RC(78,64,44,30,8,'#B5683A')+E(100,64,26,8,'#8B4A22')+E(100,64,20,5,a)+S('M62 120 Q100 150 138 120','#8B4A22',3,' opacity=".5"');}
+  if(st==='jar'){return s;}
+  s+=P(body,'rgba(255,255,255,.4)',' stroke="#BFD3DA" stroke-width="3"');
+  if(st==='layers'){var cols=['#7B2E1B','#C0392B','#E67E22','#F1C40F','#C9A66B','#E9D8B4','#8E5B2B'];for(i=0;i<7;i++){var y0=64+i*13.4,y1=y0+13.4;s+='<path d="M'+n(L(y0))+' '+n(y0)+' L'+n(Rr(y0))+' '+n(y0)+' L'+n(Rr(y1))+' '+n(y1)+' L'+n(L(y1))+' '+n(y1)+'Z" fill="'+cols[i]+'"/>';}s+=P('M70 158 Q100 168 126 158 L125 154 L75 154Z','#8E5B2B');}
+  else{s+=P('M66 64 L134 64 L125 158 Q100 165 75 158 Z',a);
+    if(st==='yog'){for(i=0;i<14;i++){s+=C(76+R()*48,76+R()*70,1.6,b);}s+=RC(108,12,6,62,3,'#6AA84F',' transform="rotate(14 111 40)"');}
+    else if(st==='cane'){s+=RC(86,26,7,70,3,b,' transform="rotate(-8 90 60)"')+RC(104,22,7,74,3,'#7A9A2E',' transform="rotate(10 108 60)"');for(i=0;i<3;i++){s+=RC(76+i*12,96+i*4,12,12,3,'rgba(255,255,255,.5)');}}
+    else{for(i=0;i<3;i++){s+=RC(78+i*14,76+(i%2)*26,16,16,4,'rgba(255,255,255,.45)',' transform="rotate('+(i*14-8)+' '+(86+i*14)+' '+(84+(i%2)*26)+')"');}s+=C(136,44,18,'#D7E86A')+C(136,44,14,'#EFF7A8')+S('M136 32 V56 M124 44 H148 M127 35 L145 53 M145 35 L127 53','#D7E86A',1.5);}
+  }
+  return s+hl(80,100,6,32,-4);
+};
+
+K.fruit=function(R,st,a,b){
+  var s=plate(),i,x,y;
+  if(st==='jack'){s+=E(96,100,74,54,a,-14);for(i=0;i<30;i++){s+=C(30+R()*130,60+R()*80,2.4,'rgba(0,0,0,.22)');}s+=E(118,98,40,30,'#FBEFC8',-14)+E(118,98,36,26,b,-14);for(i=0;i<5;i++){s+=E(104+i*9,94+(i%2)*14,6,10,'#F6D35A',-14)+E(104+i*9,94+(i%2)*14,2,4,'#8A6A1C',-14);}}
+  else if(st==='mango'){s+=P('M52 124 Q42 62 108 56 Q166 54 156 114 Q146 166 92 160 Q58 156 52 124Z',a)+P('M120 60 Q160 70 156 114 Q146 166 100 160 Q140 140 132 100Z','rgba(210,60,30,.35)')+hl(80,84,18,9,-30)+RC(104,38,5,18,2,'#6B4A2A')+E(128,46,24,9,b,-28);}
+  else if(st==='lychee'){var pos=[[70,76],[128,70],[90,128],[142,124]];for(i=0;i<4;i++){x=pos[i][0];y=pos[i][1];s+=C(x+2,y+4,26,'rgba(0,0,0,.15)')+C(x,y,26,a);for(var k=0;k<14;k++){s+=C(x-18+R()*36,y-18+R()*36,1.8,'rgba(120,10,30,.45)');}s+=hl(x-8,y-9,8,5,-30);}s+=C(100,102,22,b,' opacity=".95"')+C(100,102,8,'#4A2A18')+C(97,99,2.5,'rgba(255,255,255,.4)');}
+  else{s+=RC(62,52,76,100,18,'rgba(224,160,32,.25)',' stroke="#BFD3DA" stroke-width="3"')+RC(66,70,68,78,14,a)+RC(60,40,80,20,8,b)+RC(80,82,40,30,4,'#FBF0D2')+S('M88 96 H112 M88 104 H108','#8A4B22',2.5)+RC(148,28,6,70,3,'#B5683A',' transform="rotate(20 150 60)"')+E(158,104,10,5,'#B5683A',20);}
+  return s;
+};
+
+function draw(spec,seed){
+  var p=spec.split(':'),f=K[p[0]];
+  if(!f){f=K.bowl;p=['bowl','plain','#ccc','#999'];}
+  return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'+f(rng(seed),p[1],p[2],p[3])+'</svg>';
+}
+
+/* ---------- regional scenes: 400 x 400 ---------- */
+var SC={};
+function tree(x,y,s,c){return RC(x-4*s,y-30*s,8*s,34*s,3,'#5B3A1E')+C(x,y-38*s,22*s,c)+C(x-14*s,y-28*s,15*s,c)+C(x+14*s,y-28*s,15*s,c);}
+function boat(x,y,s,hull,sail){return P('M'+(x-60*s)+' '+y+' L'+(x+60*s)+' '+y+' L'+(x+42*s)+' '+(y+22*s)+' L'+(x-42*s)+' '+(y+22*s)+'Z',hull)+RC(x-2*s,y-70*s,4*s,70*s,1,'#4A3A2A')+P('M'+(x+4*s)+' '+(y-68*s)+' L'+(x+54*s)+' '+(y-6*s)+' L'+(x+4*s)+' '+(y-6*s)+'Z',sail);}
+function waves(y,col,amp,h,op){var d='M0 '+y,x;for(x=0;x<=400;x+=50){d+=' Q'+(x+25)+' '+(y-amp)+' '+(x+50)+' '+y;}return '<path d="'+d+' L400 '+(y+h)+' L0 '+(y+h)+'Z" fill="'+col+'"'+(op?' opacity="'+op+'"':'')+'/>';}
+
+SC.dhaka=function(){
+  var s=RC(0,0,400,400,0,'#FFB3D1')+C(300,110,50,'#FFD23F')+C(300,110,34,'#FFE98A'),i,b=[[10,50,150],[62,40,200],[104,60,130],[166,44,220],[212,56,160],[270,48,190],[320,60,140],[372,40,210]];
+  for(i=0;i<b.length;i++){s+=RC(b[i][0],340-b[i][2],b[i][1],b[i][2],2,i%2?'#7A2E8A':'#5B1F6B',' opacity=".9"');for(var j=0;j<5;j++){s+=RC(b[i][0]+8,350-b[i][2]+j*30,8,10,1,'#FFD23F',' opacity=".7"');}}
+  s+=RC(0,330,400,70,0,'#2C0F33')+C(250,318,40,'none',' stroke="#FFD23F" stroke-width="7"')+C(130,326,30,'none',' stroke="#00BFA6" stroke-width="7"')+C(250,318,5,'#FFD23F')+C(130,326,5,'#00BFA6');
+  for(i=0;i<8;i++){s+=S('M250 318 L'+n(250+Math.cos(i*.785)*38)+' '+n(318+Math.sin(i*.785)*38),'#FFD23F',2);}
+  return s+P('M150 322 L190 322 L196 270 L262 270 L262 322 L250 318 Z','#E4256B')+P('M180 270 Q210 200 270 262 Z','#00BFA6')+RC(196,268,66,10,3,'#FFD23F')+S('M130 326 L160 290 L190 290','#FFD23F',6);
+};
+SC.chattogram=function(){
+  var s=RC(0,0,400,400,0,'#9FD3E6')+C(90,90,34,'#FFF1B0')+P('M0 230 L70 150 L130 210 L210 120 L290 215 L350 170 L400 230 L400 400 L0 400Z','#2F6B4A')+P('M0 250 L90 190 L170 245 L260 180 L340 245 L400 215 L400 400 L0 400Z','#245A3E')+waves(260,'#1D8FA8',16,160)+waves(300,'#166F86',14,120,.9)+waves(345,'#0D4F63',12,80);
+  return s+P('M96 262 L220 262 L204 292 L112 292Z','#7A2E1B')+RC(110,238,70,24,2,'#F4F4F4')+RC(120,226,24,12,2,'#D9344A')+RC(150,214,6,24,1,'#555')+RC(260,236,6,60,1,'#4A3A2A')+P('M268 238 L322 292 L268 292Z','#fff');
+};
+SC.sylhet=function(){
+  var s=RC(0,0,400,400,0,'#DDEFD0')+E(200,150,260,50,'rgba(255,255,255,.7)')+P('M0 210 Q100 140 200 200 T400 190 L400 400 L0 400Z','#7DB35A')+P('M0 260 Q120 200 240 250 T400 240 L400 400 L0 400Z','#4F9A3F'),i,k;
+  for(k=0;k<4;k++){for(i=0;i<7;i++){s+=S('M'+(10+i*60)+' '+(290+k*26)+' q30 -22 60 0','#2F7A2E',9,' opacity=".85"');}}
+  return s+tree(330,230,1,'#2F6B2A')+E(110,120,90,16,'rgba(255,255,255,.65)')+E(300,96,70,12,'rgba(255,255,255,.55)')+C(70,66,22,'#FFF6C8');
+};
+SC.khulna=function(){
+  var s=RC(0,0,400,400,0,'#F6D58A')+C(280,120,60,'#F2A93B')+C(280,120,42,'#FFD27A')+RC(0,250,400,150,0,'#4F7A3A')+waves(270,'#6A9A4C',8,130,.8),i;
+  for(i=0;i<5;i++){var x=40+i*80;s+=S('M'+x+' 250 Q'+(x-10)+' 200 '+(x+8)+' 150','#4A2F18',9)+S('M'+x+' 250 Q'+(x-30)+' 270 '+(x-40)+' 300 M'+x+' 250 Q'+(x+30)+' 270 '+(x+44)+' 300','#4A2F18',5)+C(x+8,140,34,'#2F6B2A')+C(x-14,150,22,'#3E7F33');}
+  s+=boat(300,310,.8,'#7A4A1E','#F6E7B8');
+  for(i=0;i<6;i++){var hx=50+i*14;s+=P('M'+hx+' 346 l7 -4 l7 4 l0 10 l-7 4 l-7 -4Z','#F0A020',' opacity=".9"');}
+  return s;
+};
+SC.barishal=function(){
+  var s=RC(0,0,400,400,0,'#CDEFF3')+C(110,90,36,'#FFF1B0')+waves(250,'#3FA7D6',14,150)+waves(300,'#2C83B0',12,100,.9)+waves(350,'#1F6890',10,50),i;
+  s+=boat(220,270,1,'#7A4A1E','#fff')+boat(110,300,.55,'#5B3A1E','#F6E7B8');
+  s+=RC(336,150,8,110,3,'#7A5A2E')+C(340,148,5,'#4A2A12');
+  for(i=0;i<6;i++){s+=S('M340 148 Q'+n(340+Math.cos(i*1.05)*30)+' '+n(130+Math.sin(i*1.05)*26)+' '+n(340+Math.cos(i*1.05)*58)+' '+n(150+Math.sin(i*1.05)*40),'#2F7A2E',8);}
+  return s+C(334,160,6,'#8A9A2E');
+};
+SC.rajshahi=function(){
+  var s=RC(0,0,400,400,0,'#FFE9B0')+C(310,90,40,'#FFCB52')+RC(0,300,400,100,0,'#8FB84F')+RC(0,320,400,80,0,'#6F9A3A')+RC(186,170,28,150,6,'#6B4426')+C(200,150,90,'#3E8A3A')+C(140,170,60,'#4B9A44')+C(262,172,60,'#4B9A44')+C(200,100,60,'#52A648'),i,m=[[150,120],[220,90],[250,160],[130,176],[190,152],[290,200],[104,206]];
+  for(i=0;i<m.length;i++){s+=E(m[i][0],m[i][1],14,18,i%2?'#F0A020':'#F4B63A',20)+E(m[i][0]-4,m[i][1]-5,4,6,'rgba(255,255,255,.4)',20)+RC(m[i][0]-1.5,m[i][1]-28,3,10,1,'#5B3A1E');}
+  return s;
+};
+SC.rangpur=function(){
+  var s=RC(0,0,400,400,0,'#FFD9D0')+C(200,160,92,'#D7263D')+C(200,160,92,'none',' stroke="#F8A5A0" stroke-width="6"')+RC(0,230,400,170,0,'#E3B84A'),i;
+  for(i=0;i<8;i++){s+=P('M0 '+(250+i*20)+' Q200 '+(232+i*20)+' 400 '+(250+i*20)+' L400 '+(262+i*20)+' Q200 '+(244+i*20)+' 0 '+(262+i*20)+'Z',i%2?'#C99A2E':'#EBC65C');}
+  s+=P('M290 240 L335 200 L380 240Z','#8A4B22')+RC(298,240,74,40,0,'#C98A4A')+RC(326,254,18,26,0,'#5B3A1E');
+  for(i=0;i<10;i++){s+=S('M'+(20+i*38)+' 300 q4 -26 -2 -40','#A87A1E',3)+E(18+i*38,254,3,9,'#C99A2E',10);}
+  return s;
+};
+SC.mymensingh=function(){
+  var s=RC(0,0,400,400,0,'#C5CCF5')+E(120,90,100,30,'#8F9AE0')+E(300,70,90,26,'#7C88D8')+E(220,130,110,24,'#A5AFEA')+waves(240,'#5B6EE1',12,160)+waves(290,'#4857C4',12,110,.9)+waves(340,'#3643A0',10,60),i;
+  s+=boat(200,262,.9,'#3A2A1A','#F6E7B8')+P('M30 236 L60 206 L90 236Z','#2F3A8A',' opacity=".6"');
+  s+=C(200,200,188,'none',' stroke="#F6E7B8" stroke-width="4" stroke-dasharray="3 9"');
+  for(i=0;i<12;i++){s+=C(200+Math.cos(i*.5236)*170,200+Math.sin(i*.5236)*170,4,'#E6E9FF');}
+  return s;
+};
+function scene(id,uid){
+  var f=SC[id];if(!f)return '';
+  return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img"><defs><clipPath id="clip-'+uid+'"><circle cx="200" cy="200" r="196"/></clipPath></defs><g clip-path="url(#clip-'+uid+')">'+f()+'</g><circle cx="200" cy="200" r="196" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="4"/></svg>';
+}
+function alpona(disc,line){
+  var s='<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="200" cy="200" r="196" fill="'+disc+'"/><g class="spin">',i;
+  for(i=0;i<24;i++){s+='<ellipse cx="200" cy="60" rx="11" ry="31" transform="rotate('+(i*15)+' 200 200)" fill="none" stroke="'+line+'" stroke-width="3"/>';}
+  for(i=0;i<24;i++){s+='<circle cx="200" cy="22" r="4.5" transform="rotate('+(i*15+7.5)+' 200 200)" fill="'+line+'"/>';}
+  for(i=0;i<12;i++){s+='<ellipse cx="200" cy="128" rx="15" ry="34" transform="rotate('+(i*30)+' 200 200)" fill="'+line+'"/>';}
+  for(i=0;i<12;i++){s+='<circle cx="200" cy="86" r="4" transform="rotate('+(i*30+15)+' 200 200)" fill="'+line+'"/>';}
+  s+='<circle cx="200" cy="200" r="72" fill="'+disc+'" stroke="'+line+'" stroke-width="3"/>';
+  for(i=0;i<8;i++){s+='<ellipse cx="200" cy="158" rx="9" ry="22" transform="rotate('+(i*45)+' 200 200)" fill="'+line+'"/>';}
+  return s+'</g><circle cx="200" cy="200" r="19" fill="#EBA81C"/></svg>';
+}
+return {draw:draw,scene:scene,alpona:alpona};
+})();
+
+(function(){
+'use strict';
+function $(s){return document.querySelector(s);}
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var store={get:function(k,d){try{var v=localStorage.getItem('rannaghor:'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem('rannaghor:'+k,JSON.stringify(v));}catch(e){}}};
+
+/* ---------- state ---------- */
+var lang=store.get('lang',null);
+if(lang!=='bn'&&lang!=='en'){lang=((navigator.language||'').toLowerCase().indexOf('bn')===0)?'bn':'en';}
+var mode=store.get('mode',null);
+var region=store.get('region','');
+var saved=store.get('saved',[]);if(!Array.isArray(saved))saved=[];
+var COL={dhaka:'#E4256B',chattogram:'#1D8FA8',sylhet:'#5E9E34',khulna:'#D98E04',barishal:'#3FA7D6',rajshahi:'#E59A00',rangpur:'#D7263D',mymensingh:'#5B6EE1'};
+var state={q:'',cat:'all',veg:false,easy:false,saved:false,spice:'any',time:'any'};
+var cur=null,cooking=false,ci=0,opener=null;
+
+function num(v){v=String(v);return lang==='bn'?v.replace(/\d/g,function(d){return '০১২৩৪৫৬৭৮৯'.charAt(d);}):v;}
+function t(k,v){var s=(T[lang]&&T[lang][k]!==undefined)?T[lang][k]:T.en[k];if(s===undefined)return k;if(v){for(var p in v){s=s.split('{'+p+'}').join(v[p]);}}return s;}
+function L(o){return o[lang]||o.en;}
+
+/* ---------- sound ---------- */
+var Snd=(function(){
+  var ctx=null,master=null,on=store.get('sound',true)!==false;
+  function ensure(){
+    if(!on)return null;
+    if(!ctx){try{var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;ctx=new AC();master=ctx.createGain();master.gain.value=.22;master.connect(ctx.destination);}catch(e){return null;}}
+    if(ctx.state==='suspended'){try{ctx.resume();}catch(e){}}
+    return ctx;
+  }
+  function tone(f1,f2,dur,type,vol,delay){
+    var c=ensure();if(!c)return;var t0=c.currentTime+(delay||0),o=c.createOscillator(),g=c.createGain();
+    o.type=type||'sine';o.frequency.setValueAtTime(f1,t0);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dur);
+    g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vol||.4,t0+.012);g.gain.exponentialRampToValueAtTime(.0001,t0+dur);
+    o.connect(g);g.connect(master);o.start(t0);o.stop(t0+dur+.03);
+  }
+  function noise(dur,ft,f1,f2,vol,crackle){
+    var c=ensure();if(!c)return;var len=Math.floor(c.sampleRate*dur),buf=c.createBuffer(1,len,c.sampleRate),d=buf.getChannelData(0),i,v;
+    for(i=0;i<len;i++){v=Math.random()*2-1;if(crackle&&Math.random()>.986)v*=3;d[i]=v;}
+    var s=c.createBufferSource();s.buffer=buf;var f=c.createBiquadFilter();f.type=ft;f.frequency.setValueAtTime(f1,c.currentTime);
+    if(f2)f.frequency.exponentialRampToValueAtTime(f2,c.currentTime+dur);
+    var g=c.createGain();g.gain.setValueAtTime(0.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(vol,c.currentTime+.08);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur);
+    s.connect(f);f.connect(g);g.connect(master);s.start();
+  }
+  return {
+    isOn:function(){return on;},
+    set:function(v){on=!!v;store.set('sound',on);},
+    tick:function(){tone(700,420,.05,'triangle',.25);},
+    pop:function(){tone(300,720,.13,'sine',.4);},
+    shut:function(){tone(620,260,.12,'sine',.3);},
+    heart:function(){tone(520,780,.1,'sine',.4);tone(780,1040,.12,'sine',.35,.09);},
+    whoosh:function(){noise(.55,'bandpass',300,2600,.5);},
+    sizzle:function(){noise(1.8,'highpass',2500,5200,.35,true);},
+    step:function(){tone(520,null,.12,'triangle',.3);tone(780,null,.16,'triangle',.3,.08);},
+    chime:function(){tone(880,null,.5,'sine',.4);tone(1320,null,.7,'sine',.3,.12);tone(1760,null,.9,'sine',.2,.26);}
+  };
+})();
+
+/* ---------- data ---------- */
+var CATBY={};CATS.forEach(function(c){CATBY[c.id]=c;});
+var D=RAW.map(function(r){
+  var x=X[r[0]]||['','rice','rice',20,'bowl:plain:#ccc:#999'];
+  var ing=x[1].split(',');
+  var d={slug:r[0].toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),name:r[0],bn:r[1],cat:r[2],desc:{en:r[3],bn:x[0]},spice:r[4],veg:r[5]===1,note:r[6],ing:ing,method:x[2],min:x[3],art:x[4]};
+  var extra=[];ing.forEach(function(k){if(G[k]){extra.push(G[k][0],G[k][1]);}});
+  d.hay=(d.name+' '+d.bn+' '+d.desc.en+' '+d.desc.bn+' '+d.note+' '+(NB[d.note]||'')+' '+CATBY[d.cat].en+' '+CATBY[d.cat].bn+' '+extra.join(' ')).toLowerCase();
+  return d;
+});
+var BY={};D.forEach(function(d){BY[d.slug]=d;});
+function level(d){return d.min<=30?1:(d.min<=75?2:3);}
+function pri(d){return lang==='bn'?d.bn:d.name;}
+function sec(d){return lang==='bn'?d.name:d.bn;}
+function noteOf(d){return d.note?(lang==='bn'?(NB[d.note]||d.note):d.note):'';}
+function isSaved(s){return saved.indexOf(s)>-1;}
+
+/* ---------- toast, reveal ---------- */
+var toastT;function toast(msg){var e=$('#toast');e.textContent=msg;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove('on');},2200);}
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -5% 0px',threshold:.04}):null;
+function reveal(e){e.classList.add('reveal');if(io)io.observe(e);else e.classList.add('in');}
+
+/* ---------- theme, mode ---------- */
+function renderSun(anim){
+  var box=$('#sun');
+  function put(){
+    var disc=region?COL[region]:'#C8202E';
+    box.innerHTML=region?Art.scene(region,'hero'):Art.alpona(disc,'#fff');
+    box.setAttribute('role','img');
+    var rg=null;REGIONS.forEach(function(r){if(r.id===region)rg=r;});
+    box.setAttribute('aria-label',rg?L({en:rg.en,bn:rg.bn}):'');
+    box.classList.remove('swap');
+  }
+  if(anim){box.classList.add('swap');setTimeout(put,330);}else{put();}
+}
+function setRegion(id,quiet){
+  region=id||'';
+  if(region)document.documentElement.setAttribute('data-region',region);else document.documentElement.removeAttribute('data-region');
+  store.set('region',region);
+  renderSun(!quiet);buildThemeRow();syncApply();
+  if(!quiet){Snd.whoosh();var nm=null;REGIONS.forEach(function(r){if(r.id===region)nm=r;});toast(nm?t('toast_theme',{name:L({en:nm.en,bn:nm.bn})}):t('toast_classic'));}
+}
+function effMode(){return mode||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');}
+function applyMode(){
+  if(mode)document.documentElement.setAttribute('data-theme',mode);else document.documentElement.removeAttribute('data-theme');
+  $('#b-mode').textContent=effMode()==='dark'?'☀':'☾';
+}
+function buildThemeRow(){
+  var row=$('#theme-row');row.replaceChildren();
+  function mk(id,label,col){
+    var b=el('button','tchip');b.type='button';b.setAttribute('aria-pressed',region===id?'true':'false');
+    var i=el('i');i.style.background=col;b.appendChild(i);b.appendChild(document.createTextNode(label));
+    b.addEventListener('click',function(){setRegion(id);});row.appendChild(b);
+  }
+  mk('',t('theme_classic'),'#C8202E');
+  REGIONS.forEach(function(r){mk(r.id,L({en:r.en,bn:r.bn}),COL[r.id]);});
+}
+function syncApply(){document.querySelectorAll('.apply').forEach(function(b){var on=b.dataset.r===region;b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?t('theme_on'):t('apply_theme');});}
+
+/* ---------- static content ---------- */
+function buildStatic(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(n){n.textContent=t(n.getAttribute('data-i18n'));});
+  $('#b-lang').textContent=t('lang_name');$('#b-lang').setAttribute('aria-label',t('ctl_lang'));$('#b-lang').setAttribute('lang',lang==='bn'?'en':'bn');
+  var sb=$('#b-sound');sb.textContent=Snd.isOn()?'🔊':'🔇';sb.setAttribute('aria-pressed',Snd.isOn()?'true':'false');sb.setAttribute('aria-label',t('ctl_sound')+': '+(Snd.isOn()?t('sound_on'):t('sound_off')));
+  $('#b-mode').setAttribute('aria-label',t('ctl_mode'));
+  $('#b-list').setAttribute('aria-label',t('ctl_list'));$('#list-n').textContent=num(saved.length);
+  $('#proverb').textContent=t('hero_proverb');$('#lede').textContent=t('hero_lede',{n:num(D.length)});$('#cta').textContent=t('hero_cta');$('#th-l').textContent=t('hero_theme');
+  $('#menu-t').textContent=t('menu_title');$('#menu-s').textContent=t('menu_sub');$('#q-l').textContent=t('search_label');$('#q').placeholder=t('search_ph');
+  $('#l-veg').textContent=t('f_veg');$('#l-easy').textContent=t('f_easy');$('#l-saved').textContent=t('f_saved');$('#l-spice').textContent=t('f_spice');$('#l-time').textContent=t('f_time');$('#surprise').textContent='🎲 '+t('surprise');
+  var so=$('#spice').options;so[0].textContent=t('sp_any');so[1].textContent=t('sp_mild');so[2].textContent=t('sp_medium');so[3].textContent=t('sp_hot');
+  var to=$('#time').options;to[0].textContent=t('tm_any');to[1].textContent=t('tm_quick');to[2].textContent=t('tm_hour');
+  $('#tab-t').textContent=t('tables_title');$('#tab-s').textContent=t('tables_sub');$('#reg-t').textContent=t('regions_title');$('#reg-s').textContent=t('regions_sub');
+  $('#sea-t').textContent=t('seasons_title');$('#sea-s').textContent=t('seasons_sub');$('#foot').textContent=t('foot_note');
+  buildThemeRow();buildCats();buildTables();buildRegions();buildCal();applyMode();renderSun(false);
+}
+function buildTables(){
+  var g=$('#tables-grid');g.replaceChildren();
+  TABLES.forEach(function(tb){
+    var a=el('article');var h=el('h3');
+    var p1=el('span','pri',lang==='bn'?tb.bn:tb.en);p1.setAttribute('lang',lang==='bn'?'bn':'en');h.appendChild(p1);h.appendChild(el('span','sec',lang==='bn'?tb.en:tb.bn));
+    a.appendChild(h);a.appendChild(el('p',null,L(tb.d)));var ul=el('ul');
+    tb.it.forEach(function(i){ul.appendChild(el('li',null,lang==='bn'?i[1]:i[0]));});a.appendChild(ul);reveal(a);g.appendChild(a);
+  });
+}
+function buildRegions(){
+  var g=$('#regions-grid');g.replaceChildren();
+  REGIONS.forEach(function(r){
+    var a=el('article','region');var rs=el('div','rs');rs.innerHTML=Art.scene(r.id,'r-'+r.id);a.appendChild(rs);
+    var h=el('h3');h.appendChild(el('span','pri',lang==='bn'?r.bn:r.en));h.appendChild(el('span','sec',lang==='bn'?r.en:r.bn));a.appendChild(h);
+    a.appendChild(el('p',null,L(r.tag)));
+    var ul=el('ul');
+    r.chips.forEach(function(c){var li=el('li');var b=el('button','chip',L(c));b.type='button';b.addEventListener('click',function(){Snd.tick();searchFor(c.q);});li.appendChild(b);ul.appendChild(li);});
+    a.appendChild(ul);
+    var ap=el('button','apply');ap.type='button';ap.dataset.r=r.id;ap.addEventListener('click',function(){setRegion(region===r.id?'':r.id);});a.appendChild(ap);
+    reveal(a);g.appendChild(a);
+  });
+  syncApply();
+}
+function buildCal(){
+  var d=$('#cal');d.replaceChildren();
+  CAL.forEach(function(c){var row=el('div');var dt=el('dt');dt.appendChild(el('span',null,L(c.s)));dt.appendChild(el('small',null,L(c.w)));row.appendChild(dt);row.appendChild(el('dd',null,L(c.d)));reveal(row);d.appendChild(row);});
+}
+function buildCats(){
+  var box=$('#cats');box.replaceChildren();
+  function mk(id,label,n){var b=el('button','chip');b.type='button';b.dataset.cat=id;b.appendChild(document.createTextNode(label));b.appendChild(el('small',null,num(n)));b.addEventListener('click',function(){Snd.tick();state.cat=id;syncChips();render();});box.appendChild(b);}
+  mk('all',t('cat_all'),D.length);
+  CATS.forEach(function(c){mk(c.id,lang==='bn'?c.bn:c.en,D.filter(function(d){return d.cat===c.id;}).length);});
+  syncChips();
+}
+function syncChips(){document.querySelectorAll('#cats .chip').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===state.cat?'true':'false');});}
+
+/* ---------- menu ---------- */
+function match(d){
+  if(state.cat!=='all'&&d.cat!==state.cat)return false;
+  if(state.veg&&!d.veg)return false;
+  if(state.easy&&level(d)!==1)return false;
+  if(state.saved&&!isSaved(d.slug))return false;
+  if(state.spice==='mild'&&d.spice>1)return false;
+  if(state.spice==='medium'&&d.spice!==2)return false;
+  if(state.spice==='hot'&&d.spice!==3)return false;
+  if(state.time==='quick'&&d.min>30)return false;
+  if(state.time==='hour'&&d.min>60)return false;
+  var q=state.q.trim().toLowerCase();
+  if(q&&d.hay.indexOf(q)===-1)return false;
+  return true;
+}
+function active(){return state.q.trim()!==''||state.cat!=='all'||state.veg||state.easy||state.saved||state.spice!=='any'||state.time!=='any';}
+function dishEl(d){
+  var a=el('article','dish');a.style.setProperty('--c','var(--c-'+d.cat+')');
+  var pic=el('div','pic');pic.innerHTML=Art.draw(d.art,d.slug);a.appendChild(pic);
+  var body=el('div');var h=el('h4');var b=el('button','nm');b.type='button';b.setAttribute('aria-label',t('open_recipe',{name:pri(d)}));
+  var p1=el('span','pri',pri(d));p1.setAttribute('lang',lang==='bn'?'bn':'en');var p2=el('span','sec',sec(d));p2.setAttribute('lang',lang==='bn'?'en':'bn');
+  b.appendChild(p1);b.appendChild(p2);b.addEventListener('click',function(){openDish(d.slug,b);});h.appendChild(b);body.appendChild(h);
+  body.appendChild(el('p','d',d.desc[lang]));
+  var meta=el('p','meta');
+  if(d.spice>0){var sp=el('span','spice');sp.setAttribute('role','img');sp.setAttribute('aria-label',t('spice_lbl',{n:num(d.spice)}));for(var i=1;i<=3;i++){sp.appendChild(el('span','chili'+(i<=d.spice?' on':'')));}meta.appendChild(sp);}
+  meta.appendChild(el('span',null,num(d.min)+' '+t('min')+' · '+t('lvl'+level(d))));
+  if(d.veg)meta.appendChild(el('span','tag',t('tag_veg')));
+  if(noteOf(d))meta.appendChild(el('span',null,noteOf(d)));
+  body.appendChild(meta);a.appendChild(body);
+  a.appendChild(favBtn(d));
+  return a;
+}
+function favBtn(d){
+  var f=el('button','fav','♥');f.type='button';
+  function sync(){var s=isSaved(d.slug);f.setAttribute('aria-pressed',s?'true':'false');f.setAttribute('aria-label',t(s?'fav_del':'fav_add',{name:pri(d)}));}
+  sync();f.addEventListener('click',function(){toggleSave(d.slug);sync();f.classList.remove('pop');void f.offsetWidth;f.classList.add('pop');});
+  f.addEventListener('sync',sync);return f;
+}
+function toggleSave(slug){
+  var i=saved.indexOf(slug),d=BY[slug];
+  if(i>-1){saved.splice(i,1);toast(t('toast_removed',{name:pri(d)}));Snd.tick();}else{saved.push(slug);toast(t('toast_saved',{name:pri(d)}));Snd.heart();}
+  store.set('saved',saved);$('#list-n').textContent=num(saved.length);
+  document.querySelectorAll('.fav').forEach(function(f){f.dispatchEvent(new Event('sync'));});
+  var rs=$('#r-save');if(rs&&cur&&cur.slug===slug){rs.setAttribute('aria-pressed',isSaved(slug)?'true':'false');rs.textContent='♥ '+t(isSaved(slug)?'saved':'save');}
+  if($('#listdlg').open)renderList();
+  if(state.saved)render();
+}
+function render(){
+  var list=D.filter(match),res=$('#results'),cnt=$('#count');
+  res.replaceChildren();
+  cnt.textContent=(list.length===D.length)?t('count_all',{n:num(D.length)}):t('count_some',{n:num(list.length),t:num(D.length)});
+  if(active()){var c=el('button','linkbtn',t('clear'));c.type='button';c.addEventListener('click',reset);cnt.appendChild(c);}
+  if(!list.length){var e=el('div','empty');e.appendChild(el('h3',null,t('empty_t')));e.appendChild(el('p',null,t('empty_b')));var b=el('button','linkbtn',t('clear'));b.type='button';b.addEventListener('click',reset);e.appendChild(b);res.appendChild(e);return;}
+  CATS.forEach(function(c){
+    var items=list.filter(function(d){return d.cat===c.id;});if(!items.length)return;
+    var sec2=el('section','group');sec2.style.setProperty('--c','var(--c-'+c.id+')');
+    var h=el('h3');var p1=el('span','pri',lang==='bn'?c.bn:c.en);p1.setAttribute('lang',lang==='bn'?'bn':'en');h.appendChild(p1);
+    h.appendChild(el('span','sec',lang==='bn'?c.en:c.bn));h.appendChild(el('span','n',t(items.length===1?'group_1':'group_n',{n:num(items.length)})));sec2.appendChild(h);
+    var ul=el('div','list');items.forEach(function(d){var de=dishEl(d);reveal(de);ul.appendChild(de);});sec2.appendChild(ul);res.appendChild(sec2);
+  });
+}
+function reset(){state={q:'',cat:'all',veg:false,easy:false,saved:false,spice:'any',time:'any'};$('#q').value='';$('#veg').checked=false;$('#easy').checked=false;$('#savedonly').checked=false;$('#spice').value='any';$('#time').value='any';syncChips();render();}
+function searchFor(q){reset();state.q=q;$('#q').value=q;render();$('#menu').scrollIntoView();}
+
+/* ---------- recipe dialog ---------- */
+function stepsFor(d){
+  var m=M[d.method],arr=(m&&m[lang])||[],g=G[d.ing[0]],mn=g?(lang==='bn'?g[1]:g[0].toLowerCase()):'';
+  return arr.map(function(s){return num(s.replace(/\{m\}/g,mn));});
+}
+function openDish(slug,from){
+  var d=BY[slug];if(!d)return;cur=d;cooking=false;ci=0;opener=from||null;Snd.pop();
+  renderRecipe();var dlg=$('#recipe');
+  if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');document.documentElement.classList.add('lock');}
+  try{history.replaceState(null,'','#'+slug);}catch(e){}
+  dlg.scrollTop=0;
+}
+function ingName(k){var g=G[k];return g?g[lang==='bn'?1:0]:k;}
+function renderRecipe(){
+  var d=cur;if(!d)return;var dlg=$('#recipe'),steps=stepsFor(d),cat=CATBY[d.cat];
+  dlg.style.setProperty('--c','var(--c-'+d.cat+')');
+  var close='<button class="dx" id="r-x" type="button" aria-label="'+esc(t('close'))+'">×</button>';
+  var art='<div class="r-art">'+Art.draw(d.art,d.slug)+'</div>';
+  if(cooking){
+    if(ci>=steps.length){
+      dlg.innerHTML=close+'<div class="cook done"><div class="big" lang="'+(lang==='bn'?'bn':'en')+'">'+esc(t('enjoy'))+'</div><p>'+esc(t('enjoy_sub',{name:pri(d)}))+'</p>'+art+'<div class="cr" style="justify-content:center"><button class="btn pri2" id="c-exit" type="button">'+esc(t('close'))+'</button><button class="btn" id="c-again" type="button">'+esc(t('how_to_cook'))+'</button></div></div>';
+      $('#c-exit').onclick=function(){$('#recipe').close();};$('#c-again').onclick=function(){cooking=false;renderRecipe();};
+    }else{
+      var last=ci===steps.length-1;
+      dlg.innerHTML=close+'<div class="cook"><div class="steam" aria-hidden="true"><span></span><span></span><span></span></div><p class="sn">'+esc(pri(d))+' · '+esc(t('step_of',{i:num(ci+1),n:num(steps.length)}))+'</p><div class="bar"><i style="width:'+Math.round((ci+1)/steps.length*100)+'%"></i></div><p class="st" lang="'+lang+'" aria-live="polite">'+esc(steps[ci])+'</p><div class="cr"><button class="btn" id="c-back" type="button"'+(ci===0?' disabled':'')+'>'+esc(t('back'))+'</button><button class="btn pri2" id="c-next" type="button">'+esc(t(last?'finish':'next'))+'</button>'+(('speechSynthesis' in window)?'<button class="btn" id="c-read" type="button">🔈 '+esc(t('read'))+'</button>':'')+'<button class="btn" id="c-exit" type="button">'+esc(t('exit'))+'</button></div></div>';
+      $('#c-back').onclick=function(){if(ci>0){ci--;Snd.tick();renderRecipe();}};
+      $('#c-next').onclick=function(){ci++;if(ci>=steps.length)Snd.chime();else Snd.step();renderRecipe();};
+      $('#c-exit').onclick=function(){cooking=false;renderRecipe();};
+      var rd=$('#c-read');if(rd)rd.onclick=function(){speak(steps[ci]);};
+    }
+    $('#r-x').onclick=function(){$('#recipe').close();};return;
+  }
+  var ing=d.ing.map(function(k,i){return '<li><label><input type="checkbox"><span>'+esc(ingName(k))+'</span></label></li>';}).join('');
+  var st=steps.map(function(s){return '<li>'+esc(s)+'</li>';}).join('');
+  var sp='';if(d.spice>0){sp='<li><span class="spice" role="img" aria-label="'+esc(t('spice_lbl',{n:num(d.spice)}))+'">'+[1,2,3].map(function(i){return '<span class="chili'+(i<=d.spice?' on':'')+'"></span>';}).join('')+'</span></li>';}
+  dlg.innerHTML=close+'<div class="r-head">'+art+'<div><p class="r-cat">'+esc(lang==='bn'?cat.bn:cat.en)+'</p><h2 id="r-title" lang="'+(lang==='bn'?'bn':'en')+'">'+esc(pri(d))+'</h2><p class="r-en" lang="'+(lang==='bn'?'en':'bn')+'">'+esc(sec(d))+'</p><p class="r-desc">'+esc(d.desc[lang])+'</p><ul class="r-meta"><li>⏱ '+esc(num(d.min)+' '+t('min'))+'</li><li>'+esc(t('lvl'+level(d)))+'</li>'+sp+(d.veg?'<li>'+esc(t('tag_veg'))+'</li>':'')+(noteOf(d)?'<li>'+esc(noteOf(d))+'</li>':'')+'</ul><div class="r-act"><button class="btn pri2" id="r-cook" type="button">▶ '+esc(t('start_cook'))+'</button><button class="btn" id="r-save" type="button" aria-pressed="'+(isSaved(d.slug)?'true':'false')+'">♥ '+esc(t(isSaved(d.slug)?'saved':'save'))+'</button><button class="btn" id="r-share" type="button">🔗 '+esc(t('share'))+'</button></div></div></div><div class="r-body"><div><h3>'+esc(t('ingredients'))+'</h3><ul class="ing">'+ing+'</ul></div><div><h3>'+esc(t('how_to_cook'))+'</h3><ol class="steps">'+st+'</ol></div><p class="note">'+esc(t('illus_note'))+'</p></div>';
+  $('#r-x').onclick=function(){$('#recipe').close();};
+  $('#r-cook').onclick=function(){cooking=true;ci=0;Snd.sizzle();renderRecipe();$('#recipe').scrollTop=0;};
+  $('#r-save').onclick=function(){toggleSave(d.slug);};
+  $('#r-share').onclick=function(){copyText(location.href.split('#')[0]+'#'+d.slug,t('copied'));};
+}
+function speak(text){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=lang==='bn'?'bn-BD':'en-US';speechSynthesis.speak(u);}catch(e){}}
+function copyText(txt,msg){
+  function done(){toast(msg);Snd.tick();}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallback();});}else{fallback();}
+  function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+
+/* ---------- shopping list ---------- */
+function renderList(){
+  var dlg=$('#listdlg');var items=saved.map(function(s){return BY[s];}).filter(Boolean);
+  var h='<button class="dx" id="l-x" type="button" aria-label="'+esc(t('close'))+'">×</button><div class="lst"><h2 id="l-title">'+esc(t('list_title'))+'</h2>';
+  if(!items.length){h+='<p class="sub">'+esc(t('list_empty'))+'</p></div>';dlg.innerHTML=h;$('#l-x').onclick=function(){dlg.close();};return;}
+  var map={};items.forEach(function(d){d.ing.forEach(function(k){(map[k]=map[k]||[]).push(d.slug);});});
+  var keys=Object.keys(map).sort(function(a,b){return ingName(a).localeCompare(ingName(b),lang);});
+  h+='<h3>'+esc(t('list_saved'))+'</h3><ul>'+items.map(function(d){return '<li><span>'+esc(pri(d))+'</span><button class="linkbtn" data-open="'+d.slug+'" type="button">'+esc(t('start_cook'))+'</button></li>';}).join('')+'</ul>';
+  h+='<h3>'+esc(t('list_shop'))+'</h3><ul class="ing">'+keys.map(function(k){return '<li><label><input type="checkbox"><span>'+esc(ingName(k))+'</span></label><small>'+esc(t('list_in',{n:num(map[k].length)}))+'</small></li>';}).join('')+'</ul>';
+  h+='<div class="btns"><button class="btn pri2" id="l-copy" type="button">'+esc(t('copy_list'))+'</button><button class="btn" id="l-clear" type="button">'+esc(t('list_clear'))+'</button></div></div>';
+  dlg.innerHTML=h;
+  $('#l-x').onclick=function(){dlg.close();};
+  $('#l-copy').onclick=function(){copyText(items.map(function(d){return pri(d);}).join(', ')+'\n\n'+keys.map(function(k){return '- '+ingName(k);}).join('\n'),t('list_copied'));};
+  $('#l-clear').onclick=function(){saved=[];store.set('saved',saved);$('#list-n').textContent=num(0);document.querySelectorAll('.fav').forEach(function(f){f.dispatchEvent(new Event('sync'));});renderList();if(state.saved)render();};
+  dlg.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){dlg.close();openDish(b.dataset.open,$('#b-list'));};});
+}
+
+/* ---------- wiring ---------- */
+function wire(){
+  var qd;$('#q').addEventListener('input',function(){state.q=this.value;clearTimeout(qd);qd=setTimeout(render,80);});
+  $('#veg').addEventListener('change',function(){Snd.tick();state.veg=this.checked;render();});
+  $('#easy').addEventListener('change',function(){Snd.tick();state.easy=this.checked;render();});
+  $('#savedonly').addEventListener('change',function(){Snd.tick();state.saved=this.checked;render();});
+  $('#spice').addEventListener('change',function(){Snd.tick();state.spice=this.value;render();});
+  $('#time').addEventListener('change',function(){Snd.tick();state.time=this.value;render();});
+  $('#surprise').addEventListener('click',function(){var pool=D.filter(match);if(!pool.length)pool=D;openDish(pool[Math.floor(Math.random()*pool.length)].slug,this);});
+  $('#b-lang').addEventListener('click',function(){lang=lang==='bn'?'en':'bn';store.set('lang',lang);Snd.tick();buildStatic();render();if(cur&&$('#recipe').open)renderRecipe();if($('#listdlg').open)renderList();});
+  $('#b-sound').addEventListener('click',function(){Snd.set(!Snd.isOn());if(Snd.isOn())Snd.pop();buildStaticControls();});
+  $('#b-mode').addEventListener('click',function(){mode=effMode()==='dark'?'light':'dark';store.set('mode',mode);Snd.tick();applyMode();});
+  $('#b-list').addEventListener('click',function(){Snd.pop();renderList();var dl=$('#listdlg');if(dl.showModal)dl.showModal();else dl.setAttribute('open','');document.documentElement.classList.add('lock');});
+  var rd=$('#recipe'),ld=$('#listdlg');
+  [rd,ld].forEach(function(dl){
+    dl.addEventListener('click',function(e){if(e.target===dl)dl.close();});
+    dl.addEventListener('close',function(){
+      Snd.shut();document.documentElement.classList.remove('lock');
+      try{speechSynthesis.cancel();}catch(e){}
+      if(dl===rd){cur=null;cooking=false;try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
+      if(opener&&opener.focus){try{opener.focus();}catch(e){}}
+    });
+  });
+  rd.addEventListener('keydown',function(e){
+    if(!cooking)return;
+    if(e.key==='ArrowRight'){var n=$('#c-next');if(n)n.click();}
+    if(e.key==='ArrowLeft'){var b=$('#c-back');if(b&&!b.disabled)b.click();}
+  });
+  document.querySelectorAll('.cta,.links a').forEach(function(a){a.addEventListener('click',function(){Snd.tick();});});
+}
+function buildStaticControls(){var sb=$('#b-sound');sb.textContent=Snd.isOn()?'🔊':'🔇';sb.setAttribute('aria-pressed',Snd.isOn()?'true':'false');sb.setAttribute('aria-label',t('ctl_sound')+': '+(Snd.isOn()?t('sound_on'):t('sound_off')));toast(Snd.isOn()?t('sound_on'):t('sound_off'));}
+
+/* ---------- start ---------- */
+if(region)document.documentElement.setAttribute('data-region',region);
+wire();buildStatic();render();
+var h0=(location.hash||'').slice(1);
+if(h0&&BY[h0]){setTimeout(function(){openDish(h0,null);},300);}
+})();
+
+</script>
+</body>
+</html>
